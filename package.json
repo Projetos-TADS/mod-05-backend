@@ -20,7 +20,7 @@
   "homepage": "https://github.com/Projetos-TADS/mod-05-backend#readme",
   "description": "",
   "devDependencies": {
-    "@types/express": "^5.0.0",
+    "@types/express": "^4.17.21",
     "@types/node": "^22.13.5",
     "@types/sequelize": "^4.28.20",
     "ts-node": "^10.9.2",
