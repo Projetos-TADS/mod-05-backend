@@ -8,7 +8,7 @@ interface UserAttributes {
   password: string;
   createdAt: Date;
   updatedAt: Date;
-  deletedAt?: Date;
+  deletedAt?: Date | null;
   admin: boolean;
 }
 
@@ -44,7 +44,6 @@ UserModel.init(
     email: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      unique: true,
       validate: {
         isEmail: true,
       },

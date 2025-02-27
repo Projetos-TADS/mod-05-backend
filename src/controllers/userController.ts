@@ -1,5 +1,6 @@
 import e, { Request, Response } from "express";
 import UserModel from "../models/UserModel";
+import { FindOptions, Op } from "sequelize";
 
 export const getAllUsers = async (request: Request, response: Response) => {
   const users = await UserModel.findAll();
@@ -17,6 +18,21 @@ export const getUserById = async (request: Request, response: Response) => {
 
 export const createUser = async (request: Request, response: Response) => {
   const { name, email, password, admin } = request.body;
+
+  const findOptions: FindOptions = {
+    where: {
+      email: email,
+      deletedAt: {
+        [Op.is]: null,
+      },
+    },
+  };
+
+  const existingUser = await UserModel.findOne(findOptions);
+
+  if (existingUser) {
+    return response.status(400).send("Este email já está em uso por outro usuário ativo.");
+  }
   const user = await UserModel.create({ name, email, password, admin });
   response.send(user);
 };
