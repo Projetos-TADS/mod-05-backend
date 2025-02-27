@@ -3,13 +3,13 @@ import UserModel from "../models/UserModel";
 import { FindOptions, Op } from "sequelize";
 
 export const getAllUsers = async (request: Request, response: Response) => {
-  const users = await UserModel.findAll();
+  const users: Array<UserModel> = await UserModel.findAll();
   response.send(users);
 };
 
 export const getUserById = async (request: Request, response: Response) => {
   const { id } = request.params;
-  const user = await UserModel.findByPk(id);
+  const user: UserModel | null = await UserModel.findByPk(id);
   if (!user) {
     return response.status(404).send("User not found.");
   }
@@ -28,7 +28,7 @@ export const createUser = async (request: Request, response: Response) => {
     },
   };
 
-  const existingUser = await UserModel.findOne(findOptions);
+  const existingUser: UserModel | null = await UserModel.findOne(findOptions);
 
   if (existingUser) {
     return response.status(400).send("Este email já está em uso por outro usuário ativo.");
@@ -40,7 +40,7 @@ export const createUser = async (request: Request, response: Response) => {
 export const updateUser = async (request: Request, response: Response) => {
   const { id } = request.params;
   const { name, email, password, admin } = request.body;
-  const user = await UserModel.findByPk(id);
+  const user: UserModel | null = await UserModel.findByPk(id);
   if (!user) {
     return response.status(404).send("User not found.");
   }
@@ -54,7 +54,7 @@ export const updateUser = async (request: Request, response: Response) => {
 
 export const deleteUser = async (request: Request, response: Response) => {
   const { id } = request.params;
-  const user = await UserModel.findByPk(id);
+  const user: UserModel | null = await UserModel.findByPk(id);
   if (!user) {
     return response.status(404).send("User not found.");
   }
