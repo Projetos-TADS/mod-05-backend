@@ -1,8 +1,14 @@
+import "dotenv/config";
 import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize("mod_05_database", "root", "", {
-  host: "localhost",
-  dialect: "mysql",
+const dataBaseURL: string | undefined = process.env.DATABASE_URL;
+
+if (!dataBaseURL) {
+  throw new Error("Please provide a DATABASE_URL");
+}
+
+const sequelize = new Sequelize(dataBaseURL, {
+  logging: false,
 });
 
 export default sequelize;
