@@ -37,15 +37,24 @@ UserModel.init(
     name: {
       type: DataTypes.STRING(100),
       allowNull: false,
+      validate: {
+        len: [3, 100],
+      },
     },
     email: {
       type: DataTypes.STRING(100),
       allowNull: false,
       unique: true,
+      validate: {
+        isEmail: true,
+      },
     },
     password: {
       type: DataTypes.STRING(100),
       allowNull: false,
+      validate: {
+        len: [6, 100],
+      },
     },
     createdAt: {
       type: DataTypes.DATE,
