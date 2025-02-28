@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors/index";
 import { ZodError } from "zod";
+import { JsonWebTokenError } from "jsonwebtoken";
 
 const handleError = (
   error: unknown,
@@ -14,6 +15,10 @@ const handleError = (
 
   if (error instanceof ZodError) {
     return response.status(400).json({ message: error.flatten().fieldErrors });
+  }
+
+  if (error instanceof JsonWebTokenError) {
+    return response.status(401).json({ message: error.message });
   }
 
   console.error(error);
