@@ -1,3 +1,3 @@
-import { getAllUsers, getUserById, createUser, updateUser, deleteUser } from "./user.controllers";
+import userController from "./user.controllers";
 
-export { getAllUsers, getUserById, createUser, updateUser, deleteUser };
+export { userController };
