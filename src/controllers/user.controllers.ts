@@ -1,20 +1,22 @@
 import { Request, Response } from "express";
 import { UserModel } from "../models";
 import { userServices } from "../services";
-import { GetAllUsers, UserUpdate } from "../interfaces";
+import { UserUpdate } from "../interfaces";
+import { UserRead, UserReturn } from "../interfaces/user.interfaces";
+import { userReturnSchema } from "../schemas";
 
 const getAllUsers = async (request: Request, response: Response): Promise<Response> => {
-  const users: GetAllUsers = await userServices.getAllUsers();
+  const users: UserRead = await userServices.getAllUsers();
 
   return response.status(200).json(users);
 };
 
 const getUserById = async (request: Request, response: Response): Promise<Response> => {
-  return response.status(200).json(response.locals.user);
+  return response.status(200).json(userReturnSchema.parse(response.locals.user));
 };
 
 const createUser = async (request: Request, response: Response): Promise<Response> => {
-  const user: UserModel = await userServices.createUser(request.body);
+  const user: UserReturn = await userServices.createUser(request.body);
 
   return response.status(201).json(user);
 };
@@ -23,7 +25,7 @@ const updateUser = async (request: Request, response: Response): Promise<Respons
   const payLoad: UserUpdate = request.body;
   const foundUser: UserModel = response.locals.user;
 
-  const user: UserModel = await userServices.updateUser(foundUser, payLoad);
+  const user: UserReturn = await userServices.updateUser(foundUser, payLoad);
 
   return response.status(200).json(user);
 };

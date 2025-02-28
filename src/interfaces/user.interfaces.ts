@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { userCreateSchema } from "../schemas";
+import { userCreateSchema, userReadSchema, userReturnSchema } from "../schemas";
 import { UserModel } from "../models";
 
 export type DeepPartial<T> = {
@@ -7,7 +7,9 @@ export type DeepPartial<T> = {
 };
 
 type UserCreate = z.infer<typeof userCreateSchema>;
-type GetAllUsers = Array<UserModel>;
+// type GetAllUsers = Array<UserModel>;
 type UserUpdate = DeepPartial<UserCreate>;
+type UserRead = z.infer<typeof userReadSchema>;
+type UserReturn = z.infer<typeof userReturnSchema>;
 
-export { UserCreate, GetAllUsers, UserUpdate };
+export { UserCreate, UserUpdate, UserRead, UserReturn };

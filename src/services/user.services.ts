@@ -1,25 +1,25 @@
-import { FindOptions } from "sequelize";
-import { GetAllUsers, UserCreate, UserUpdate } from "../interfaces";
+import { UserCreate, UserUpdate } from "../interfaces";
 import { UserModel } from "../models";
-import { Op } from "sequelize";
-import { AppError } from "../errors";
+import { userReadSchema, userReturnSchema } from "../schemas";
+import { UserRead, UserReturn } from "../interfaces/user.interfaces";
 
-const getAllUsers = async (): Promise<GetAllUsers> => {
+const getAllUsers = async (): Promise<UserRead> => {
   const users: Array<UserModel> = await UserModel.findAll();
 
-  return users;
+  return userReadSchema.parse(users);
 };
 
-const createUser = async (payLoad: UserCreate): Promise<UserModel> => {
+const createUser = async (payLoad: UserCreate): Promise<UserReturn> => {
   const user = await UserModel.create(payLoad);
 
-  return user;
+  return userReturnSchema.parse(user);
 };
 
-const updateUser = async (user: UserModel, payLoad: UserUpdate): Promise<UserModel> => {
+const updateUser = async (user: UserModel, payLoad: UserUpdate): Promise<UserReturn> => {
   Object.assign(user, payLoad);
+  await user.save();
 
-  return await user.save();
+  return userReturnSchema.parse(user);
 };
 
 const deleteUser = async (user: UserModel): Promise<void> => {

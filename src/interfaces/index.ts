@@ -1,3 +1,3 @@
-import { UserCreate, GetAllUsers, UserUpdate } from "./user.interfaces";
+import { UserCreate, UserUpdate } from "./user.interfaces";
 
-export { UserCreate, GetAllUsers, UserUpdate };
+export { UserCreate, UserUpdate };

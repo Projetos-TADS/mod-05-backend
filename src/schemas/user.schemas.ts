@@ -12,18 +12,26 @@ const userSchema = z.object({
     .min(6, "Password must be at least 6 characters")
     .max(100, "Password must be less than 100 characters"),
   admin: z.boolean().default(false),
-  created_at: z.string(),
-  updated_at: z.string(),
-  deleted_at: z.string().nullable(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  deletedAt: z.string().nullable(),
 });
 
 const userCreateSchema = userSchema.omit({
   userId: true,
-  created_at: true,
-  updated_at: true,
-  deleted_at: true,
+  createdAt: true,
+  updatedAt: true,
+  deletedAt: true,
 });
+
+const userReturnSchema = userSchema.omit({
+  password: true,
+  createdAt: true,
+  updatedAt: true,
+  deletedAt: true,
+});
+const userReadSchema = userReturnSchema.array();
 
 const userUpdateSchema = userCreateSchema.partial();
 
-export { userSchema, userCreateSchema, userUpdateSchema };
+export { userSchema, userCreateSchema, userUpdateSchema, userReturnSchema, userReadSchema };
