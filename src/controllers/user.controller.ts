@@ -10,9 +10,7 @@ const getAllUsers = async (request: Request, response: Response): Promise<Respon
 const getUserById = async (request: Request, response: Response): Promise<Response> => {
   const { id } = request.params;
   const user: UserModel | null = await UserModel.findByPk(id);
-  if (!user) {
-    return response.status(404).send("User not found.");
-  }
+
   return response.send(user);
 };
 
@@ -39,26 +37,19 @@ const createUser = async (request: Request, response: Response): Promise<Respons
 
 const updateUser = async (request: Request, response: Response): Promise<Response> => {
   const { id } = request.params;
-  const { name, email, password, admin } = request.body;
+  const payLoad = request.body;
   const user: UserModel | null = await UserModel.findByPk(id);
-  if (!user) {
-    return response.status(404).send("User not found.");
-  }
-  user.name = name;
-  user.email = email;
-  user.password = password;
-  user.admin = admin;
-  await user.save();
+
+  Object.assign(user!, payLoad);
+  await user!.save();
   return response.send(user);
 };
 
 const deleteUser = async (request: Request, response: Response): Promise<Response> => {
   const { id } = request.params;
   const user: UserModel | null = await UserModel.findByPk(id);
-  if (!user) {
-    return response.status(404).send("User not found.");
-  }
-  await user.destroy();
+
+  await user!.destroy();
   return response.send("User deleted.");
 };
 
