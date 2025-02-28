@@ -6,4 +6,13 @@ import {
   userReadSchema,
 } from "./user.schemas";
 
-export { userSchema, userCreateSchema, userUpdateSchema, userReturnSchema, userReadSchema };
+import { sessionSchema } from "./session.schemas";
+
+export {
+  userSchema,
+  userCreateSchema,
+  userUpdateSchema,
+  userReturnSchema,
+  userReadSchema,
+  sessionSchema,
+};
