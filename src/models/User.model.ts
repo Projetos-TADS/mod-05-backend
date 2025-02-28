@@ -1,5 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import sequelize from "../config/database";
+import bcrypt from "bcryptjs";
 
 interface UserAttributes {
   userId: string;
@@ -86,10 +87,18 @@ UserModel.init(
     modelName: "UserModel",
     hooks: {
       beforeCreate: async (user: UserModel) => {
+        if (user.password) {
+          const salt = await bcrypt.genSalt(10);
+          user.password = await bcrypt.hash(user.password, salt);
+        }
         if (user.name) user.name = user.name.toUpperCase();
         if (user.email) user.email = user.email.toUpperCase();
       },
       beforeUpdate: async (user: UserModel) => {
+        if (user.changed("password")) {
+          const salt = await bcrypt.genSalt(10);
+          user.password = await bcrypt.hash(user.password, salt);
+        }
         if (user.name) user.name = user.name.toUpperCase();
         if (user.email) user.email = user.email.toUpperCase();
       },
