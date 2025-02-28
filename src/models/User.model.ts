@@ -91,16 +91,16 @@ UserModel.init(
           const salt = await bcrypt.genSalt(10);
           user.password = await bcrypt.hash(user.password, salt);
         }
-        if (user.name) user.name = user.name.toUpperCase();
-        if (user.email) user.email = user.email.toUpperCase();
+        if (user.name) user.name = user.name.toLocaleLowerCase();
+        if (user.email) user.email = user.email.toLocaleLowerCase();
       },
       beforeUpdate: async (user: UserModel) => {
         if (user.changed("password")) {
           const salt = await bcrypt.genSalt(10);
           user.password = await bcrypt.hash(user.password, salt);
         }
-        if (user.name) user.name = user.name.toUpperCase();
-        if (user.email) user.email = user.email.toUpperCase();
+        if (user.name) user.name = user.name.toLocaleLowerCase();
+        if (user.email) user.email = user.email.toLocaleLowerCase();
       },
     },
   }
