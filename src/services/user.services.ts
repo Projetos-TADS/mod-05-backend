@@ -11,19 +11,6 @@ const getAllUsers = async (): Promise<GetAllUsers> => {
 };
 
 const createUser = async (payLoad: UserCreate): Promise<UserModel> => {
-  const findOptions: FindOptions = {
-    where: {
-      email: payLoad.email,
-      deletedAt: {
-        [Op.is]: null,
-      },
-    },
-  };
-
-  const existingUser: UserModel | null = await UserModel.findOne(findOptions);
-
-  if (existingUser) throw new AppError("This email is already in use by another active user.", 400);
-
   const user = await UserModel.create(payLoad);
 
   return user;
