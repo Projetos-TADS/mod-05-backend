@@ -15,7 +15,10 @@ interface UserAttributes {
 interface UserCreationAttributes
   extends Optional<UserAttributes, "userId" | "createdAt" | "updatedAt"> {}
 
-class UserModel extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
+export class UserModel
+  extends Model<UserAttributes, UserCreationAttributes>
+  implements UserAttributes
+{
   public userId!: string;
   public name!: string;
   public email!: string;
@@ -83,5 +86,3 @@ UserModel.init(
     modelName: "UserModel",
   }
 );
-
-export default UserModel;
