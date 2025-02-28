@@ -84,5 +84,15 @@ UserModel.init(
     timestamps: true,
     paranoid: true,
     modelName: "UserModel",
+    hooks: {
+      beforeCreate: async (user: UserModel) => {
+        if (user.name) user.name = user.name.toUpperCase();
+        if (user.email) user.email = user.email.toUpperCase();
+      },
+      beforeUpdate: async (user: UserModel) => {
+        if (user.name) user.name = user.name.toUpperCase();
+        if (user.email) user.email = user.email.toUpperCase();
+      },
+    },
   }
 );

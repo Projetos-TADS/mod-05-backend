@@ -14,10 +14,5 @@ userRoutes.post(
 userRoutes.get("", userController.getAllUsers);
 userRoutes.use("/:id", middlewares.verifyIdExists);
 userRoutes.get("/:id", userController.getUserById);
-userRoutes.patch(
-  "/:id",
-  middlewares.validateBody(userUpdateSchema),
-  middlewares.verifyEmailExists,
-  userController.updateUser
-);
+userRoutes.patch("/:id", middlewares.validateBody(userUpdateSchema), userController.updateUser);
 userRoutes.delete("/:id", userController.deleteUser);
