@@ -5,6 +5,13 @@ import {
   userReturnSchema,
   userReadSchema,
 } from "./user.schemas";
+import {
+  movieSchema,
+  movieCreateSchema,
+  movieUpdateSchema,
+  movieReturnSchema,
+  movieReadSchema,
+} from "./movie.schemas";
 
 import { sessionSchema } from "./session.schemas";
 
@@ -15,4 +22,9 @@ export {
   userReturnSchema,
   userReadSchema,
   sessionSchema,
+  movieSchema,
+  movieCreateSchema,
+  movieUpdateSchema,
+  movieReturnSchema,
+  movieReadSchema,
 };
