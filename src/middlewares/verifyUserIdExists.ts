@@ -2,12 +2,12 @@ import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors";
 import { UserModel } from "../models";
 
-const verifyIdExists = async (
+const verifyUserIdExists = async (
   request: Request,
   response: Response,
   next: NextFunction
 ): Promise<void> => {
-  const userId: string = request.params.id;
+  const userId: string = request.params.userId;
 
   const user: UserModel | null = await UserModel.findByPk(userId);
 
@@ -18,4 +18,4 @@ const verifyIdExists = async (
   return next();
 };
 
-export default verifyIdExists;
+export default verifyUserIdExists;

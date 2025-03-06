@@ -1,15 +1,17 @@
 import handleError from "./handleError.middleware";
-import validateBody from "./validate.middleware";
-import verifyIdExists from "./verifyIdExists";
+import validateBody from "./validateBody.middleware";
+import verifyUserIdExists from "./verifyUserIdExists";
 import verifyEmailExists from "./verifyEmailExists";
 import isAdmin from "./isAdmin.middleware";
 import verifyToken from "./verifyToken.middleware";
+import verifyMovieIdExists from "./verifyMovieIdExists";
 
 export default {
   handleError,
   validateBody,
-  verifyIdExists,
+  verifyUserIdExists,
   verifyEmailExists,
   isAdmin,
   verifyToken,
+  verifyMovieIdExists,
 };

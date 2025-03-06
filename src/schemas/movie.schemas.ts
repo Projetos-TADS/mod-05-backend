@@ -23,9 +23,7 @@ const movieCreateSchema = movieSchema.omit({
   movieId: true,
 });
 
-const movieReturnSchema = movieSchema.omit({
-  movieId: true,
-});
+const movieReturnSchema = movieSchema;
 
 const movieReadSchema = movieReturnSchema.array();
 

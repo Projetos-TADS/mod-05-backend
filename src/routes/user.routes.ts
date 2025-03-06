@@ -12,12 +12,12 @@ userRoutes.post(
   userController.createUser
 );
 userRoutes.get("", middlewares.verifyToken, userController.getAllUsers);
-userRoutes.use("/:id", middlewares.verifyIdExists);
-userRoutes.get("/:id", middlewares.verifyToken, userController.getUserById);
+userRoutes.use("/:userId", middlewares.verifyUserIdExists);
+userRoutes.get("/:userId", middlewares.verifyToken, userController.getUserById);
 userRoutes.patch(
-  "/:id",
+  "/:userId",
   middlewares.validateBody(userUpdateSchema),
   middlewares.verifyEmailExists,
   userController.updateUser
 );
-userRoutes.delete("/:id", userController.deleteUser);
+userRoutes.delete("/:userId", userController.deleteUser);
