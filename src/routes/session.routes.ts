@@ -3,6 +3,6 @@ import middlewares from "../middlewares";
 import { sessionSchema } from "../schemas";
 import { sessionController } from "../controllers";
 
-export const sessionRouter: Router = Router();
+export const sessionRoutes: Router = Router();
 
-sessionRouter.post("", middlewares.validateBody(sessionSchema), sessionController.createSession);
+sessionRoutes.post("", middlewares.validateBody(sessionSchema), sessionController.createSession);
