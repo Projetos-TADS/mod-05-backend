@@ -11,6 +11,7 @@ const verifyEmailExists = async (
 ): Promise<void> => {
   const email: string = request.body.email;
   if (!email) return next();
+  if (response.locals.user && response.locals.user.email === email) return next();
 
   const findOptions: FindOptions = {
     where: {
