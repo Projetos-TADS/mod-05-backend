@@ -1,4 +1,4 @@
-import { MovieCreate, MovieRead, MovieReturn } from "../interfaces";
+import { MovieCreate, MovieRead, MovieReturn, MovieUpdate } from "../interfaces";
 import { MovieModel } from "../models";
 import { movieReadSchema, movieReturnSchema } from "../schemas";
 
@@ -14,15 +14,15 @@ const createMovie = async (payLoad: MovieCreate): Promise<MovieReturn> => {
   return movieReturnSchema.parse(movie);
 };
 
-// const updateUser = async (user: UserModel, payLoad: UserUpdate): Promise<UserReturn> => {
-//   Object.assign(user, payLoad);
-//   await user.save();
+const updateMovie = async (movie: MovieModel, payLoad: MovieUpdate): Promise<MovieReturn> => {
+  Object.assign(movie, payLoad);
+  await movie.save();
 
-//   return userReturnSchema.parse(user);
-// };
+  return movieReturnSchema.parse(movie);
+};
 
 const deleteMovie = async (movie: MovieModel): Promise<void> => {
   await movie!.destroy();
 };
 
-export default { getAllMovies, createMovie, deleteMovie };
+export default { getAllMovies, createMovie, deleteMovie, updateMovie };

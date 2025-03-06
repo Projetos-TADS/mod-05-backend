@@ -1,7 +1,6 @@
 import { Router } from "express";
 import middlewares from "../middlewares";
-import { movieCreateSchema, sessionSchema } from "../schemas";
-import { sessionController } from "../controllers";
+import { movieCreateSchema, movieUpdateSchema } from "../schemas";
 import movieControllers from "../controllers/movie.controllers";
 
 export const movieRoutes: Router = Router();
@@ -11,10 +10,9 @@ movieRoutes.post("", middlewares.validateBody(movieCreateSchema), movieControlle
 movieRoutes.get("", movieControllers.getAllMovies);
 movieRoutes.use("/:movieId", middlewares.verifyMovieIdExists);
 movieRoutes.get("/:movieId", middlewares.verifyToken, movieControllers.getMovieById);
-// movieRoutes.patch(
-//   "/:id",
-//   middlewares.validateBody(userUpdateSchema),
-//   middlewares.verifyEmailExists,
-//   movieRoutes.updateUser
-// );
+movieRoutes.patch(
+  "/:movieId",
+  middlewares.validateBody(movieUpdateSchema),
+  movieControllers.updateMovie
+);
 movieRoutes.delete("/:movieId", movieControllers.deleteMovie);

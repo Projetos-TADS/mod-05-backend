@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { movieServices } from "../services";
-import { MovieRead, MovieReturn } from "../interfaces";
+import { MovieRead, MovieReturn, MovieUpdate } from "../interfaces";
 import { movieReturnSchema } from "../schemas";
+import { MovieModel } from "../models";
 
 const getAllMovies = async (request: Request, response: Response): Promise<Response> => {
   const movies: MovieRead = await movieServices.getAllMovies();
@@ -19,14 +20,14 @@ const createMovie = async (request: Request, response: Response): Promise<Respon
   return response.status(201).json(movie);
 };
 
-// const updateUser = async (request: Request, response: Response): Promise<Response> => {
-//   const payLoad: UserUpdate = request.body;
-//   const foundUser: UserModel = response.locals.user;
+const updateMovie = async (request: Request, response: Response): Promise<Response> => {
+  const payLoad: MovieUpdate = request.body;
+  const foundMovie: MovieModel = response.locals.movie;
 
-//   const user: UserReturn = await userServices.updateUser(foundUser, payLoad);
+  const movie: MovieReturn = await movieServices.updateMovie(foundMovie, payLoad);
 
-//   return response.status(200).json(user);
-// };
+  return response.status(200).json(movie);
+};
 
 const deleteMovie = async (request: Request, response: Response): Promise<Response> => {
   await movieServices.deleteMovie(response.locals.movie);
@@ -34,4 +35,4 @@ const deleteMovie = async (request: Request, response: Response): Promise<Respon
   return response.status(204).json();
 };
 
-export default { getAllMovies, createMovie, getMovieById, deleteMovie };
+export default { getAllMovies, createMovie, getMovieById, deleteMovie, updateMovie };
