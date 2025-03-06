@@ -1,20 +1,7 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database";
-import bcrypt, { getRounds, hashSync } from "bcryptjs";
-
-interface UserAttributes {
-  userId: string;
-  name: string;
-  email: string;
-  password: string;
-  createdAt: Date;
-  updatedAt: Date;
-  deletedAt?: Date | null;
-  admin: boolean;
-}
-
-interface UserCreationAttributes
-  extends Optional<UserAttributes, "userId" | "createdAt" | "updatedAt"> {}
+import { getRounds, hashSync } from "bcryptjs";
+import { UserAttributes, UserCreationAttributes } from "../interfaces";
 
 export class UserModel
   extends Model<UserAttributes, UserCreationAttributes>
