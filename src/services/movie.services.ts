@@ -21,8 +21,8 @@ const createMovie = async (payLoad: MovieCreate): Promise<MovieReturn> => {
 //   return userReturnSchema.parse(user);
 // };
 
-// const deleteUser = async (user: UserModel): Promise<void> => {
-//   await user!.destroy();
-// };
+const deleteMovie = async (movie: MovieModel): Promise<void> => {
+  await movie!.destroy();
+};
 
-export default { getAllMovies, createMovie };
+export default { getAllMovies, createMovie, deleteMovie };

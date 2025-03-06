@@ -28,10 +28,10 @@ const createMovie = async (request: Request, response: Response): Promise<Respon
 //   return response.status(200).json(user);
 // };
 
-// const deleteUser = async (request: Request, response: Response): Promise<Response> => {
-//   await userServices.deleteUser(response.locals.user);
+const deleteMovie = async (request: Request, response: Response): Promise<Response> => {
+  await movieServices.deleteMovie(response.locals.movie);
 
-//   return response.status(204).json();
-// };
+  return response.status(204).json();
+};
 
-export default { getAllMovies, createMovie, getMovieById };
+export default { getAllMovies, createMovie, getMovieById, deleteMovie };

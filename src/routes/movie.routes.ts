@@ -17,4 +17,4 @@ movieRoutes.get("/:movieId", middlewares.verifyToken, movieControllers.getMovieB
 //   middlewares.verifyEmailExists,
 //   movieRoutes.updateUser
 // );
-// movieRoutes.delete("/:id", movieRoutes.deleteUser);
+movieRoutes.delete("/:movieId", movieControllers.deleteMovie);
