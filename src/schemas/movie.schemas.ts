@@ -7,7 +7,11 @@ const movieSchema = z.object({
     .string()
     .min(1, "Description is required")
     .max(1000, "Description must be less than 1000 characters"),
-  releaseDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  releaseYear: z
+    .number()
+    .int()
+    .min(1900, "Release year must be after 1900")
+    .max(new Date().getFullYear(), "Release year can't be in the future"),
   duration: z.number().int().min(1, "Duration must be greater than 0"),
   rating: z
     .number()

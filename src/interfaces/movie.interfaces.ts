@@ -20,7 +20,7 @@ interface MovieAttributes {
   rating: number;
 }
 
-interface MovieCreationAttributes extends MovieAttributes {}
+interface MovieCreationAttributes extends Optional<MovieAttributes, "movieId"> {}
 
 export {
   MovieCreate,

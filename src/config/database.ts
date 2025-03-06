@@ -9,6 +9,9 @@ if (!dataBaseURL) {
 
 const sequelize = new Sequelize(dataBaseURL, {
   logging: false,
+  dialectOptions: {
+    decimalNumbers: true,
+  },
 });
 
 export default sequelize;

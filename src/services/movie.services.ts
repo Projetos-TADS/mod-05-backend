@@ -1,6 +1,6 @@
-import { MovieRead } from "../interfaces";
+import { MovieCreate, MovieRead, MovieReturn } from "../interfaces";
 import { MovieModel } from "../models";
-import { movieReadSchema } from "../schemas";
+import { movieReadSchema, movieReturnSchema } from "../schemas";
 
 const getAllMovies = async (): Promise<MovieRead> => {
   const movies: Array<MovieModel> = await MovieModel.findAll();
@@ -8,11 +8,11 @@ const getAllMovies = async (): Promise<MovieRead> => {
   return movieReadSchema.parse(movies);
 };
 
-// const createUser = async (payLoad: UserCreate): Promise<UserReturn> => {
-//   const user = await UserModel.create(payLoad);
+const createMovie = async (payLoad: MovieCreate): Promise<MovieReturn> => {
+  const movie = await MovieModel.create(payLoad);
 
-//   return userReturnSchema.parse(user);
-// };
+  return movieReturnSchema.parse(movie);
+};
 
 // const updateUser = async (user: UserModel, payLoad: UserUpdate): Promise<UserReturn> => {
 //   Object.assign(user, payLoad);
@@ -25,4 +25,4 @@ const getAllMovies = async (): Promise<MovieRead> => {
 //   await user!.destroy();
 // };
 
-export default { getAllMovies };
+export default { getAllMovies, createMovie };

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { movieServices } from "../services";
-import { MovieRead } from "../interfaces";
+import { MovieRead, MovieReturn } from "../interfaces";
 
 const getAllMovies = async (request: Request, response: Response): Promise<Response> => {
   const movies: MovieRead = await movieServices.getAllMovies();
@@ -12,11 +12,11 @@ const getAllMovies = async (request: Request, response: Response): Promise<Respo
 //   return response.status(200).json(userReturnSchema.parse(response.locals.user));
 // };
 
-// const createUser = async (request: Request, response: Response): Promise<Response> => {
-//   const user: UserReturn = await userServices.createUser(request.body);
+const createMovie = async (request: Request, response: Response): Promise<Response> => {
+  const movie: MovieReturn = await movieServices.createMovie(request.body);
 
-//   return response.status(201).json(user);
-// };
+  return response.status(201).json(movie);
+};
 
 // const updateUser = async (request: Request, response: Response): Promise<Response> => {
 //   const payLoad: UserUpdate = request.body;
@@ -33,4 +33,4 @@ const getAllMovies = async (request: Request, response: Response): Promise<Respo
 //   return response.status(204).json();
 // };
 
-export default { getAllMovies };
+export default { getAllMovies, createMovie };
