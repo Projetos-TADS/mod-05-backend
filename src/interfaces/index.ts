@@ -23,6 +23,7 @@ import {
   ActorReturn,
   ActorAttributes,
   ActorCreationAttributes,
+  ActorUpdate,
 } from "./actor.interfaces";
 import {
   ActorMovieCreate,
@@ -62,4 +63,5 @@ export {
   ActorMovieReturn,
   ActorMovieAttributes,
   ActorMovieCreationAttributes,
+  ActorUpdate,
 };
