@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors";
-import { MovieModel, UserModel } from "../models";
+import { MovieModel } from "../models";
 
 const verifyMovieIdExists = async (
   request: Request,
