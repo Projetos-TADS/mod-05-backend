@@ -19,7 +19,7 @@ const getFavoriteById = async (request: Request, response: Response): Promise<Re
 
 const createFavorite = async (request: Request, response: Response): Promise<Response> => {
   const favorite: FavoriteReturn = await favoriteServices.createFavorite(
-    request.body,
+    response.locals.movie,
     response.locals.user
   );
 

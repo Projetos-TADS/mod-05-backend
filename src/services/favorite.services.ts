@@ -22,8 +22,8 @@ const getAllFavoritesFromUser = async (user: UserModel): Promise<FavoriteRead> =
   return userFavorites;
 };
 
-const createFavorite = async (payLoad: any, user: UserModel): Promise<FavoriteReturn> => {
-  const favoritePayload = { ...payLoad, userId: user.userId };
+const createFavorite = async (movie: MovieModel, user: UserModel): Promise<FavoriteReturn> => {
+  const favoritePayload = { movieId: movie.movieId, userId: user.userId };
   const userFavorite = await FavoriteMovieModel.create(favoritePayload);
 
   return favoriteReturnSchema.parse(userFavorite);
