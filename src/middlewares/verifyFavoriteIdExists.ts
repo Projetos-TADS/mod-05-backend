@@ -14,7 +14,15 @@ const verifyFavoriteIdExists = async (
       {
         model: MovieModel,
         as: "movie",
-        attributes: ["movieId", "title", "description", "releaseYear", "duration", "rating"],
+        attributes: [
+          "movieId",
+          "title",
+          "description",
+          "releaseYear",
+          "duration",
+          "rating",
+          "urlImage",
+        ],
       },
       {
         model: UserModel,

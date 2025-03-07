@@ -17,6 +17,11 @@ const movieSchema = z.object({
     .number()
     .min(0, "Rating must be 0 or more")
     .max(5.0, "Rating must be less than or equal to 5"),
+  urlImage: z
+    .string()
+    .url()
+    .min(1, "Url Image is required")
+    .max(255, "Url Image must be less than 255 characters"),
 });
 
 const movieCreateSchema = movieSchema.omit({

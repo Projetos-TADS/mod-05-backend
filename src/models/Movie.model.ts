@@ -12,6 +12,7 @@ export class MovieModel
   public releaseYear!: number;
   public duration!: number;
   public rating!: number;
+  public urlImage!: string;
 }
 
 MovieModel.init(
@@ -41,6 +42,10 @@ MovieModel.init(
     rating: {
       type: DataTypes.DECIMAL(3, 1),
       defaultValue: 0.0,
+    },
+    urlImage: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
     },
   },
   {

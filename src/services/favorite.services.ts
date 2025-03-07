@@ -1,4 +1,4 @@
-import { FavoriteCompleteRead, FavoriteRead, FavoriteReturn } from "../interfaces";
+import { FavoriteCompleteRead, FavoriteReturn } from "../interfaces";
 import { MovieModel, UserModel } from "../models";
 import { FavoriteMovieModel } from "../models/FavoriteMovie.model";
 import { favoriteCompleteReadSchema, favoriteReturnSchema } from "../schemas/favorite.schemas";
@@ -11,7 +11,15 @@ const getAllFavoritesFromUser = async (user: UserModel): Promise<FavoriteComplet
       {
         model: MovieModel,
         as: "movie",
-        attributes: ["movieId", "title", "description", "releaseYear", "duration", "rating"],
+        attributes: [
+          "movieId",
+          "title",
+          "description",
+          "releaseYear",
+          "duration",
+          "rating",
+          "urlImage",
+        ],
       },
       {
         model: UserModel,

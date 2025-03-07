@@ -18,6 +18,7 @@ interface MovieAttributes {
   releaseYear: number;
   duration: number;
   rating: number;
+  urlImage: string;
 }
 
 interface MovieCreationAttributes extends Optional<MovieAttributes, "movieId"> {}
