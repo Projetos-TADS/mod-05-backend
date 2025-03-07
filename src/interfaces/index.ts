@@ -17,6 +17,13 @@ import {
   FavoriteCompleteRead,
   FavoriteCompleteReturn,
 } from "./favorite.interfaces";
+import {
+  ActorCreate,
+  ActorRead,
+  ActorReturn,
+  ActorAttributes,
+  ActorCreationAttributes,
+} from "./actor.interfaces";
 
 export {
   UserCreate,
@@ -38,4 +45,9 @@ export {
   FavoriteMovieCreationAttributes,
   FavoriteCompleteRead,
   FavoriteCompleteReturn,
+  ActorCreate,
+  ActorRead,
+  ActorReturn,
+  ActorAttributes,
+  ActorCreationAttributes,
 };
