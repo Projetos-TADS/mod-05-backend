@@ -3,7 +3,7 @@ import { z } from "zod";
 const actorSchema = z.object({
   actorId: z.string().uuid(),
   name: z.string().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
-  birthDate: z.string(),
+  birthDate: z.date(),
   nationality: z
     .string()
     .min(1, "Nationality is required")
