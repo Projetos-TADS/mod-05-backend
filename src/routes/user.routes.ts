@@ -11,9 +11,12 @@ userRoutes.post(
   middlewares.verifyEmailExists,
   userController.createUser
 );
-userRoutes.get("", middlewares.verifyToken, userController.getAllUsers);
+
+userRoutes.use("", middlewares.verifyToken);
 userRoutes.use("/:userId", middlewares.verifyUserIdExists);
-userRoutes.get("/:userId", middlewares.verifyToken, userController.getUserById);
+
+userRoutes.get("", userController.getAllUsers);
+userRoutes.get("/:userId", userController.getUserById);
 userRoutes.patch(
   "/:userId",
   middlewares.validateBody(userUpdateSchema),
