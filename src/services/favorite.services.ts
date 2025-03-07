@@ -1,9 +1,8 @@
-import { FavoriteCreate, FavoriteRead, FavoriteReturn, UserCreate } from "../interfaces";
+import { FavoriteRead, FavoriteReturn } from "../interfaces";
 import { MovieModel, UserModel } from "../models";
-import { userReturnSchema } from "../schemas";
-import { UserReturn } from "../interfaces/user.interfaces";
 import { FavoriteMovieModel } from "../models/FavoriteMovie.model";
-import { favoriteReadSchema, favoriteReturnSchema } from "../schemas/favorite.schemas";
+import { favoriteReturnSchema } from "../schemas/favorite.schemas";
+import { AppError } from "../errors";
 
 const getAllFavoritesFromUser = async (user: UserModel): Promise<FavoriteRead> => {
   const userFavorites = await FavoriteMovieModel.findAll({
@@ -24,7 +23,12 @@ const getAllFavoritesFromUser = async (user: UserModel): Promise<FavoriteRead> =
 
 const createFavorite = async (movie: MovieModel, user: UserModel): Promise<FavoriteReturn> => {
   const favoritePayload = { movieId: movie.movieId, userId: user.userId };
-  const userFavorite = await FavoriteMovieModel.create(favoritePayload);
+  const [userFavorite, created] = await FavoriteMovieModel.findOrCreate({
+    where: favoritePayload,
+    defaults: favoritePayload,
+  });
+
+  if (!created) throw new AppError("Favorite already exists");
 
   return favoriteReturnSchema.parse(userFavorite);
 };
