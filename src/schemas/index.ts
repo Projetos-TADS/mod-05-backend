@@ -29,6 +29,13 @@ import {
   actorReadSchema,
 } from "./actor.schemas";
 
+import {
+  actorMovieSchema,
+  actorMovieCreateSchema,
+  actorMovieReturnSchema,
+  actorMovieReadSchema,
+} from "./actorMovie.schemas";
+
 export {
   userSchema,
   userCreateSchema,
@@ -52,4 +59,8 @@ export {
   actorUpdateSchema,
   actorReturnSchema,
   actorReadSchema,
+  actorMovieSchema,
+  actorMovieCreateSchema,
+  actorMovieReturnSchema,
+  actorMovieReadSchema,
 };
