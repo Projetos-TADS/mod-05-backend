@@ -14,6 +14,8 @@ import {
   FavoriteReturn,
   FavoriteMovieAttributes,
   FavoriteMovieCreationAttributes,
+  FavoriteCompleteRead,
+  FavoriteCompleteReturn,
 } from "./favorite.interfaces";
 
 export {
@@ -34,4 +36,6 @@ export {
   FavoriteReturn,
   FavoriteMovieAttributes,
   FavoriteMovieCreationAttributes,
+  FavoriteCompleteRead,
+  FavoriteCompleteReturn,
 };

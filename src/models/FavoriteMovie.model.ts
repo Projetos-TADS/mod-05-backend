@@ -79,3 +79,7 @@ FavoriteMovieModel.belongsTo(MovieModel, {
   foreignKey: "movieId",
   as: "movie",
 });
+FavoriteMovieModel.belongsTo(UserModel, {
+  foreignKey: "userId",
+  as: "user",
+});

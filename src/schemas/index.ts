@@ -12,8 +12,15 @@ import {
   movieReturnSchema,
   movieReadSchema,
 } from "./movie.schemas";
-
 import { sessionSchema } from "./session.schemas";
+import {
+  favoriteSchema,
+  favoriteCreateSchema,
+  favoriteReturnSchema,
+  favoriteReadSchema,
+  favoriteCompleteReturnSchema,
+  favoriteCompleteReadSchema,
+} from "./favorite.schemas";
 
 export {
   userSchema,
@@ -27,4 +34,10 @@ export {
   movieUpdateSchema,
   movieReturnSchema,
   movieReadSchema,
+  favoriteSchema,
+  favoriteCreateSchema,
+  favoriteReturnSchema,
+  favoriteReadSchema,
+  favoriteCompleteReturnSchema,
+  favoriteCompleteReadSchema,
 };

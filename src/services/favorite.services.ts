@@ -1,24 +1,27 @@
-import { FavoriteRead, FavoriteReturn } from "../interfaces";
+import { FavoriteCompleteRead, FavoriteRead, FavoriteReturn } from "../interfaces";
 import { MovieModel, UserModel } from "../models";
 import { FavoriteMovieModel } from "../models/FavoriteMovie.model";
-import { favoriteReturnSchema } from "../schemas/favorite.schemas";
+import { favoriteCompleteReadSchema, favoriteReturnSchema } from "../schemas/favorite.schemas";
 import { AppError } from "../errors";
 
-const getAllFavoritesFromUser = async (user: UserModel): Promise<FavoriteRead> => {
+const getAllFavoritesFromUser = async (user: UserModel): Promise<FavoriteCompleteRead> => {
   const userFavorites = await FavoriteMovieModel.findAll({
     where: { userId: user.userId },
     include: [
       {
         model: MovieModel,
         as: "movie",
-        attributes: ["movieId", "title", "description"],
+        attributes: ["movieId", "title", "description", "releaseYear", "duration", "rating"],
+      },
+      {
+        model: UserModel,
+        as: "user",
+        attributes: ["userId", "name", "email", "admin"],
       },
     ],
-    raw: true,
   });
 
-  // return favoriteReadSchema.parse(userFavorites);
-  return userFavorites;
+  return favoriteCompleteReadSchema.parse(userFavorites);
 };
 
 const createFavorite = async (movie: MovieModel, user: UserModel): Promise<FavoriteReturn> => {

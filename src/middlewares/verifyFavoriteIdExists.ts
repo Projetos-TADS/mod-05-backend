@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors";
-import { FavoriteMovieModel, UserModel } from "../models";
+import { FavoriteMovieModel, MovieModel, UserModel } from "../models";
 
 const verifyFavoriteIdExists = async (
   request: Request,
@@ -9,7 +9,20 @@ const verifyFavoriteIdExists = async (
 ): Promise<void> => {
   const favoriteId: string = request.params.favoriteId;
 
-  const favorite: FavoriteMovieModel | null = await FavoriteMovieModel.findByPk(favoriteId);
+  const favorite: FavoriteMovieModel | null = await FavoriteMovieModel.findByPk(favoriteId, {
+    include: [
+      {
+        model: MovieModel,
+        as: "movie",
+        attributes: ["movieId", "title", "description", "releaseYear", "duration", "rating"],
+      },
+      {
+        model: UserModel,
+        as: "user",
+        attributes: ["userId", "name", "email", "admin"],
+      },
+    ],
+  });
 
   if (!favorite) throw new AppError("Favorite not found", 404);
 
