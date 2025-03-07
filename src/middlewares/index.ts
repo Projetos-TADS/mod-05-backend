@@ -5,6 +5,7 @@ import verifyEmailExists from "./verifyEmailExists";
 import isAdmin from "./isAdmin.middleware";
 import verifyToken from "./verifyToken.middleware";
 import verifyMovieIdExists from "./verifyMovieIdExists";
+import verifyFavoriteIdExists from "./verifyFavoriteIdExists";
 
 export default {
   handleError,
@@ -14,4 +15,5 @@ export default {
   isAdmin,
   verifyToken,
   verifyMovieIdExists,
+  verifyFavoriteIdExists,
 };
