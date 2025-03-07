@@ -24,6 +24,13 @@ import {
   ActorAttributes,
   ActorCreationAttributes,
 } from "./actor.interfaces";
+import {
+  ActorMovieCreate,
+  ActorMovieRead,
+  ActorMovieReturn,
+  ActorMovieAttributes,
+  ActorMovieCreationAttributes,
+} from "./actorMovie.interfaces";
 
 export {
   UserCreate,
@@ -50,4 +57,9 @@ export {
   ActorReturn,
   ActorAttributes,
   ActorCreationAttributes,
+  ActorMovieCreate,
+  ActorMovieRead,
+  ActorMovieReturn,
+  ActorMovieAttributes,
+  ActorMovieCreationAttributes,
 };
