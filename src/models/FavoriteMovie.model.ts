@@ -54,19 +54,28 @@ FavoriteMovieModel.init(
 UserModel.belongsToMany(MovieModel, {
   through: FavoriteMovieModel,
   foreignKey: "userId",
-  as: "favorites",
-}),
-  MovieModel.belongsToMany(UserModel, {
-    through: FavoriteMovieModel,
-    foreignKey: "movieId",
-    as: "admirers",
-  });
+  as: "favoriteMovies",
+});
+
+UserModel.hasMany(FavoriteMovieModel, {
+  foreignKey: "userId",
+  as: "favoriteMovieInstances",
+  onDelete: "CASCADE",
+});
+
+MovieModel.belongsToMany(UserModel, {
+  through: FavoriteMovieModel,
+  foreignKey: "movieId",
+  as: "usersFavoriting",
+});
+
+MovieModel.hasMany(FavoriteMovieModel, {
+  foreignKey: "movieId",
+  as: "favoriteMovieEntries",
+  onDelete: "CASCADE",
+});
+
 FavoriteMovieModel.belongsTo(MovieModel, {
   foreignKey: "movieId",
   as: "movie",
-});
-
-FavoriteMovieModel.belongsTo(UserModel, {
-  foreignKey: "userId",
-  as: "user",
 });

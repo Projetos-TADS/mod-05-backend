@@ -8,6 +8,7 @@ const favoriteSchema = z.object({
 
 const favoriteCreateSchema = favoriteSchema.omit({
   favoriteMovieId: true,
+  userId: true,
 });
 
 const favoriteReturnSchema = favoriteSchema;
