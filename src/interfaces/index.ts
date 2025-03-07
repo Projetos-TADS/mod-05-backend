@@ -8,6 +8,13 @@ import {
   MovieAttributes,
   MovieCreationAttributes,
 } from "./movie.interfaces";
+import {
+  FavoriteCreate,
+  FavoriteRead,
+  FavoriteReturn,
+  FavoriteMovieAttributes,
+  FavoriteMovieCreationAttributes,
+} from "./favorite.interfaces";
 
 export {
   UserCreate,
@@ -22,4 +29,9 @@ export {
   MovieReturn,
   MovieAttributes,
   MovieCreationAttributes,
+  FavoriteCreate,
+  FavoriteRead,
+  FavoriteReturn,
+  FavoriteMovieAttributes,
+  FavoriteMovieCreationAttributes,
 };

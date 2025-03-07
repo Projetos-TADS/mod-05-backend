@@ -2,30 +2,29 @@ import { DataTypes, Model } from "sequelize";
 import { UserModel } from "./User.model";
 import { MovieModel } from "./Movie.model";
 import sequelize from "../config/database";
+import { FavoriteMovieAttributes, FavoriteMovieCreationAttributes } from "../interfaces";
 
-interface FavoriteMovieAttributes {
-  userId: string;
-  movieId: string;
-  addedDate: Date;
-}
-
-interface FavoriteMovieCreationAttributes extends FavoriteMovieAttributes {}
-
-export class FavoriteMovie
+export class FavoriteMovieModel
   extends Model<FavoriteMovieAttributes, FavoriteMovieCreationAttributes>
   implements FavoriteMovieAttributes
 {
+  public favoriteMovieId!: string;
   public userId!: string;
   public movieId!: string;
   public addedDate!: Date;
 }
 
-FavoriteMovie.init(
+FavoriteMovieModel.init(
   {
+    favoriteMovieId: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
+      primaryKey: true,
+    },
     userId: {
       type: DataTypes.UUID,
       allowNull: false,
-      primaryKey: true,
       references: {
         model: UserModel,
         key: "userId",
@@ -34,7 +33,6 @@ FavoriteMovie.init(
     movieId: {
       type: DataTypes.UUID,
       allowNull: false,
-      primaryKey: true,
       references: {
         model: MovieModel,
         key: "movieId",
@@ -49,17 +47,26 @@ FavoriteMovie.init(
   {
     sequelize,
     tableName: "favorite_movies",
-    timestamps: false,
+    timestamps: true,
   }
 );
 
 UserModel.belongsToMany(MovieModel, {
-  through: FavoriteMovie,
+  through: FavoriteMovieModel,
   foreignKey: "userId",
   as: "favorites",
 }),
   MovieModel.belongsToMany(UserModel, {
-    through: FavoriteMovie,
+    through: FavoriteMovieModel,
     foreignKey: "movieId",
     as: "admirers",
   });
+FavoriteMovieModel.belongsTo(MovieModel, {
+  foreignKey: "movieId",
+  as: "movie",
+});
+
+FavoriteMovieModel.belongsTo(UserModel, {
+  foreignKey: "userId",
+  as: "user",
+});
