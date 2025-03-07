@@ -21,6 +21,13 @@ import {
   favoriteCompleteReturnSchema,
   favoriteCompleteReadSchema,
 } from "./favorite.schemas";
+import {
+  actorSchema,
+  actorCreateSchema,
+  actorUpdateSchema,
+  actorReturnSchema,
+  actorReadSchema,
+} from "./actor.schemas";
 
 export {
   userSchema,
@@ -40,4 +47,9 @@ export {
   favoriteReadSchema,
   favoriteCompleteReturnSchema,
   favoriteCompleteReadSchema,
+  actorSchema,
+  actorCreateSchema,
+  actorUpdateSchema,
+  actorReturnSchema,
+  actorReadSchema,
 };
