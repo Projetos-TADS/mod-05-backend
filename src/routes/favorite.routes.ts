@@ -15,10 +15,17 @@ favoriteRoutes.post(
   favoriteControllers.createFavorite
 );
 favoriteRoutes.get(
-  "/:userId",
+  "/all/:userId",
   middlewares.verifyUserIdExists,
   favoriteControllers.getAllFavoritesFromUser
 );
-
-// favoriteRoutes.get("/:favoriteId", middlewares.verifyUserIdExists, movieControllers.getMovieById);
-// favoriteRoutes.delete("/:favoriteId", movieControllers.deleteMovie);
+favoriteRoutes.get(
+  "/:favoriteId",
+  middlewares.verifyFavoriteIdExists,
+  favoriteControllers.getFavoriteById
+);
+favoriteRoutes.delete(
+  "/:favoriteId",
+  middlewares.verifyFavoriteIdExists,
+  favoriteControllers.deleteFavorite
+);

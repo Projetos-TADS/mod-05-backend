@@ -33,8 +33,8 @@ const createFavorite = async (movie: MovieModel, user: UserModel): Promise<Favor
   return favoriteReturnSchema.parse(userFavorite);
 };
 
-const deleteFavorite = async (userFavorite: UserModel): Promise<void> => {
-  await userFavorite!.destroy();
+const deleteFavorite = async (favorite: FavoriteMovieModel): Promise<void> => {
+  await favorite!.destroy();
 };
 
 export default { getAllFavoritesFromUser, createFavorite, deleteFavorite };

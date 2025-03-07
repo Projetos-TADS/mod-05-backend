@@ -1,9 +1,6 @@
 import { Request, Response } from "express";
-import { UserModel } from "../models";
-import { favoriteServices, userServices } from "../services";
-import { FavoriteRead, FavoriteReturn, UserUpdate } from "../interfaces";
-import { UserRead, UserReturn } from "../interfaces/user.interfaces";
-import { userReturnSchema } from "../schemas";
+import { favoriteServices } from "../services";
+import { FavoriteRead, FavoriteReturn } from "../interfaces";
 
 const getAllFavoritesFromUser = async (request: Request, response: Response): Promise<Response> => {
   const userFavorites: FavoriteRead = await favoriteServices.getAllFavoritesFromUser(
@@ -14,7 +11,8 @@ const getAllFavoritesFromUser = async (request: Request, response: Response): Pr
 };
 
 const getFavoriteById = async (request: Request, response: Response): Promise<Response> => {
-  return response.status(200).json(userReturnSchema.parse(response.locals.user));
+  return response.status(200).json(response.locals.favorite);
+  // return response.status(200).json(favoriteReturnSchema.parse(response.locals.favorite));
 };
 
 const createFavorite = async (request: Request, response: Response): Promise<Response> => {
@@ -27,7 +25,7 @@ const createFavorite = async (request: Request, response: Response): Promise<Res
 };
 
 const deleteFavorite = async (request: Request, response: Response): Promise<Response> => {
-  await userServices.deleteUser(response.locals.user);
+  await favoriteServices.deleteFavorite(response.locals.favorite);
 
   return response.status(204).json();
 };
