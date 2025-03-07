@@ -36,4 +36,10 @@ const deleteUser = async (request: Request, response: Response): Promise<Respons
   return response.status(204).json();
 };
 
-export default { getAllUsers, getUserById, createUser, updateUser, deleteUser };
+export default {
+  getAllUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+};

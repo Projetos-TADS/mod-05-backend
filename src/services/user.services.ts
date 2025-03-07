@@ -2,6 +2,7 @@ import { UserCreate, UserUpdate } from "../interfaces";
 import { UserModel } from "../models";
 import { userReadSchema, userReturnSchema } from "../schemas";
 import { UserRead, UserReturn } from "../interfaces/user.interfaces";
+import { FavoriteMovieModel } from "../models/FavoriteMovie.model";
 
 const getAllUsers = async (): Promise<UserRead> => {
   const users: Array<UserModel> = await UserModel.findAll();
