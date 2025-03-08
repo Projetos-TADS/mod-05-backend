@@ -6,6 +6,7 @@ import { sessionRoutes } from "./routes/session.routes";
 import { movieRoutes } from "./routes/movie.routes";
 import { favoriteRoutes } from "./routes/favorite.routes";
 import { actorRoutes } from "./routes/actor.routes";
+import { directorRoutes } from "./routes/director.routes";
 
 const app: Application = express();
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use("/login", sessionRoutes);
 app.use("/movies", movieRoutes);
 app.use("/favorites", favoriteRoutes);
 app.use("/actors", actorRoutes);
+app.use("/directors", directorRoutes);
 
 app.use(middlewares.handleError);
 
