@@ -1,13 +1,14 @@
 import handleError from "./handleError.middleware";
 import validateBody from "./validateBody.middleware";
-import verifyUserIdExists from "./verifyUserIdExists";
-import verifyEmailExists from "./verifyEmailExists";
+import verifyUserIdExists from "./verifyUserIdExists.middleware";
+import verifyEmailExists from "./verifyEmailExists.middleware";
 import isAdmin from "./isAdmin.middleware";
 import verifyToken from "./verifyToken.middleware";
-import verifyMovieIdExists from "./verifyMovieIdExists";
-import verifyFavoriteIdExists from "./verifyFavoriteIdExists";
-import verifyActorIdExists from "./verifyActorIdExists";
+import verifyMovieIdExists from "./verifyMovieIdExists.middleware.middleware";
+import verifyFavoriteIdExists from "./verifyFavoriteIdExists.middleware";
+import verifyActorIdExists from "./verifyActorIdExists.middleware";
 import isAdminOrOwner from "./isAdminOrOwner.middleware";
+import verifyDirectorIdExists from "./verifyDirectorIdExists.middleware";
 
 export default {
   handleError,
@@ -20,4 +21,5 @@ export default {
   verifyFavoriteIdExists,
   verifyActorIdExists,
   isAdminOrOwner,
+  verifyDirectorIdExists,
 };
