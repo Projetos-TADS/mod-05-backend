@@ -32,6 +32,14 @@ import {
   ActorMovieAttributes,
   ActorMovieCreationAttributes,
 } from "./actorMovie.interfaces";
+import {
+  DirectorCreate,
+  DirectorRead,
+  DirectorReturn,
+  DirectorAttributes,
+  DirectorCreationAttributes,
+  DirectorUpdate,
+} from "./director.interfaces";
 
 export {
   UserCreate,
@@ -64,4 +72,10 @@ export {
   ActorMovieAttributes,
   ActorMovieCreationAttributes,
   ActorUpdate,
+  DirectorCreate,
+  DirectorRead,
+  DirectorReturn,
+  DirectorAttributes,
+  DirectorCreationAttributes,
+  DirectorUpdate,
 };
