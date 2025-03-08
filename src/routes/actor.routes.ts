@@ -1,18 +1,21 @@
 import { Router } from "express";
+import middlewares from "../middlewares";
+import { actorCreateSchema, actorUpdateSchema } from "../schemas";
+import { actorControllers } from "../controllers";
 
 export const actorRoutes: Router = Router();
 
-// actorRoutes.use(middlewares.verifyToken);
+actorRoutes.use(middlewares.verifyToken);
 
-// actorRoutes.post("", middlewares.validateBody(actorCreateSchema), movieControllers.createMovie);
-// actorRoutes.get("", movieControllers.getAllMovies);
+actorRoutes.post("", middlewares.validateBody(actorCreateSchema), actorControllers.createActor);
+actorRoutes.get("", actorControllers.getAllActors);
 
-// actorRoutes.use("/:movieId", middlewares.verifyMovieIdExists);
+actorRoutes.use("/:actorId", middlewares.verifyActorIdExists);
 
-// actorRoutes.get("/:movieId", movieControllers.getMovieById);
-// actorRoutes.patch(
-//   "/:movieId",
-//   middlewares.validateBody(movieUpdateSchema),
-//   movieControllers.updateMovie
-// );
-// actorRoutes.delete("/:movieId", movieControllers.deleteMovie);
+actorRoutes.get("/:actorId", actorControllers.getActorById);
+actorRoutes.patch(
+  "/:actorId",
+  middlewares.validateBody(actorUpdateSchema),
+  actorControllers.updateActor
+);
+actorRoutes.delete("/:actorId", actorControllers.deleteActor);
