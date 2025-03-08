@@ -1,6 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database";
 import { MovieAttributes, MovieCreationAttributes } from "../interfaces";
+import { ActorModel } from "./Actor.model";
 
 export class MovieModel
   extends Model<MovieAttributes, MovieCreationAttributes>
