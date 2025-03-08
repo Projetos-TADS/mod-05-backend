@@ -1,6 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database";
 import { ActorAttributes, ActorCreationAttributes } from "../interfaces";
+import { MovieModel } from "./Movie.model";
 
 export class ActorModel
   extends Model<ActorAttributes, ActorCreationAttributes>
@@ -8,7 +9,7 @@ export class ActorModel
 {
   public actorId!: string;
   public name!: string;
-  public birthDate!: Date;
+  public birthDate!: string;
   public nationality!: string;
 }
 
@@ -25,7 +26,7 @@ ActorModel.init(
       allowNull: false,
     },
     birthDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING(10),
       allowNull: true,
     },
     nationality: {
@@ -39,3 +40,17 @@ ActorModel.init(
     timestamps: false,
   }
 );
+
+ActorModel.belongsToMany(MovieModel, {
+  through: "movie_actors",
+  foreignKey: "actorId",
+  otherKey: "movieId",
+  as: "movies",
+});
+
+MovieModel.belongsToMany(ActorModel, {
+  through: "movie_actors",
+  foreignKey: "movieId",
+  otherKey: "actorId",
+  as: "actors",
+});
