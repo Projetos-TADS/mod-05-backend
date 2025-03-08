@@ -24,9 +24,9 @@ const updateActor = async (request: Request, response: Response): Promise<Respon
   const payLoad: ActorUpdate = request.body;
   const foundActor: ActorModel = response.locals.actor;
 
-  const user: ActorReturn = await actorServices.updateActor(foundActor, payLoad);
+  const actor: ActorReturn = await actorServices.updateActor(foundActor, payLoad);
 
-  return response.status(200).json(user);
+  return response.status(200).json(actor);
 };
 
 const deleteActor = async (request: Request, response: Response): Promise<Response> => {
