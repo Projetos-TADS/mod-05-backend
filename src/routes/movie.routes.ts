@@ -7,7 +7,12 @@ export const movieRoutes: Router = Router();
 
 movieRoutes.use(middlewares.verifyToken);
 
-movieRoutes.post("", middlewares.validateBody(movieCreateSchema), movieControllers.createMovie);
+movieRoutes.post(
+  "",
+  middlewares.isAdmin,
+  middlewares.validateBody(movieCreateSchema),
+  movieControllers.createMovie
+);
 movieRoutes.get("", movieControllers.getAllMovies);
 
 movieRoutes.use("/:movieId", middlewares.verifyMovieIdExists);
@@ -15,7 +20,8 @@ movieRoutes.use("/:movieId", middlewares.verifyMovieIdExists);
 movieRoutes.get("/:movieId", movieControllers.getMovieById);
 movieRoutes.patch(
   "/:movieId",
+  middlewares.isAdmin,
   middlewares.validateBody(movieUpdateSchema),
   movieControllers.updateMovie
 );
-movieRoutes.delete("/:movieId", movieControllers.deleteMovie);
+movieRoutes.delete("/:movieId", middlewares.isAdmin, movieControllers.deleteMovie);
