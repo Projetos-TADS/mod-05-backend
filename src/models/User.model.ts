@@ -76,8 +76,8 @@ UserModel.init(
       beforeCreate: async (user: UserModel) => {
         if (user.password) user.password = hashSync(user.password, 10);
 
-        if (user.name) user.name = user.name.toLocaleLowerCase();
-        if (user.email) user.email = user.email.toLocaleLowerCase();
+        if (user.name) user.name = user.name.toLocaleLowerCase().trim();
+        if (user.email) user.email = user.email.toLocaleLowerCase().trim();
       },
       beforeUpdate: async (user: UserModel) => {
         if (user.changed("password")) {
@@ -85,8 +85,8 @@ UserModel.init(
           if (!hasRounds) user.password = hashSync(user.password, 10);
         }
 
-        if (user.name) user.name = user.name.toLocaleLowerCase();
-        if (user.email) user.email = user.email.toLocaleLowerCase();
+        if (user.name) user.name = user.name.toLocaleLowerCase().trim();
+        if (user.email) user.email = user.email.toLocaleLowerCase().trim();
       },
     },
   }
