@@ -35,6 +35,13 @@ import {
   actorMovieReturnSchema,
   actorMovieReadSchema,
 } from "./actorMovie.schemas";
+import {
+  directorSchema,
+  directorCreateSchema,
+  directorUpdateSchema,
+  directorReturnSchema,
+  directorReadSchema,
+} from "./director.schemas";
 
 export {
   userSchema,
@@ -63,4 +70,9 @@ export {
   actorMovieCreateSchema,
   actorMovieReturnSchema,
   actorMovieReadSchema,
+  directorSchema,
+  directorCreateSchema,
+  directorUpdateSchema,
+  directorReturnSchema,
+  directorReadSchema,
 };

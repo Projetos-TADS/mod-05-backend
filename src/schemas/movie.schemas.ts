@@ -22,6 +22,7 @@ const movieSchema = z.object({
     .url()
     .min(1, "Url Image is required")
     .max(255, "Url Image must be less than 255 characters"),
+  directorId: z.string().uuid(),
 });
 
 const movieCreateSchema = movieSchema.omit({
