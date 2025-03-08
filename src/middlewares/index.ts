@@ -7,6 +7,7 @@ import verifyToken from "./verifyToken.middleware";
 import verifyMovieIdExists from "./verifyMovieIdExists";
 import verifyFavoriteIdExists from "./verifyFavoriteIdExists";
 import verifyActorIdExists from "./verifyActorIdExists";
+import isAdminOrOwner from "./isAdminOrOwner.middleware";
 
 export default {
   handleError,
@@ -18,4 +19,5 @@ export default {
   verifyMovieIdExists,
   verifyFavoriteIdExists,
   verifyActorIdExists,
+  isAdminOrOwner,
 };
