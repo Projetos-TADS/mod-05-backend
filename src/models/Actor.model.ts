@@ -37,7 +37,7 @@ ActorModel.init(
   {
     sequelize,
     tableName: "actors",
-    timestamps: false,
+    timestamps: true,
   }
 );
 
