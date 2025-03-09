@@ -40,17 +40,3 @@ ActorModel.init(
     timestamps: true,
   }
 );
-
-ActorModel.belongsToMany(MovieModel, {
-  through: "movie_actors",
-  foreignKey: "actorId",
-  otherKey: "movieId",
-  as: "movies",
-});
-
-MovieModel.belongsToMany(ActorModel, {
-  through: "movie_actors",
-  foreignKey: "movieId",
-  otherKey: "actorId",
-  as: "actors",
-});
