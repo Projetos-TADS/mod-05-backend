@@ -1,5 +1,10 @@
 import { z } from "zod";
-import { movieCreateSchema, movieReadSchema, movieReturnSchema } from "../schemas";
+import {
+  movieCompleteReadSchema,
+  movieCreateSchema,
+  movieReadSchema,
+  movieReturnSchema,
+} from "../schemas";
 import { Optional } from "sequelize";
 
 export type DeepPartial<T> = {
@@ -9,6 +14,7 @@ export type DeepPartial<T> = {
 type MovieCreate = z.infer<typeof movieCreateSchema>;
 type MovieUpdate = DeepPartial<MovieCreate>;
 type MovieRead = z.infer<typeof movieReadSchema>;
+type MovieCompleteReadSchema = z.infer<typeof movieCompleteReadSchema>;
 type MovieReturn = z.infer<typeof movieReturnSchema>;
 
 interface MovieAttributes {
@@ -19,7 +25,6 @@ interface MovieAttributes {
   duration: number;
   rating: number;
   urlImage: string;
-  directorId: string;
 }
 
 interface MovieCreationAttributes extends Optional<MovieAttributes, "movieId"> {}
@@ -31,4 +36,5 @@ export {
   MovieReturn,
   MovieAttributes,
   MovieCreationAttributes,
+  MovieCompleteReadSchema,
 };

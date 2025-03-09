@@ -4,6 +4,7 @@ import {
   MovieCreate,
   MovieUpdate,
   MovieRead,
+  MovieCompleteReadSchema,
   MovieReturn,
   MovieAttributes,
   MovieCreationAttributes,
@@ -41,6 +42,14 @@ import {
   DirectorUpdate,
 } from "./director.interfaces";
 
+import {
+  CastCreate,
+  CastRead,
+  CastReturn,
+  CastAttributes,
+  CastCreationAttributes,
+} from "./cast.interfaces";
+
 export {
   UserCreate,
   UserUpdate,
@@ -51,6 +60,7 @@ export {
   MovieCreate,
   MovieUpdate,
   MovieRead,
+  MovieCompleteReadSchema,
   MovieReturn,
   MovieAttributes,
   MovieCreationAttributes,
@@ -78,4 +88,9 @@ export {
   DirectorAttributes,
   DirectorCreationAttributes,
   DirectorUpdate,
+  CastCreate,
+  CastRead,
+  CastReturn,
+  CastAttributes,
+  CastCreationAttributes,
 };
