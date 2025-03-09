@@ -1,5 +1,6 @@
 import "express-async-errors";
 import express, { Application } from "express";
+import { setupSwagger } from "./config/swagger";
 import routes from "./routes/";
 import middlewares from "./middlewares";
 
@@ -15,5 +16,7 @@ app.use("/cast", routes.castRoutes);
 app.use("/directorMovie", routes.directorMovieRoutes);
 
 app.use(middlewares.handleError);
+
+setupSwagger(app);
 
 export default app;
