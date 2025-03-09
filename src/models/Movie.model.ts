@@ -1,8 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database";
 import { MovieAttributes, MovieCreationAttributes } from "../interfaces";
-import { ActorModel } from "./Actor.model";
-import { DirectorModel } from "./Director.model";
 
 export class MovieModel
   extends Model<MovieAttributes, MovieCreationAttributes>
@@ -15,7 +13,6 @@ export class MovieModel
   public duration!: number;
   public rating!: number;
   public urlImage!: string;
-  public directorId!: string;
 }
 
 MovieModel.init(
@@ -50,15 +47,6 @@ MovieModel.init(
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-    directorId: {
-      type: DataTypes.UUID,
-      references: {
-        model: DirectorModel,
-        key: "directorId",
-      },
-      onDelete: "SET NULL",
-      onUpdate: "CASCADE",
-    },
   },
   {
     sequelize,
@@ -66,8 +54,3 @@ MovieModel.init(
     timestamps: false,
   }
 );
-
-MovieModel.belongsTo(DirectorModel, {
-  foreignKey: "directorId",
-  as: "director",
-});
