@@ -12,11 +12,11 @@ const getAllMovies = async (): Promise<MovieCompleteReadSchema> => {
         as: "actors",
         attributes: ["actorId", "name", "birthDate", "nationality"],
       },
-      // {
-      //   model: DirectorModel,
-      //   as: "director",
-      //   attributes: ["directorId", "name", "birthDate", "nationality"],
-      // },
+      {
+        model: DirectorModel,
+        as: "directors",
+        attributes: ["directorId", "name", "birthDate", "nationality"],
+      },
     ],
   });
 
