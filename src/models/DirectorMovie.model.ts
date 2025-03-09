@@ -12,7 +12,6 @@ export class DirectorMovieModel
   public directorId!: string;
   public movieId!: string;
   public addedDate!: Date;
-  public description!: string;
 }
 
 DirectorMovieModel.init(
@@ -44,14 +43,11 @@ DirectorMovieModel.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    description: {
-      type: DataTypes.STRING(100),
-      allowNull: true,
-    },
   },
   {
     sequelize,
     tableName: "director_movie",
+    modelName: "DirectorMovie",
     timestamps: true,
   }
 );
@@ -59,18 +55,20 @@ DirectorMovieModel.init(
 DirectorModel.belongsToMany(MovieModel, {
   through: DirectorMovieModel,
   foreignKey: "directorId",
+  otherKey: "movieId",
   as: "movies",
+});
+
+MovieModel.belongsToMany(DirectorModel, {
+  through: DirectorMovieModel,
+  foreignKey: "movieId",
+  otherKey: "directorId",
+  as: "directors",
 });
 
 DirectorModel.hasMany(DirectorMovieModel, {
   foreignKey: "directorId",
   as: "directorInstances",
-});
-
-MovieModel.belongsToMany(DirectorMovieModel, {
-  through: DirectorMovieModel,
-  foreignKey: "movieId",
-  as: "directors",
 });
 
 MovieModel.hasMany(DirectorMovieModel, {
