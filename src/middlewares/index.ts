@@ -9,6 +9,7 @@ import verifyFavoriteIdExists from "./verifyFavoriteIdExists.middleware";
 import verifyActorIdExists from "./verifyActorIdExists.middleware";
 import isAdminOrOwner from "./isAdminOrOwner.middleware";
 import verifyDirectorIdExists from "./verifyDirectorIdExists.middleware";
+import verifyCastIdExists from "./verifyCastIdExists.middleware";
 
 export default {
   handleError,
@@ -22,4 +23,5 @@ export default {
   verifyActorIdExists,
   isAdminOrOwner,
   verifyDirectorIdExists,
+  verifyCastIdExists,
 };
