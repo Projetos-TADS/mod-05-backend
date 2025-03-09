@@ -10,6 +10,7 @@ import verifyActorIdExists from "./verifyActorIdExists.middleware";
 import isAdminOrOwner from "./isAdminOrOwner.middleware";
 import verifyDirectorIdExists from "./verifyDirectorIdExists.middleware";
 import verifyCastIdExists from "./verifyCastIdExists.middleware";
+import verifyDirectorMovieIdExists from "./verifyDirectorMovieIdExists.middleware";
 
 export default {
   handleError,
@@ -24,4 +25,5 @@ export default {
   isAdminOrOwner,
   verifyDirectorIdExists,
   verifyCastIdExists,
+  verifyDirectorMovieIdExists,
 };
