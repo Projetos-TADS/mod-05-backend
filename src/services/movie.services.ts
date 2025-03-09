@@ -1,11 +1,26 @@
-import { MovieCreate, MovieRead, MovieReturn, MovieUpdate } from "../interfaces";
+import { MovieCompleteReadSchema, MovieCreate, MovieReturn, MovieUpdate } from "../interfaces";
 import { MovieModel } from "../models";
-import { movieReadSchema, movieReturnSchema } from "../schemas";
+import { ActorModel } from "../models/Actor.model";
+import { DirectorModel } from "../models/Director.model";
+import { movieCompleteReadSchema, movieReturnSchema } from "../schemas";
 
-const getAllMovies = async (): Promise<MovieRead> => {
-  const movies: Array<MovieModel> = await MovieModel.findAll();
+const getAllMovies = async (): Promise<MovieCompleteReadSchema> => {
+  const movies: Array<MovieModel> = await MovieModel.findAll({
+    include: [
+      {
+        model: ActorModel,
+        as: "actors",
+        attributes: ["actorId", "name", "birthDate", "nationality"],
+      },
+      // {
+      //   model: DirectorModel,
+      //   as: "director",
+      //   attributes: ["directorId", "name", "birthDate", "nationality"],
+      // },
+    ],
+  });
 
-  return movieReadSchema.parse(movies);
+  return movieCompleteReadSchema.parse(movies);
 };
 
 const createMovie = async (payLoad: MovieCreate): Promise<MovieReturn> => {
