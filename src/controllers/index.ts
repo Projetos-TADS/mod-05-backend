@@ -4,6 +4,7 @@ import getAllMovies from "./movie.controllers";
 import favoriteControllers from "./favorite.controllers";
 import actorControllers from "./actor.controllers";
 import castControllers from "./cast.controllers";
+import directorMovieControllers from "./directorMovie.controllers";
 
 export {
   userController,
@@ -12,4 +13,5 @@ export {
   favoriteControllers,
   actorControllers,
   castControllers,
+  directorMovieControllers,
 };

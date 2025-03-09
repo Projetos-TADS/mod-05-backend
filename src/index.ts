@@ -1,6 +1,6 @@
 import "express-async-errors";
 import express, { Application } from "express";
-import { userRoutes } from "./routes/index";
+import { directorMovieRoutes, userRoutes } from "./routes/index";
 import middlewares from "./middlewares";
 import { sessionRoutes } from "./routes/session.routes";
 import { movieRoutes } from "./routes/movie.routes";
@@ -18,6 +18,7 @@ app.use("/favorites", favoriteRoutes);
 app.use("/actors", actorRoutes);
 app.use("/directors", directorRoutes);
 app.use("/cast", castRoutes);
+app.use("/directorMovie", directorMovieRoutes);
 
 app.use(middlewares.handleError);
 
