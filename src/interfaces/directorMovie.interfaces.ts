@@ -10,11 +10,10 @@ interface DirectorMovieAttributes {
   directorId: string;
   movieId: string;
   addedDate: Date;
-  description?: string | null;
 }
 
 interface DirectorMovieCreationAttributes
-  extends Optional<DirectorMovieAttributes, "directorMovieId" | "addedDate" | "description"> {}
+  extends Optional<DirectorMovieAttributes, "directorMovieId" | "addedDate"> {}
 
 export {
   DirectorMovieCreate,
