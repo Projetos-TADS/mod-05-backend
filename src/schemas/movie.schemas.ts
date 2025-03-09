@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { actorReadSchema, actorReturnSchema } from "./actor.schemas";
-import { directorReturnSchema } from "./director.schemas";
+import { directorReadSchema, directorReturnSchema } from "./director.schemas";
 
 const movieSchema = z.object({
   movieId: z.string().uuid(),
@@ -38,7 +38,7 @@ const movieUpdateSchema = movieCreateSchema.partial();
 
 const movieCompleteReturnSchema = movieReturnSchema.extend({
   actors: actorReadSchema,
-  // director: directorReturnSchema,
+  directors: directorReadSchema,
 });
 
 const movieCompleteReadSchema = movieCompleteReturnSchema.array();
