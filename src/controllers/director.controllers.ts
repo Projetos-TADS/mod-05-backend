@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { DirectorReturn, DirectorUpdate } from "../interfaces";
+import { DirectorRead, DirectorReturn, DirectorUpdate } from "../interfaces";
 import { directorServices } from "../services";
 import { DirectorModel } from "../models/Director.model";
 import { directorReturnSchema } from "../schemas";
 
 const getAllDirectors = async (request: Request, response: Response): Promise<Response> => {
-  const directors = await directorServices.getAllDirectors();
+  const directors: DirectorRead = await directorServices.getAllDirectors();
 
   return response.status(200).json(directors);
 };

@@ -1,6 +1,4 @@
 import { z } from "zod";
-import { userReturnSchema } from "./user.schemas";
-import { movieReturnSchema } from "./movie.schemas";
 
 const favoriteSchema = z.object({
   favoriteMovieId: z.string().uuid(),
@@ -19,18 +17,16 @@ const favoriteReturnSchema = favoriteSchema;
 
 const favoriteReadSchema = favoriteReturnSchema.array();
 
-const favoriteCompleteReturnSchema = favoriteReturnSchema.extend({
-  user: userReturnSchema,
-  movie: movieReturnSchema,
-});
-
-const favoriteCompleteReadSchema = favoriteCompleteReturnSchema.array();
+const favoriteCompleteReadSchema = favoriteSchema
+  .omit({
+    userId: true,
+  })
+  .array();
 
 export {
   favoriteSchema,
   favoriteCreateSchema,
   favoriteReturnSchema,
   favoriteReadSchema,
-  favoriteCompleteReturnSchema,
   favoriteCompleteReadSchema,
 };

@@ -3,7 +3,7 @@ import middlewares from "../middlewares";
 import { directorCreateSchema, directorUpdateSchema } from "../schemas";
 import directorControllers from "../controllers/director.controllers";
 
-export const directorRoutes: Router = Router();
+const directorRoutes: Router = Router();
 
 directorRoutes.use(middlewares.verifyToken);
 
@@ -25,3 +25,5 @@ directorRoutes.patch(
   directorControllers.updateDirector
 );
 directorRoutes.delete("/:directorId", middlewares.isAdmin, directorControllers.deleteDirector);
+
+export default directorRoutes;

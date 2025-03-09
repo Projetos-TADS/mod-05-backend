@@ -3,7 +3,7 @@ import middlewares from "../middlewares";
 import { castControllers } from "../controllers";
 import { castCreateSchema } from "../schemas";
 
-export const castRoutes: Router = Router();
+const castRoutes: Router = Router();
 
 castRoutes.use(middlewares.verifyToken);
 
@@ -21,3 +21,5 @@ castRoutes.delete(
   middlewares.verifyCastIdExists,
   castControllers.removeActorFromMovie
 );
+
+export default castRoutes;

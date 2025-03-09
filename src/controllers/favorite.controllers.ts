@@ -1,16 +1,18 @@
 import { Request, Response } from "express";
 import { favoriteServices } from "../services";
-import { FavoriteReturn } from "../interfaces";
-import { favoriteCompleteReturnSchema } from "../schemas";
+import { FavoriteReturn, UserCompleteReturn } from "../interfaces";
+import { favoriteReturnSchema } from "../schemas";
 
 const getAllFavoritesFromUser = async (request: Request, response: Response): Promise<Response> => {
-  const userFavorites: any = await favoriteServices.getAllFavoritesFromUser(response.locals.user);
+  const userFavorites: UserCompleteReturn = await favoriteServices.getAllFavoritesFromUser(
+    response.locals.user
+  );
 
   return response.status(200).json(userFavorites);
 };
 
 const getFavoriteById = async (request: Request, response: Response): Promise<Response> => {
-  return response.status(200).json(favoriteCompleteReturnSchema.parse(response.locals.favorite));
+  return response.status(200).json(favoriteReturnSchema.parse(response.locals.favorite));
 };
 
 const createFavorite = async (request: Request, response: Response): Promise<Response> => {

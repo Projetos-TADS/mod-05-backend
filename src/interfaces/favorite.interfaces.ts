@@ -2,7 +2,6 @@ import { z } from "zod";
 import { Optional } from "sequelize";
 import {
   favoriteCompleteReadSchema,
-  favoriteCompleteReturnSchema,
   favoriteCreateSchema,
   favoriteReadSchema,
   favoriteReturnSchema,
@@ -23,7 +22,6 @@ interface FavoriteMovieCreationAttributes
   extends Optional<FavoriteMovieAttributes, "favoriteMovieId" | "addedDate"> {}
 
 type FavoriteCompleteRead = z.infer<typeof favoriteCompleteReadSchema>;
-type FavoriteCompleteReturn = z.infer<typeof favoriteCompleteReturnSchema>;
 
 export {
   FavoriteCreate,
@@ -32,5 +30,4 @@ export {
   FavoriteMovieAttributes,
   FavoriteMovieCreationAttributes,
   FavoriteCompleteRead,
-  FavoriteCompleteReturn,
 };

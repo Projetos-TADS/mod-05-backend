@@ -3,7 +3,7 @@ import middlewares from "../middlewares";
 import { directorMovieCreateSchema } from "../schemas";
 import { directorMovieControllers } from "../controllers";
 
-export const directorMovieRoutes: Router = Router();
+const directorMovieRoutes: Router = Router();
 
 directorMovieRoutes.use(middlewares.verifyToken);
 
@@ -21,3 +21,5 @@ directorMovieRoutes.delete(
   middlewares.verifyDirectorMovieIdExists,
   directorMovieControllers.removeDirectorFromMovie
 );
+
+export default directorMovieRoutes;

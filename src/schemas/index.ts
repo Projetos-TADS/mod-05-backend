@@ -4,6 +4,7 @@ import {
   userUpdateSchema,
   userReturnSchema,
   userReadSchema,
+  userCompleteReturnSchema,
 } from "./user.schemas";
 import {
   movieSchema,
@@ -20,7 +21,6 @@ import {
   favoriteCreateSchema,
   favoriteReturnSchema,
   favoriteReadSchema,
-  favoriteCompleteReturnSchema,
   favoriteCompleteReadSchema,
 } from "./favorite.schemas";
 import {
@@ -57,6 +57,7 @@ export {
   userUpdateSchema,
   userReturnSchema,
   userReadSchema,
+  userCompleteReturnSchema,
   sessionSchema,
   movieSchema,
   movieCreateSchema,
@@ -69,7 +70,6 @@ export {
   favoriteCreateSchema,
   favoriteReturnSchema,
   favoriteReadSchema,
-  favoriteCompleteReturnSchema,
   favoriteCompleteReadSchema,
   actorSchema,
   actorCreateSchema,

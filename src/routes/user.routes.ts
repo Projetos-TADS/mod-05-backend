@@ -3,7 +3,7 @@ import { userController } from "../controllers/index";
 import middlewares from "../middlewares";
 import { userCreateSchema, userUpdateSchema } from "../schemas";
 
-export const userRoutes = express.Router();
+const userRoutes = express.Router();
 
 userRoutes.post(
   "",
@@ -26,3 +26,5 @@ userRoutes.patch(
   userController.updateUser
 );
 userRoutes.delete("/:userId", middlewares.isAdminOrOwner, userController.deleteUser);
+
+export default userRoutes;

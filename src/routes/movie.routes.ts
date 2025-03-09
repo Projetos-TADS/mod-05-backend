@@ -3,7 +3,7 @@ import middlewares from "../middlewares";
 import { movieCreateSchema, movieUpdateSchema } from "../schemas";
 import movieControllers from "../controllers/movie.controllers";
 
-export const movieRoutes: Router = Router();
+const movieRoutes: Router = Router();
 
 movieRoutes.use(middlewares.verifyToken);
 
@@ -25,3 +25,5 @@ movieRoutes.patch(
   movieControllers.updateMovie
 );
 movieRoutes.delete("/:movieId", middlewares.isAdmin, movieControllers.deleteMovie);
+
+export default movieRoutes;

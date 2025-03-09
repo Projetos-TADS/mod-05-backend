@@ -59,7 +59,7 @@ UserModel.belongsToMany(MovieModel, {
 
 UserModel.hasMany(FavoriteMovieModel, {
   foreignKey: "userId",
-  as: "favoriteMovieInstances",
+  as: "favoriteList",
   onDelete: "CASCADE",
 });
 

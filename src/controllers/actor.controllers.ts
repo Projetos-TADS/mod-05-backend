@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { actorReturnSchema } from "../schemas";
-import { ActorReturn, ActorUpdate } from "../interfaces";
+import { ActorRead, ActorReturn, ActorUpdate } from "../interfaces";
 import { ActorModel } from "../models/Actor.model";
 import actorServices from "../services/actor.services";
 
 const getAllActors = async (request: Request, response: Response): Promise<Response> => {
-  const actors = await actorServices.getAllActors();
+  const actors: ActorRead = await actorServices.getAllActors();
 
   return response.status(200).json(actors);
 };

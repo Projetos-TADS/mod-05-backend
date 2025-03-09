@@ -1,4 +1,10 @@
-import { UserCreate, UserUpdate, UserAttributes, UserCreationAttributes } from "./user.interfaces";
+import {
+  UserCreate,
+  UserUpdate,
+  UserAttributes,
+  UserCreationAttributes,
+  UserCompleteReturn,
+} from "./user.interfaces";
 import { SessionCreate, SessionReturn } from "./session.interfaces";
 import {
   MovieCreate,
@@ -16,7 +22,6 @@ import {
   FavoriteMovieAttributes,
   FavoriteMovieCreationAttributes,
   FavoriteCompleteRead,
-  FavoriteCompleteReturn,
 } from "./favorite.interfaces";
 import {
   ActorCreate,
@@ -57,6 +62,7 @@ export {
   SessionReturn,
   UserAttributes,
   UserCreationAttributes,
+  UserCompleteReturn,
   MovieCreate,
   MovieUpdate,
   MovieRead,
@@ -70,7 +76,6 @@ export {
   FavoriteMovieAttributes,
   FavoriteMovieCreationAttributes,
   FavoriteCompleteRead,
-  FavoriteCompleteReturn,
   ActorCreate,
   ActorRead,
   ActorReturn,

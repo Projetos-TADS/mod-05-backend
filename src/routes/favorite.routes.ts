@@ -3,7 +3,7 @@ import middlewares from "../middlewares";
 import { favoriteControllers } from "../controllers";
 import { favoriteCreateSchema } from "../schemas/favorite.schemas";
 
-export const favoriteRoutes: Router = Router();
+const favoriteRoutes: Router = Router();
 
 favoriteRoutes.use(middlewares.verifyToken);
 
@@ -29,3 +29,5 @@ favoriteRoutes.delete(
   middlewares.verifyFavoriteIdExists,
   favoriteControllers.deleteFavorite
 );
+
+export default favoriteRoutes;

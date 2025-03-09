@@ -1,4 +1,9 @@
 import { z } from "zod";
+import {
+  favoriteCompleteReadSchema,
+  favoriteReadSchema,
+  favoriteReturnSchema,
+} from "./favorite.schemas";
 
 const userSchema = z.object({
   userId: z.string().uuid(),
@@ -34,4 +39,17 @@ const userReadSchema = userReturnSchema.array();
 
 const userUpdateSchema = userCreateSchema.partial();
 
-export { userSchema, userCreateSchema, userUpdateSchema, userReturnSchema, userReadSchema };
+const userCompleteReturnSchema = userReturnSchema.extend({
+  favoriteList: favoriteCompleteReadSchema,
+});
+
+const userCompleteReadSchema = userCompleteReturnSchema.array();
+
+export {
+  userSchema,
+  userCreateSchema,
+  userUpdateSchema,
+  userReturnSchema,
+  userReadSchema,
+  userCompleteReturnSchema,
+};
