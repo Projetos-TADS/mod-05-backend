@@ -2,8 +2,11 @@ import { Router } from "express";
 import middlewares from "../middlewares";
 import { movieCreateSchema, movieUpdateSchema } from "../schemas";
 import movieControllers from "../controllers/movie.controllers";
+import { criarFilmesEmMassa } from "../controllers/CRIAEMMASSA.controllers";
 
 const movieRoutes: Router = Router();
+
+movieRoutes.post("/add", criarFilmesEmMassa);
 
 movieRoutes.use(middlewares.verifyToken);
 

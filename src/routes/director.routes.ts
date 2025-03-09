@@ -2,8 +2,11 @@ import { Router } from "express";
 import middlewares from "../middlewares";
 import { directorCreateSchema, directorUpdateSchema } from "../schemas";
 import directorControllers from "../controllers/director.controllers";
+import { criarDiretoresEmMassa } from "../controllers/CRIAEMMASSA.controllers";
 
 const directorRoutes: Router = Router();
+
+directorRoutes.post("/add", criarDiretoresEmMassa);
 
 directorRoutes.use(middlewares.verifyToken);
 
