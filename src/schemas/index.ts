@@ -44,7 +44,12 @@ import {
   directorReturnSchema,
   directorReadSchema,
 } from "./director.schemas";
-import { castSchema, castCreateSchema, CastReturnSchema } from "./cast.schemas";
+import { castSchema, castCreateSchema, castReturnSchema } from "./cast.schemas";
+import {
+  directorMovieSchema,
+  directorMovieCreateSchema,
+  directorMovieReturnSchema,
+} from "./directorMovie.schemas";
 
 export {
   userSchema,
@@ -82,5 +87,8 @@ export {
   directorReadSchema,
   castSchema,
   castCreateSchema,
-  CastReturnSchema,
+  castReturnSchema,
+  directorMovieSchema,
+  directorMovieCreateSchema,
+  directorMovieReturnSchema,
 };

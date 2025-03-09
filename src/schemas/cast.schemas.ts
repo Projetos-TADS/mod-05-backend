@@ -12,6 +12,6 @@ const castCreateSchema = castSchema.omit({
   addedDate: true,
 });
 
-const CastReturnSchema = castSchema;
+const castReturnSchema = castSchema;
 
-export { castSchema, castCreateSchema, CastReturnSchema };
+export { castSchema, castCreateSchema, castReturnSchema };
