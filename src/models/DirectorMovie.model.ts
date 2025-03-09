@@ -26,7 +26,7 @@ DirectorMovieModel.init(
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: DirectorModel,
+        model: "directors",
         key: "directorId",
       },
     },
@@ -34,7 +34,7 @@ DirectorMovieModel.init(
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: MovieModel,
+        model: "movies",
         key: "movieId",
       },
     },

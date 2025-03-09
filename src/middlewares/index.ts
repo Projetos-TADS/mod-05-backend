@@ -11,6 +11,7 @@ import isAdminOrOwner from "./isAdminOrOwner.middleware";
 import verifyDirectorIdExists from "./verifyDirectorIdExists.middleware";
 import verifyCastIdExists from "./verifyCastIdExists.middleware";
 import verifyDirectorMovieIdExists from "./verifyDirectorMovieIdExists.middleware";
+import pagination from "./pagination.middleware";
 
 export default {
   handleError,
@@ -26,4 +27,5 @@ export default {
   verifyDirectorIdExists,
   verifyCastIdExists,
   verifyDirectorMovieIdExists,
+  pagination,
 };

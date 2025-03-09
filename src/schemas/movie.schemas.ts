@@ -36,7 +36,7 @@ const movieReadSchema = movieReturnSchema.array();
 
 const movieUpdateSchema = movieCreateSchema.partial();
 
-const movieCompleteReturnSchema = movieReturnSchema.extend({
+const movieCompleteReturnSchema = movieSchema.extend({
   actors: actorReadSchema,
   directors: directorReadSchema,
 });

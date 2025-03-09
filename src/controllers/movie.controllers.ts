@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { movieServices } from "../services";
-import { MovieRead, MovieReturn, MovieUpdate } from "../interfaces";
+import { MovieRead, MovieReturn, MovieUpdate, Pagination } from "../interfaces";
 import { movieReturnSchema } from "../schemas";
 import { MovieModel } from "../models";
 
 const getAllMovies = async (request: Request, response: Response): Promise<Response> => {
-  const movies: MovieRead = await movieServices.getAllMovies();
+  const paginationMovies: Pagination = await movieServices.getAllMovies(response.locals.pagination);
 
-  return response.status(200).json(movies);
+  return response.status(200).json(paginationMovies);
 };
 
 const getMovieById = async (request: Request, response: Response): Promise<Response> => {

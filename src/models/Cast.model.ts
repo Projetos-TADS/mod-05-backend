@@ -27,7 +27,7 @@ CastModel.init(
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: ActorModel,
+        model: "actors",
         key: "actorId",
       },
     },
@@ -35,7 +35,7 @@ CastModel.init(
       type: DataTypes.UUID,
       allowNull: false,
       references: {
-        model: MovieModel,
+        model: "movies",
         key: "movieId",
       },
     },
@@ -78,7 +78,7 @@ CastModel.belongsTo(MovieModel, {
   foreignKey: "movieId",
   as: "movie",
 });
-CastModel.belongsTo(UserModel, {
+CastModel.belongsTo(ActorModel, {
   foreignKey: "actorId",
   as: "actor",
 });

@@ -54,6 +54,7 @@ import {
   DirectorMovieAttributes,
   DirectorMovieCreationAttributes,
 } from "./directorMovie.interfaces";
+import { Pagination, PaginationParams } from "./pagination.interfaces";
 
 export {
   UserCreate,
@@ -101,4 +102,6 @@ export {
   DirectorMovieReturn,
   DirectorMovieAttributes,
   DirectorMovieCreationAttributes,
+  Pagination,
+  PaginationParams,
 };
