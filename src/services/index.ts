@@ -5,6 +5,7 @@ import favoriteServices from "./favorite.services";
 import actorServices from "./actor.services";
 import directorServices from "./director.services";
 import castServices from "./cast.services";
+import directorMovieServices from "./directorMovie.services";
 
 export {
   userServices,
@@ -14,4 +15,5 @@ export {
   actorServices,
   directorServices,
   castServices,
+  directorMovieServices,
 };

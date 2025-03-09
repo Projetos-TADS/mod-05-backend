@@ -1,9 +1,8 @@
 import { CastModel, MovieModel } from "../models";
 import { ActorModel } from "../models/Actor.model";
 import { CastReturn } from "../interfaces";
-import { CastReturnSchema, movieCompleteReadSchema, movieCompleteReturnSchema } from "../schemas";
+import { castReturnSchema } from "../schemas";
 import { AppError } from "../errors";
-import { DirectorModel } from "../models/Director.model";
 
 const addActorToMovie = async (movie: MovieModel, actor: ActorModel): Promise<CastReturn> => {
   const castPayload = { movieId: movie.movieId, actorId: actor.actorId };
@@ -14,7 +13,7 @@ const addActorToMovie = async (movie: MovieModel, actor: ActorModel): Promise<Ca
 
   if (!created) throw new AppError("Actor already edded");
 
-  return CastReturnSchema.parse(cast);
+  return castReturnSchema.parse(cast);
 };
 
 const removeActorFromMovie = async (cast: CastModel): Promise<void> => {
