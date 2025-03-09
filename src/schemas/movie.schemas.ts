@@ -1,4 +1,6 @@
 import { z } from "zod";
+import { actorReadSchema, actorReturnSchema } from "./actor.schemas";
+import { directorReturnSchema } from "./director.schemas";
 
 const movieSchema = z.object({
   movieId: z.string().uuid(),
@@ -10,7 +12,7 @@ const movieSchema = z.object({
   releaseYear: z
     .number()
     .int()
-    .min(1900, "Release year must be after 1900")
+    .min(1888, "Release year must be after 1888")
     .max(new Date().getFullYear(), "Release year can't be in the future"),
   duration: z.number().int().min(1, "Duration must be greater than 0"),
   rating: z
@@ -22,7 +24,6 @@ const movieSchema = z.object({
     .url()
     .min(1, "Url Image is required")
     .max(255, "Url Image must be less than 255 characters"),
-  directorId: z.string().uuid(),
 });
 
 const movieCreateSchema = movieSchema.omit({
@@ -35,4 +36,19 @@ const movieReadSchema = movieReturnSchema.array();
 
 const movieUpdateSchema = movieCreateSchema.partial();
 
-export { movieSchema, movieCreateSchema, movieUpdateSchema, movieReturnSchema, movieReadSchema };
+const movieCompleteReturnSchema = movieReturnSchema.extend({
+  actors: actorReadSchema,
+  // director: directorReturnSchema,
+});
+
+const movieCompleteReadSchema = movieCompleteReturnSchema.array();
+
+export {
+  movieSchema,
+  movieCreateSchema,
+  movieUpdateSchema,
+  movieReturnSchema,
+  movieReadSchema,
+  movieCompleteReadSchema,
+  movieCompleteReturnSchema,
+};
