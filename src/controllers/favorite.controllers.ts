@@ -4,7 +4,7 @@ import { FavoriteReturn } from "../interfaces";
 import { favoriteCompleteReturnSchema } from "../schemas";
 
 const getAllFavoritesFromUser = async (request: Request, response: Response): Promise<Response> => {
-  const userFavorites = await favoriteServices.getAllFavoritesFromUser(response.locals.user);
+  const userFavorites: any = await favoriteServices.getAllFavoritesFromUser(response.locals.user);
 
   return response.status(200).json(userFavorites);
 };
