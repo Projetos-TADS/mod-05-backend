@@ -3,8 +3,18 @@ import express, { Application } from "express";
 import { setupSwagger } from "./config/swagger";
 import routes from "./routes/";
 import middlewares from "./middlewares";
+import cors from "cors";
 
 const app: Application = express();
+
+const corsOptions = {
+  origin: "http://localhost:5173",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use("/users", routes.userRoutes);
 app.use("/login", routes.sessionRoutes);
