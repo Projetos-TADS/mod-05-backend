@@ -15,7 +15,7 @@ import {
   movieCompleteReadSchema,
   movieCompleteReturnSchema,
 } from "./movie.schemas";
-import { sessionSchema } from "./session.schemas";
+import { sessionSchema, sessionReturnSchema } from "./session.schemas";
 import {
   favoriteSchema,
   favoriteCreateSchema,

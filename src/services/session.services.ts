@@ -22,7 +22,7 @@ const createSession = async ({ email, password }: SessionCreate): Promise<Sessio
     expiresIn: process.env.EXPIRES_IN!,
   } as SignOptions);
 
-  return { token };
+  return { token, user: foundUser.dataValues };
 };
 
 export default { createSession };
