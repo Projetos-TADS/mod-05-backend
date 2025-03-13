@@ -1,9 +1,5 @@
 import { z } from "zod";
-import {
-  favoriteCompleteReadSchema,
-  favoriteReadSchema,
-  favoriteReturnSchema,
-} from "./favorite.schemas";
+import { favoriteCompleteReadSchema } from "./favorite.schemas";
 
 const userSchema = z.object({
   userId: z.string().uuid(),
