@@ -12,6 +12,7 @@ import verifyDirectorIdExists from "./verifyDirectorIdExists.middleware";
 import verifyCastIdExists from "./verifyCastIdExists.middleware";
 import verifyDirectorMovieIdExists from "./verifyDirectorMovieIdExists.middleware";
 import pagination from "./pagination.middleware";
+import verifyCPFExists from "./verifyCPFExists.middleware";
 
 export default {
   handleError,
@@ -28,4 +29,5 @@ export default {
   verifyCastIdExists,
   verifyDirectorMovieIdExists,
   pagination,
+  verifyCPFExists,
 };
