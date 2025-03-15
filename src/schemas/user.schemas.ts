@@ -7,7 +7,7 @@ const userSchema = z.object({
   name: z.string().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
   email: z
     .string()
-    .email("Invalid e-mail format")
+    .regex(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid e-mail format")
     .max(100, "E-mail must be less than 100 characters"),
   password: z
     .string()
