@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { movieServices } from "../services";
-import { MovieRead, MovieReturn, MovieUpdate, Pagination } from "../interfaces";
-import { movieReturnSchema } from "../schemas";
+import { MovieReturn, MovieUpdate, Pagination } from "../interfaces";
+import { movieCompleteReturnSchema } from "../schemas";
 import { MovieModel } from "../models";
 
 const getAllMovies = async (request: Request, response: Response): Promise<Response> => {
@@ -11,7 +11,7 @@ const getAllMovies = async (request: Request, response: Response): Promise<Respo
 };
 
 const getMovieById = async (request: Request, response: Response): Promise<Response> => {
-  return response.status(200).json(movieReturnSchema.parse(response.locals.movie));
+  return response.status(200).json(movieCompleteReturnSchema.parse(response.locals.movie));
 };
 
 const createMovie = async (request: Request, response: Response): Promise<Response> => {
