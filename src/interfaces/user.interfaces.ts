@@ -4,6 +4,7 @@ import {
   userCreateSchema,
   userReadSchema,
   userReturnSchema,
+  userUpdateSchema,
 } from "../schemas";
 import { Optional } from "sequelize";
 
@@ -12,7 +13,7 @@ export type DeepPartial<T> = {
 };
 
 type UserCreate = z.infer<typeof userCreateSchema>;
-type UserUpdate = DeepPartial<UserCreate>;
+type UserUpdate = DeepPartial<typeof userUpdateSchema>;
 type UserRead = z.infer<typeof userReadSchema>;
 type UserReturn = z.infer<typeof userReturnSchema>;
 type UserCompleteReturn = z.infer<typeof userCompleteReturnSchema>;
