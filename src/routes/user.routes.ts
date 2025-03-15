@@ -11,6 +11,7 @@ userRoutes.post("/add", criarUserEmMassa);
 userRoutes.post(
   "",
   middlewares.validateBody(userCreateSchema),
+  middlewares.verifyCPFExists,
   middlewares.verifyEmailExists,
   userController.createUser
 );
