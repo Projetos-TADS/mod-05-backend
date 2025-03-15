@@ -5,9 +5,11 @@ const pagination = (request: Request, response: Response, next: NextFunction): v
   const queryPerPage: number = Number(request.query.perPage);
 
   const page: number = queryPage && queryPage > 1 ? queryPage : 1;
-  const perPage: number = queryPerPage && queryPerPage <= 5 && queryPerPage > 0 ? queryPerPage : 5;
+  const perPage: number = queryPerPage && queryPerPage > 0 ? queryPerPage : 5;
 
-  const baseUrl: string = `http://localhost:3000/movies`;
+  const baseUrl: string = `${request.protocol}://${request.get("host")}${request.baseUrl}${
+    request.path
+  }`;
   let prevPage: string | null = `${baseUrl}?page=${page - 1}&perPage=${perPage}`;
   const nextPage: string = `${baseUrl}?page=${page + 1}&perPage=${perPage}`;
 
