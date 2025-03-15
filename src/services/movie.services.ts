@@ -2,7 +2,28 @@ import { MovieCreate, MovieReturn, MovieUpdate, Pagination, PaginationParams } f
 import { MovieModel } from "../models";
 import { ActorModel } from "../models/Actor.model";
 import { DirectorModel } from "../models/Director.model";
-import { movieCompleteReturnSchema, movieReturnSchema } from "../schemas";
+import { movieCompleteReturnSchema } from "../schemas";
+
+const getMovieRelations = () => {
+  return [
+    {
+      model: ActorModel,
+      as: "actors",
+      attributes: ["actorId", "name", "birthDate", "nationality"],
+    },
+    {
+      model: DirectorModel,
+      as: "directors",
+      attributes: ["directorId", "name", "birthDate", "nationality"],
+    },
+  ];
+};
+
+const getMovieByIdWithRelations = async (movieId: string): Promise<MovieModel | null> => {
+  return await MovieModel.findByPk(movieId, {
+    include: getMovieRelations(),
+  });
+};
 
 const getAllMovies = async ({
   page,
@@ -14,18 +35,7 @@ const getAllMovies = async ({
     await MovieModel.findAndCountAll({
       offset: page,
       limit: perPage,
-      include: [
-        {
-          model: ActorModel,
-          as: "actors",
-          attributes: ["actorId", "name", "birthDate", "nationality"],
-        },
-        {
-          model: DirectorModel,
-          as: "directors",
-          attributes: ["directorId", "name", "birthDate", "nationality"],
-        },
-      ],
+      include: getMovieRelations(),
     });
 
   if (count - page <= perPage) {
@@ -42,20 +52,7 @@ const getAllMovies = async ({
 
 const createMovie = async (payLoad: MovieCreate): Promise<MovieReturn> => {
   const movie = await MovieModel.create(payLoad);
-  const newMovie: MovieModel | null = await MovieModel.findByPk(movie.movieId, {
-    include: [
-      {
-        model: ActorModel,
-        as: "actors",
-        attributes: ["actorId", "name", "birthDate", "nationality"],
-      },
-      {
-        model: DirectorModel,
-        as: "directors",
-        attributes: ["directorId", "name", "birthDate", "nationality"],
-      },
-    ],
-  });
+  const newMovie = await getMovieByIdWithRelations(movie.movieId);
 
   return movieCompleteReturnSchema.parse(newMovie);
 };
@@ -63,20 +60,7 @@ const createMovie = async (payLoad: MovieCreate): Promise<MovieReturn> => {
 const updateMovie = async (movie: MovieModel, payLoad: MovieUpdate): Promise<MovieReturn> => {
   Object.assign(movie, payLoad);
   await movie.save();
-  const newMovie: MovieModel | null = await MovieModel.findByPk(movie.movieId, {
-    include: [
-      {
-        model: ActorModel,
-        as: "actors",
-        attributes: ["actorId", "name", "birthDate", "nationality"],
-      },
-      {
-        model: DirectorModel,
-        as: "directors",
-        attributes: ["directorId", "name", "birthDate", "nationality"],
-      },
-    ],
-  });
+  const newMovie = await getMovieByIdWithRelations(movie.movieId);
 
   return movieCompleteReturnSchema.parse(newMovie);
 };
