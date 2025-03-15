@@ -43,6 +43,8 @@ const userReadSchema = userReturnSchema.array();
 const userUpdateSchema = userCreateSchema
   .omit({
     cpf: true,
+    email: true,
+    admin: true,
   })
   .partial();
 
