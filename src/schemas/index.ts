@@ -15,7 +15,7 @@ import {
   movieCompleteReadSchema,
   movieCompleteReturnSchema,
 } from "./movie.schemas";
-import { sessionSchema, sessionReturnSchema } from "./session.schemas";
+import { sessionSchema } from "./session.schemas";
 import {
   favoriteSchema,
   favoriteCreateSchema,
@@ -44,7 +44,12 @@ import {
   directorReturnSchema,
   directorReadSchema,
 } from "./director.schemas";
-import { castSchema, castCreateSchema, castReturnSchema } from "./cast.schemas";
+import {
+  castSchema,
+  castCreateSchema,
+  castReturnSchema,
+  castCompleteReturnSchema,
+} from "./cast.schemas";
 import {
   directorMovieSchema,
   directorMovieCreateSchema,
@@ -91,4 +96,5 @@ export {
   directorMovieSchema,
   directorMovieCreateSchema,
   directorMovieReturnSchema,
+  castCompleteReturnSchema,
 };

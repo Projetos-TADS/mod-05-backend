@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { movieCompleteReturnSchema } from "./movie.schemas";
 
 const castSchema = z.object({
   castId: z.string().uuid(),
@@ -14,4 +15,8 @@ const castCreateSchema = castSchema.omit({
 
 const castReturnSchema = castSchema;
 
-export { castSchema, castCreateSchema, castReturnSchema };
+const castCompleteReturnSchema = castSchema.extend({
+  movie: movieCompleteReturnSchema,
+});
+
+export { castSchema, castCreateSchema, castReturnSchema, castCompleteReturnSchema };
