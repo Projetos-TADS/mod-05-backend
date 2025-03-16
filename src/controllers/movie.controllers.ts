@@ -5,7 +5,11 @@ import { movieCompleteReturnSchema } from "../schemas";
 import { MovieModel } from "../models";
 
 const getAllMovies = async (request: Request, response: Response): Promise<Response> => {
-  const paginationMovies: Pagination = await movieServices.getAllMovies(response.locals.pagination);
+  const title = typeof request.query.title === 'string' ? request.query.title : undefined;
+  const paginationMovies: Pagination = await movieServices.getAllMovies(
+    response.locals.pagination,
+    title
+  );
 
   return response.status(200).json(paginationMovies);
 };

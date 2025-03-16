@@ -1,3 +1,4 @@
+import { Op } from "sequelize";
 import { MovieCreate, MovieReturn, MovieUpdate, Pagination, PaginationParams } from "../interfaces";
 import { MovieModel } from "../models";
 import { ActorModel } from "../models/Actor.model";
@@ -25,16 +26,17 @@ const getMovieByIdWithRelations = async (movieId: string): Promise<MovieModel | 
   });
 };
 
-const getAllMovies = async ({
-  page,
-  perPage,
-  prevPage,
-  nextPage,
-}: PaginationParams): Promise<Pagination> => {
+const getAllMovies = async (
+  { page, perPage, prevPage, nextPage }: PaginationParams,
+  title?: string
+): Promise<Pagination> => {
+  const whereClause = title ? { title: { [Op.like]: `%${title.toLowerCase()}%` } } : {};
+
   const { rows: movies, count }: { rows: MovieModel[]; count: number } =
     await MovieModel.findAndCountAll({
       offset: page,
       limit: perPage,
+      where: whereClause,
       include: getMovieRelations(),
     });
 
