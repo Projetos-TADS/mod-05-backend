@@ -47,7 +47,13 @@ import {
   DirectorUpdate,
 } from "./director.interfaces";
 
-import { CastCreate, CastReturn, CastAttributes, CastCreationAttributes } from "./cast.interfaces";
+import {
+  CastCreate,
+  CastReturn,
+  CastAttributes,
+  CastCompleteReturn,
+  CastCreationAttributes,
+} from "./cast.interfaces";
 import {
   DirectorMovieCreate,
   DirectorMovieReturn,
@@ -98,6 +104,7 @@ export {
   CastReturn,
   CastAttributes,
   CastCreationAttributes,
+  CastCompleteReturn,
   DirectorMovieCreate,
   DirectorMovieReturn,
   DirectorMovieAttributes,
