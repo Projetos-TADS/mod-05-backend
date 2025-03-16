@@ -71,4 +71,4 @@ const deleteMovie = async (movie: MovieModel): Promise<void> => {
   await movie!.destroy();
 };
 
-export default { getAllMovies, createMovie, deleteMovie, updateMovie };
+export default { getAllMovies, createMovie, deleteMovie, updateMovie, getMovieByIdWithRelations };
