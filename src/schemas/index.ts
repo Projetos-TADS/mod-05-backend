@@ -54,6 +54,7 @@ import {
   directorMovieSchema,
   directorMovieCreateSchema,
   directorMovieReturnSchema,
+  directorMovieCompleteReturnSchema,
 } from "./directorMovie.schemas";
 
 export {
@@ -96,5 +97,6 @@ export {
   directorMovieSchema,
   directorMovieCreateSchema,
   directorMovieReturnSchema,
+  directorMovieCompleteReturnSchema,
   castCompleteReturnSchema,
 };

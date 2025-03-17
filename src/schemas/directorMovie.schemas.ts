@@ -1,16 +1,11 @@
 import { z } from "zod";
+import { movieCompleteReturnSchema } from "./movie.schemas";
 
 const directorMovieSchema = z.object({
   directorMovieId: z.string().uuid(),
   movieId: z.string().uuid(),
   directorId: z.string().uuid(),
   addedDate: z.date(),
-  description: z
-    .string()
-    .min(1, "Description is required")
-    .max(100, "Description must be less than 100 characters")
-    .optional()
-    .nullable(),
 });
 
 const directorMovieCreateSchema = directorMovieSchema.omit({
@@ -20,4 +15,13 @@ const directorMovieCreateSchema = directorMovieSchema.omit({
 
 const directorMovieReturnSchema = directorMovieSchema;
 
-export { directorMovieSchema, directorMovieCreateSchema, directorMovieReturnSchema };
+const directorMovieCompleteReturnSchema = directorMovieSchema.extend({
+  movie: movieCompleteReturnSchema,
+});
+
+export {
+  directorMovieSchema,
+  directorMovieCreateSchema,
+  directorMovieReturnSchema,
+  directorMovieCompleteReturnSchema,
+};
