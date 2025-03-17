@@ -59,6 +59,7 @@ import {
   DirectorMovieReturn,
   DirectorMovieAttributes,
   DirectorMovieCreationAttributes,
+  DirectorMovieCompleteReturn,
 } from "./directorMovie.interfaces";
 import { Pagination, PaginationParams } from "./pagination.interfaces";
 
@@ -109,6 +110,7 @@ export {
   DirectorMovieReturn,
   DirectorMovieAttributes,
   DirectorMovieCreationAttributes,
+  DirectorMovieCompleteReturn,
   Pagination,
   PaginationParams,
 };

@@ -1,9 +1,14 @@
 import { z } from "zod";
 import { Optional } from "sequelize";
-import { directorMovieCreateSchema, directorMovieReturnSchema } from "../schemas";
+import {
+  directorMovieCompleteReturnSchema,
+  directorMovieCreateSchema,
+  directorMovieReturnSchema,
+} from "../schemas";
 
 type DirectorMovieCreate = z.infer<typeof directorMovieCreateSchema>;
 type DirectorMovieReturn = z.infer<typeof directorMovieReturnSchema>;
+type DirectorMovieCompleteReturn = z.infer<typeof directorMovieCompleteReturnSchema>;
 
 interface DirectorMovieAttributes {
   directorMovieId: string;
@@ -20,4 +25,5 @@ export {
   DirectorMovieReturn,
   DirectorMovieAttributes,
   DirectorMovieCreationAttributes,
+  DirectorMovieCompleteReturn,
 };
