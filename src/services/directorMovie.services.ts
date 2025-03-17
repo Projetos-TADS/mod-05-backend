@@ -1,18 +1,17 @@
 import { CastModel, DirectorMovieModel, MovieModel } from "../models";
-import { DirectorMovieReturn } from "../interfaces";
-import { directorMovieReturnSchema } from "../schemas";
+import { DirectorMovieCompleteReturn } from "../interfaces";
 import { AppError } from "../errors";
+import { directorMovieCompleteReturnSchema } from "../schemas";
 import { DirectorModel } from "../models/Director.model";
+import movieServices from "./movie.services";
 
 const addDirectorToMovie = async (
   movie: MovieModel,
-  director: DirectorModel,
-  description: string | null
-): Promise<DirectorMovieReturn> => {
+  director: DirectorModel
+): Promise<DirectorMovieCompleteReturn> => {
   const directorMoviePayload = {
     movieId: movie.movieId,
     directorId: director.directorId,
-    description: description,
   };
   const [directorMovie, created] = await DirectorMovieModel.findOrCreate({
     where: directorMoviePayload,
@@ -21,7 +20,14 @@ const addDirectorToMovie = async (
 
   if (!created) throw new AppError("Director already edded");
 
-  return directorMovieReturnSchema.parse(directorMovie);
+  const movieUpdated = await movieServices.getMovieByIdWithRelations(movie.movieId);
+
+  const directorWithMovie = {
+    ...directorMovie.get({ plain: true }),
+    movie: movieUpdated!.get({ plain: true }),
+  };
+
+  return directorMovieCompleteReturnSchema.parse(directorWithMovie);
 };
 
 const removeDirectorFromMovie = async (directorMovie: CastModel): Promise<void> => {
