@@ -1,15 +1,12 @@
 import { Request, Response } from "express";
-import { DirectorMovieReturn } from "../interfaces";
+import { DirectorMovieCompleteReturn } from "../interfaces";
 import { directorMovieServices } from "../services";
 
 const addDirectorToMovie = async (request: Request, response: Response): Promise<Response> => {
-  const directorMovie: DirectorMovieReturn = await directorMovieServices.addDirectorToMovie(
-    response.locals.movie,
-    response.locals.director,
-    request.body.description ?? null
-  );
+  const directorWithMovie: DirectorMovieCompleteReturn =
+    await directorMovieServices.addDirectorToMovie(response.locals.movie, response.locals.director);
 
-  return response.status(201).json(directorMovie);
+  return response.status(201).json(directorWithMovie);
 };
 
 const removeDirectorFromMovie = async (request: Request, response: Response): Promise<Response> => {
