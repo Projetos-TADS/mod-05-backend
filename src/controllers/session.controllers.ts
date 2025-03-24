@@ -6,7 +6,7 @@ import { sessionReturnSchema } from "../schemas/session.schemas";
 const createSession = async (request: Request, response: Response): Promise<Response> => {
   const session: SessionReturn = await sessionServices.createSession(request.body);
 
-  return response.status(201).json(sessionReturnSchema.parse(session));
+  return response.status(200).json(sessionReturnSchema.parse(session));
 };
 
 export default { createSession };
