@@ -11,7 +11,7 @@ describe("DirectorService", () => {
   });
 
   describe("getAllDirectors", () => {
-    it("deve retornar uma lista de diretores", async () => {
+    it("should return a list of directors", async () => {
       const mockDirectors = [
         {
           directorId: "035481ce-9863-4511-8902-c7f219a39573",
@@ -34,7 +34,7 @@ describe("DirectorService", () => {
       expect(result).toEqual(directorReadSchema.parse(mockDirectors));
     });
 
-    it("deve retornar uma lista vazia se não houver diretores", async () => {
+    it("should return an empty list if there are no directors", async () => {
       (DirectorModel.findAll as jest.Mock).mockResolvedValue([]);
 
       const result = await directorService.getAllDirectors();
@@ -42,7 +42,7 @@ describe("DirectorService", () => {
       expect(result).toEqual(directorReadSchema.parse([]));
     });
 
-    it("deve lançar um erro quando a busca de diretores falha", async () => {
+    it("should throw an error when fetching directors fails", async () => {
       (DirectorModel.findAll as jest.Mock).mockRejectedValue(new Error("Database error"));
 
       await expect(directorService.getAllDirectors()).rejects.toThrow("Database error");
@@ -50,7 +50,7 @@ describe("DirectorService", () => {
   });
 
   describe("createDirector", () => {
-    it("deve criar e retornar um diretor com os dados corretos", async () => {
+    it("should create and return a director with correct data", async () => {
       const mockPayload: DirectorCreate = {
         name: "Christopher Nolan",
         birthDate: "1970-07-30",
@@ -71,7 +71,7 @@ describe("DirectorService", () => {
       expect(DirectorModel.create).toHaveBeenCalledWith(mockPayload);
     });
 
-    it("deve lançar um erro quando a criação do diretor falha", async () => {
+    it("should throw an error when director creation fails", async () => {
       const mockPayload: DirectorCreate = {
         name: "Christopher Nolan",
         birthDate: "1970-07-30",
@@ -87,7 +87,7 @@ describe("DirectorService", () => {
   });
 
   describe("updateDirector", () => {
-    it("deve atualizar e retornar o diretor com os dados corretos", async () => {
+    it("should update and return the director with correct data", async () => {
       const mockPayload: DirectorUpdate = {
         name: "Christopher Nolan Updated",
         birthDate: "1970-07-30",
@@ -117,7 +117,7 @@ describe("DirectorService", () => {
       expect(mockDirector.save).toHaveBeenCalledTimes(1);
     });
 
-    it("deve lançar um erro quando a atualização do diretor falha", async () => {
+    it("should throw an error when updating the director fails", async () => {
       const mockPayload: DirectorUpdate = {
         name: "Christopher Nolan Updated",
         birthDate: "1970-07-30",
@@ -141,7 +141,7 @@ describe("DirectorService", () => {
   });
 
   describe("deleteDirector", () => {
-    it("deve deletar o diretor com sucesso", async () => {
+    it("should successfully delete the director", async () => {
       const mockDirector = {
         directorId: "035481ce-9863-4511-8902-c7f219a39573",
         name: "Christopher Nolan",
@@ -155,7 +155,7 @@ describe("DirectorService", () => {
       expect(mockDirector.destroy).toHaveBeenCalledTimes(1);
     });
 
-    it("deve lançar um erro quando a deleção do diretor falha", async () => {
+    it("should throw an error when deleting the director fails", async () => {
       const mockDirector = {
         directorId: "035481ce-9863-4511-8902-c7f219a39573",
         name: "Christopher Nolan",

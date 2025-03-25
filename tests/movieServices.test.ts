@@ -9,7 +9,7 @@ describe("MovieService", () => {
   });
 
   describe("deleteMovie", () => {
-    it("deve deletar o filme com sucesso", async () => {
+    it("should successfully delete the movie", async () => {
       const mockMovie = {
         movieId: "035481ce-9863-4511-8902-c7f219a39573",
         title: "Inception",
@@ -26,7 +26,7 @@ describe("MovieService", () => {
       expect(mockMovie.destroy).toHaveBeenCalledTimes(1);
     });
 
-    it("deve lançar um erro quando a deleção do filme falha", async () => {
+    it("should throw an error when movie deletion fails", async () => {
       const mockMovie = {
         movieId: "035481ce-9863-4511-8902-c7f219a39573",
         title: "Inception",

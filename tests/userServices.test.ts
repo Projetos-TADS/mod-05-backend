@@ -11,7 +11,7 @@ describe("UserService", () => {
   });
 
   describe("getAllUsers", () => {
-    it("deve retornar uma lista de usuários", async () => {
+    it("should return a list of users", async () => {
       const mockUsers = [
         {
           userId: "035481ce-9863-4511-8902-c7f219a39573",
@@ -36,7 +36,7 @@ describe("UserService", () => {
       expect(result).toEqual(userReadSchema.parse(mockUsers));
     });
 
-    it("deve retornar uma lista vazia se não houver usuários", async () => {
+    it("should return an empty list if there are no users", async () => {
       (UserModel.findAll as jest.Mock).mockResolvedValue([]);
 
       const result = await userService.getAllUsers();
@@ -44,7 +44,7 @@ describe("UserService", () => {
       expect(result).toEqual(userReadSchema.parse([]));
     });
 
-    it("deve lançar um erro quando a busca de usuários falha", async () => {
+    it("should throw an error when fetching users fails", async () => {
       (UserModel.findAll as jest.Mock).mockRejectedValue(new Error("Database error"));
 
       await expect(userService.getAllUsers()).rejects.toThrow("Database error");
@@ -52,7 +52,7 @@ describe("UserService", () => {
   });
 
   describe("createUser", () => {
-    it("deve criar e retornar um usuário com os dados corretos", async () => {
+    it("should create and return a user with correct data", async () => {
       const mockPayload: UserCreate = {
         name: "John Doe",
         email: "john.doe@example.com",
@@ -75,7 +75,7 @@ describe("UserService", () => {
       expect(UserModel.create).toHaveBeenCalledWith(mockPayload);
     });
 
-    it("deve lançar um erro quando a criação do usuário falha", async () => {
+    it("should throw an error when user creation fails", async () => {
       const mockPayload: UserCreate = {
         name: "John Doe",
         email: "john.doe@example.com",
@@ -93,7 +93,7 @@ describe("UserService", () => {
   });
 
   describe("deleteUser", () => {
-    it("deve deletar o usuário com sucesso", async () => {
+    it("should successfully delete the user", async () => {
       const mockUser = {
         userId: "035481ce-9863-4511-8902-c7f219a39573",
         name: "John Doe",
@@ -107,7 +107,7 @@ describe("UserService", () => {
       expect(mockUser.destroy).toHaveBeenCalledTimes(1);
     });
 
-    it("deve lançar um erro quando a deleção do usuário falha", async () => {
+    it("should throw an error when user deletion fails", async () => {
       const mockUser = {
         userId: "035481ce-9863-4511-8902-c7f219a39573",
         name: "John Doe",
