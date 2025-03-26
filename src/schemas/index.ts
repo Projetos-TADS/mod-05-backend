@@ -5,6 +5,7 @@ import {
   userReturnSchema,
   userReadSchema,
   userCompleteReturnSchema,
+  userCompleteReadSchema,
 } from "./user.schemas";
 import {
   movieSchema,
@@ -64,6 +65,7 @@ export {
   userReturnSchema,
   userReadSchema,
   userCompleteReturnSchema,
+  userCompleteReadSchema,
   sessionSchema,
   movieSchema,
   movieCreateSchema,
