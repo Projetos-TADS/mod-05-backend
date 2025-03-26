@@ -1,5 +1,4 @@
 import { DataTypes, Model } from "sequelize";
-import { UserModel } from "./User.model";
 import { MovieModel } from "./Movie.model";
 import sequelize from "../config/database";
 import { CastAttributes, CastCreationAttributes } from "../interfaces";
