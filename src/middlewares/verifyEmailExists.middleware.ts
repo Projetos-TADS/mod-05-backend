@@ -9,7 +9,7 @@ const verifyEmailExists = async (
   response: Response,
   next: NextFunction
 ): Promise<void> => {
-  const email: string = request.body.email;
+  const email: string | undefined = request.body.email;
   if (!email) return next();
   if (response.locals.user && response.locals.user.email === email) return next();
 
