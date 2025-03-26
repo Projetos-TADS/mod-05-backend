@@ -8,7 +8,7 @@ const verifyCPFExists = async (
   response: Response,
   next: NextFunction
 ): Promise<void> => {
-  const userCPF: string = request.body.cpf;
+  const userCPF: string | undefined = request.body.cpf;
 
   const findOptions: FindOptions = {
     where: {
