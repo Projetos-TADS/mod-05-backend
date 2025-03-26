@@ -7,7 +7,7 @@ const verifyUserIdExists = async (
   response: Response,
   next: NextFunction
 ): Promise<void> => {
-  const userId: string = request.params.userId;
+  const userId: string | undefined = request.params.userId;
 
   const user: UserModel | null = await UserModel.findByPk(userId);
 
