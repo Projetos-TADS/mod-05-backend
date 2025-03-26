@@ -7,7 +7,7 @@ const verifyFavoriteIdExists = async (
   response: Response,
   next: NextFunction
 ): Promise<void> => {
-  const favoriteId: string = request.params.favoriteId;
+  const favoriteId: string | undefined = request.params.favoriteId;
 
   const favorite: FavoriteMovieModel | null = await FavoriteMovieModel.findByPk(favoriteId, {
     include: [
