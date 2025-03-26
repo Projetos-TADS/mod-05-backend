@@ -61,4 +61,5 @@ export {
   userReturnSchema,
   userReadSchema,
   userCompleteReturnSchema,
+  userCompleteReadSchema
 };
