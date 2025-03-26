@@ -7,7 +7,7 @@ const verifyCastIdExists = async (
   response: Response,
   next: NextFunction
 ): Promise<void> => {
-  const castId: string = request.params.castId;
+  const castId: string | undefined = request.params.castId;
 
   const cast: CastModel | null = await CastModel.findByPk(castId);
 
