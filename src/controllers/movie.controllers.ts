@@ -7,6 +7,7 @@ import { MovieModel } from "../models";
 const getAllMovies = async (request: Request, response: Response): Promise<Response> => {
   const title: string | undefined =
     typeof request.query.title === "string" ? request.query.title : undefined;
+
   const paginationMovies: Pagination = await movieServices.getAllMovies(
     response.locals.pagination,
     title

@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database";
-import bcrypt, { hashSync } from "bcryptjs";
+import bcrypt from "bcryptjs";
 import { UserAttributes, UserCreationAttributes } from "../interfaces";
 
 export class UserModel
@@ -16,6 +16,18 @@ export class UserModel
   public updatedAt!: Date;
   public deletedAt?: Date;
   public admin!: boolean;
+
+  public async hashPassword() {
+    this.password = await bcrypt.hash(this.password, 10);
+  }
+
+  public lowerCaseEmail() {
+    this.email = this.email.toLocaleLowerCase().trim();
+  }
+
+  public lowerCaseName() {
+    this.name = this.name.toLocaleLowerCase().trim();
+  }
 }
 
 UserModel.init(
@@ -82,19 +94,14 @@ UserModel.init(
     modelName: "UserModel",
     hooks: {
       beforeCreate: async (user: UserModel) => {
-        if (user.password) user.password = hashSync(user.password, 10);
-
-        if (user.name) user.name = user.name.toLocaleLowerCase().trim();
-        if (user.email) user.email = user.email.toLocaleLowerCase().trim();
+        await user.hashPassword();
+        user.lowerCaseEmail();
+        user.lowerCaseName();
       },
       beforeUpdate: async (user: UserModel) => {
-        if (user.changed("password")) {
-          const salt: string = await bcrypt.genSalt(10);
-          user.password = await bcrypt.hash(user.password, salt);
-        }
-
-        if (user.name) user.name = user.name.toLocaleLowerCase().trim();
-        if (user.email) user.email = user.email.toLocaleLowerCase().trim();
+        if (user.changed("password")) await user.hashPassword();
+        if (user.changed("email")) user.lowerCaseEmail();
+        if (user.changed("name")) user.lowerCaseName();
       },
     },
   }

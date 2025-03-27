@@ -1147,7 +1147,7 @@ const swaggerOptions: Options = {
   apis: ["./src/routes/**/*.ts", "./src/controllers/**/*.ts"],
 };
 
-const swaggerSpec = swaggerJSDoc(swaggerOptions);
+const swaggerSpec: object = swaggerJSDoc(swaggerOptions);
 
 export const setupSwagger = (app: Application): void => {
   app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));

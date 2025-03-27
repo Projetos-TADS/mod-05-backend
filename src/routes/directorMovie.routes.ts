@@ -18,6 +18,7 @@ directorMovieRoutes.post(
   middlewares.verifyMovieIdExists,
   directorMovieControllers.addDirectorToMovie
 );
+
 directorMovieRoutes.delete(
   "/:directorMovieId",
   middlewares.isAdmin,

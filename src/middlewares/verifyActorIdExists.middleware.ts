@@ -7,7 +7,7 @@ const verifyActorIdExists = async (
   response: Response,
   next: NextFunction
 ): Promise<void> => {
-  let actorId: string | undefined = request.params.actorId || request.body.actorId;
+  const actorId: string | undefined = request.params.actorId || request.body.actorId;
 
   const actor: ActorModel | null = await ActorModel.findByPk(actorId);
 

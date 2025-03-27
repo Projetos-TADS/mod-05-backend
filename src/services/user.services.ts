@@ -10,7 +10,7 @@ const getAllUsers = async (): Promise<UserRead> => {
 };
 
 const createUser = async (payLoad: UserCreate): Promise<UserReturn> => {
-  const user = await UserModel.create(payLoad);
+  const user: UserModel = await UserModel.create(payLoad);
 
   return userReturnSchema.parse(user);
 };

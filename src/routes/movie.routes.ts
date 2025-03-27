@@ -21,12 +21,14 @@ movieRoutes.get("", middlewares.pagination, movieControllers.getAllMovies);
 movieRoutes.use("/:movieId", middlewares.verifyMovieIdExists);
 
 movieRoutes.get("/:movieId", movieControllers.getMovieById);
+
 movieRoutes.patch(
   "/:movieId",
   middlewares.isAdmin,
   middlewares.validateBody(movieUpdateSchema),
   movieControllers.updateMovie
 );
+
 movieRoutes.delete("/:movieId", middlewares.isAdmin, movieControllers.deleteMovie);
 
 export default movieRoutes;

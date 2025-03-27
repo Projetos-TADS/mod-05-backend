@@ -27,11 +27,14 @@ const actorCreateSchema = actorSchema.omit({ actorId: true }).extend({
       if (!result.isValid) throw new AppError(result.message!);
       return true;
     })
+    .nullable()
     .optional(),
 });
 
 const actorReturnSchema = actorSchema;
+
 const actorReadSchema = actorReturnSchema.array();
+
 const actorUpdateSchema = actorCreateSchema.partial();
 
 export { actorSchema, actorCreateSchema, actorUpdateSchema, actorReturnSchema, actorReadSchema };

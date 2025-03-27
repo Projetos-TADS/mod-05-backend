@@ -38,6 +38,7 @@ const userReturnSchema = userSchema.omit({
   updatedAt: true,
   deletedAt: true,
 });
+
 const userReadSchema = userReturnSchema.array();
 
 const userUpdateSchema = userCreateSchema
@@ -61,5 +62,5 @@ export {
   userReturnSchema,
   userReadSchema,
   userCompleteReturnSchema,
-  userCompleteReadSchema
+  userCompleteReadSchema,
 };

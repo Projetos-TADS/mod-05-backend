@@ -18,7 +18,7 @@ interface ActorAttributes {
   nationality: string;
 }
 
-interface ActorCreationAttributes extends Optional<ActorAttributes, "actorId"> {}
+interface ActorCreationAttributes extends Optional<ActorAttributes, "actorId" | "birthDate"> {}
 
 export {
   ActorCreate,

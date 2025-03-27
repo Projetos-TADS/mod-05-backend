@@ -17,7 +17,9 @@ const addActorToMovie = async (
 
   if (!created) throw new AppError("Actor already edded");
 
-  const movieUpdated = await movieServices.getMovieByIdWithRelations(cast.movieId);
+  const movieUpdated: MovieModel | null = await movieServices.getMovieByIdWithRelations(
+    cast.movieId
+  );
 
   const castWithMovie = {
     ...cast.get({ plain: true }),

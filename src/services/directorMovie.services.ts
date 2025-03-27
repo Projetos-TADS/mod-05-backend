@@ -20,7 +20,9 @@ const addDirectorToMovie = async (
 
   if (!created) throw new AppError("Director already edded");
 
-  const movieUpdated = await movieServices.getMovieByIdWithRelations(movie.movieId);
+  const movieUpdated: MovieModel | null = await movieServices.getMovieByIdWithRelations(
+    movie.movieId
+  );
 
   const directorWithMovie = {
     ...directorMovie.get({ plain: true }),

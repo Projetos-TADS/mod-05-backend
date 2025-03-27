@@ -18,7 +18,8 @@ interface DirectorAttributes {
   nationality: string;
 }
 
-interface DirectorCreationAttributes extends Optional<DirectorAttributes, "directorId"> {}
+interface DirectorCreationAttributes
+  extends Optional<DirectorAttributes, "directorId" | "birthDate"> {}
 
 export {
   DirectorCreate,

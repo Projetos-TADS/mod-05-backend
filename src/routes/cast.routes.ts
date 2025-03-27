@@ -18,6 +18,7 @@ castRoutes.post(
   middlewares.verifyMovieIdExists,
   castControllers.addActorToMovie
 );
+
 castRoutes.delete(
   "/:castId",
   middlewares.isAdmin,

@@ -27,11 +27,14 @@ const directorCreateSchema = directorSchema.omit({ directorId: true }).extend({
       if (!result.isValid) throw new AppError(result.message!);
       return true;
     })
+    .nullable()
     .optional(),
 });
 
 const directorReturnSchema = directorSchema;
+
 const directorReadSchema = directorReturnSchema.array();
+
 const directorUpdateSchema = directorCreateSchema.partial();
 
 export {

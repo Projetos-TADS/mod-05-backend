@@ -31,7 +31,7 @@ interface UserAttributes {
 }
 
 interface UserCreationAttributes
-  extends Optional<UserAttributes, "userId" | "createdAt" | "updatedAt"> {}
+  extends Optional<UserAttributes, "userId" | "createdAt" | "updatedAt" | "deletedAt"> {}
 
 export {
   UserCreate,

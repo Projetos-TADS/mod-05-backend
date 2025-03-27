@@ -32,13 +32,6 @@ import {
   ActorUpdate,
 } from "./actor.interfaces";
 import {
-  ActorMovieCreate,
-  ActorMovieRead,
-  ActorMovieReturn,
-  ActorMovieAttributes,
-  ActorMovieCreationAttributes,
-} from "./actorMovie.interfaces";
-import {
   DirectorCreate,
   DirectorRead,
   DirectorReturn,
@@ -89,11 +82,6 @@ export {
   ActorReturn,
   ActorAttributes,
   ActorCreationAttributes,
-  ActorMovieCreate,
-  ActorMovieRead,
-  ActorMovieReturn,
-  ActorMovieAttributes,
-  ActorMovieCreationAttributes,
   ActorUpdate,
   DirectorCreate,
   DirectorRead,

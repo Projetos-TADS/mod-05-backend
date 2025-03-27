@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { actorReadSchema, actorReturnSchema } from "./actor.schemas";
-import { directorReadSchema, directorReturnSchema } from "./director.schemas";
+import { actorReadSchema } from "./actor.schemas";
+import { directorReadSchema } from "./director.schemas";
 
 const movieSchema = z.object({
   movieId: z.string().uuid(),

@@ -53,8 +53,8 @@ const getAllMovies = async (
 };
 
 const createMovie = async (payLoad: MovieCreate): Promise<MovieReturn> => {
-  const movie = await MovieModel.create(payLoad);
-  const newMovie = await getMovieByIdWithRelations(movie.movieId);
+  const movie: MovieModel = await MovieModel.create(payLoad);
+  const newMovie: MovieModel | null = await getMovieByIdWithRelations(movie.movieId);
 
   return movieCompleteReturnSchema.parse(newMovie);
 };
@@ -62,7 +62,7 @@ const createMovie = async (payLoad: MovieCreate): Promise<MovieReturn> => {
 const updateMovie = async (movie: MovieModel, payLoad: MovieUpdate): Promise<MovieReturn> => {
   Object.assign(movie, payLoad);
   await movie.save();
-  const newMovie = await getMovieByIdWithRelations(movie.movieId);
+  const newMovie: MovieModel | null = await getMovieByIdWithRelations(movie.movieId);
 
   return movieCompleteReturnSchema.parse(newMovie);
 };

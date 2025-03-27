@@ -6,7 +6,7 @@ import { AppError } from "../errors";
 import { userCompleteReturnSchema } from "../schemas";
 
 const getAllFavoritesFromUser = async (user: UserModel): Promise<UserCompleteReturn> => {
-  const userFavorites = await UserModel.findByPk(user.userId, {
+  const userFavorites: UserModel | null = await UserModel.findByPk(user.userId, {
     include: [
       {
         model: FavoriteMovieModel,

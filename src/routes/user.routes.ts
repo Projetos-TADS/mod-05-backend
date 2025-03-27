@@ -17,11 +17,15 @@ userRoutes.post(
 );
 
 userRoutes.use("", middlewares.verifyToken);
+
 userRoutes.use("/:userId", middlewares.verifyToken);
+
 userRoutes.use("/:userId", middlewares.verifyUserIdExists);
 
 userRoutes.get("", userController.getAllUsers);
+
 userRoutes.get("/:userId", userController.getUserById);
+
 userRoutes.patch(
   "/:userId",
   middlewares.isAdminOrOwner,
@@ -29,6 +33,7 @@ userRoutes.patch(
   middlewares.verifyEmailExists,
   userController.updateUser
 );
+
 userRoutes.delete("/:userId", middlewares.isAdminOrOwner, userController.deleteUser);
 
 export default userRoutes;

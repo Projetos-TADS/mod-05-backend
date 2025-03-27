@@ -7,7 +7,7 @@ const verifyDirectorIdExists = async (
   response: Response,
   next: NextFunction
 ): Promise<void> => {
-  let directorId: string | undefined = request.params.directorId || request.body.directorId;
+  const directorId: string | undefined = request.params.directorId || request.body.directorId;
 
   const director: DirectorModel | null = await DirectorModel.findByPk(directorId);
 

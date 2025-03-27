@@ -21,12 +21,14 @@ actorRoutes.get("", actorControllers.getAllActors);
 actorRoutes.use("/:actorId", middlewares.verifyActorIdExists);
 
 actorRoutes.get("/:actorId", actorControllers.getActorById);
+
 actorRoutes.patch(
   "/:actorId",
   middlewares.isAdmin,
   middlewares.validateBody(actorUpdateSchema),
   actorControllers.updateActor
 );
+
 actorRoutes.delete("/:actorId", middlewares.isAdmin, actorControllers.deleteActor);
 
 export default actorRoutes;
