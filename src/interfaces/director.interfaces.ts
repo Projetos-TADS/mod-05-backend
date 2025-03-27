@@ -14,7 +14,7 @@ type DirectorUpdate = DeepPartial<DirectorCreate>;
 interface DirectorAttributes {
   directorId: string;
   name: string;
-  birthDate: string;
+  birthDate: string | null;
   nationality: string;
 }
 
