@@ -1,4 +1,4 @@
-import { FavoriteCompleteRead, FavoriteReturn, UserCompleteReturn } from "../interfaces";
+import { FavoriteReturn, UserCompleteReturn } from "../interfaces";
 import { MovieModel, UserModel } from "../models";
 import { FavoriteMovieModel } from "../models/FavoriteMovie.model";
 import { favoriteReturnSchema } from "../schemas/favorite.schemas";

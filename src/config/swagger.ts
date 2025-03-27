@@ -163,6 +163,94 @@ const swaggerOptions: Options = {
           ],
           description: "Complete movie schema including basic information, actors, and directors.",
         },
+        Cast: {
+          type: "object",
+          properties: {
+            castId: {
+              type: "string",
+              format: "uuid",
+              example: "550e8400-e29b-41d4-a716-446655440000",
+            },
+            movieId: {
+              type: "string",
+              format: "uuid",
+              example: "054e014f-6549-4284-9325-e0a8ba35c0d2",
+            },
+            actorId: {
+              type: "string",
+              format: "uuid",
+              example: "1fec033a-8fff-45bc-90b8-0fbf3b925bd8",
+            },
+            addedDate: {
+              type: "string",
+              format: "date-time",
+              example: "2023-01-01T12:00:00Z",
+            },
+          },
+        },
+        CastCreate: {
+          type: "object",
+          properties: {
+            movieId: { $ref: "#/components/schemas/Cast/properties/movieId" },
+            actorId: { $ref: "#/components/schemas/Cast/properties/actorId" },
+          },
+          required: ["movieId", "actorId"],
+        },
+        CastCompleteReturn: {
+          allOf: [
+            { $ref: "#/components/schemas/Cast" },
+            {
+              type: "object",
+              properties: {
+                movie: { $ref: "#/components/schemas/MovieComplete" },
+              },
+            },
+          ],
+        },
+        DirectorMovie: {
+          type: "object",
+          properties: {
+            directorMovieId: {
+              type: "string",
+              format: "uuid",
+              example: "550e8400-e29b-41d4-a716-446655440000",
+            },
+            movieId: {
+              type: "string",
+              format: "uuid",
+              example: "054e014f-6549-4284-9325-e0a8ba35c0d2",
+            },
+            directorId: {
+              type: "string",
+              format: "uuid",
+              example: "1fec033a-8fff-45bc-90b8-0fbf3b925bd8",
+            },
+            addedDate: {
+              type: "string",
+              format: "date-time",
+              example: "2023-01-01T12:00:00Z",
+            },
+          },
+        },
+        DirectorMovieCreate: {
+          type: "object",
+          properties: {
+            movieId: { $ref: "#/components/schemas/Cast/properties/movieId" },
+            directorId: { $ref: "#/components/schemas/Cast/properties/actorId" },
+          },
+          required: ["movieId", "actorId"],
+        },
+        DirectorMovieCompleteReturn: {
+          allOf: [
+            { $ref: "#/components/schemas/DirectorMovie" },
+            {
+              type: "object",
+              properties: {
+                movie: { $ref: "#/components/schemas/MovieComplete" },
+              },
+            },
+          ],
+        },
         Login: {
           type: "object",
           properties: {
@@ -276,6 +364,39 @@ const swaggerOptions: Options = {
             },
           },
         },
+        Favorite: {
+          type: "object",
+          properties: {
+            favoriteMovieId: {
+              type: "string",
+              format: "uuid",
+              example: "550e8400-e29b-41d4-a716-446655440000",
+            },
+            movieId: {
+              type: "string",
+              format: "uuid",
+              example: "054e014f-6549-4284-9325-e0a8ba35c0d2",
+            },
+            userId: {
+              type: "string",
+              format: "uuid",
+              example: "6923d0f0-0561-4b29-822e-6d5426fb03a4",
+            },
+            addedDate: {
+              type: "string",
+              format: "date-time",
+              example: "2023-01-01T12:00:00Z",
+            },
+          },
+        },
+        FavoriteCreate: {
+          type: "object",
+          properties: {
+            movieId: { $ref: "#/components/schemas/Favorite/properties/movieId" },
+          },
+          required: ["movieId"],
+        },
+        FavoriteReturn: { $ref: "#/components/schemas/Favorite" },
         SessionReturn: {
           type: "object",
           properties: {
@@ -603,6 +724,39 @@ const swaggerOptions: Options = {
             example: "550e8400-e29b-41d4-a716-446655440000",
           },
         },
+        FavoriteMovieIdParam: {
+          name: "favoriteMovieId",
+          in: "path",
+          required: true,
+          description: "ID of the favorite association",
+          schema: {
+            type: "string",
+            format: "uuid",
+            example: "550e8400-e29b-41d4-a716-446655440000",
+          },
+        },
+        CastIdParam: {
+          name: "castId",
+          in: "path",
+          required: true,
+          description: "Unique cast ID in UUID format",
+          schema: {
+            type: "string",
+            format: "uuid",
+            example: "550e8400-e29b-41d4-a716-446655440000",
+          },
+        },
+        DirectorMovieIdParam: {
+          name: "directorMovieId",
+          in: "path",
+          required: true,
+          description: "Unique directorMovie ID in UUID format",
+          schema: {
+            type: "string",
+            format: "uuid",
+            example: "550e8400-e29b-41d4-a716-446655440000",
+          },
+        },
       },
     },
     paths: {
@@ -768,6 +922,101 @@ const swaggerOptions: Options = {
           },
         },
       },
+      "/favorites/all/{userId}": {
+        get: {
+          summary: "Get user favorites",
+          description: "Retrieves all favorite movies from a user",
+          tags: ["Users"],
+          security: [{ bearerAuth: [] }],
+          parameters: [{ $ref: "#/components/parameters/UserIdParam" }],
+          responses: {
+            200: {
+              description: "List of favorites",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "array",
+                    items: { $ref: "#/components/schemas/FavoriteReturn" },
+                  },
+                },
+              },
+            },
+            404: { $ref: "#/components/responses/NotFound" },
+          },
+        },
+      },
+      "/favorites/{userId}": {
+        post: {
+          summary: "Add movie to favorites",
+          description: "Adds a movie to user's favorites list",
+          tags: ["Users"],
+          security: [{ bearerAuth: [] }],
+          parameters: [{ $ref: "#/components/parameters/UserIdParam" }],
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/FavoriteCreate" },
+                examples: {
+                  default: {
+                    value: {
+                      movieId: "054e014f-6549-4284-9325-e0a8ba35c0d2",
+                    },
+                  },
+                },
+              },
+            },
+          },
+          responses: {
+            201: {
+              description: "Movie added to favorites",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/FavoriteReturn" },
+                  example: {
+                    favoriteMovieId: "550e8400-e29b-41d4-a716-446655440000",
+                    movieId: "054e014f-6549-4284-9325-e0a8ba35c0d2",
+                    userId: "6923d0f0-0561-4b29-822e-6d5426fb03a4",
+                    addedDate: "2023-01-01T12:00:00Z",
+                  },
+                },
+              },
+            },
+            400: { $ref: "#/components/responses/BadRequest" },
+            404: { $ref: "#/components/responses/NotFound" },
+          },
+        },
+      },
+      "/favorites/{favoriteMovieId}": {
+        get: {
+          summary: "Get favorite by ID",
+          description: "Retrieves favorite by ID (requires admin)",
+          tags: ["Users"],
+          security: [{ bearerAuth: [] }],
+          parameters: [{ $ref: "#/components/parameters/FavoriteMovieIdParam" }],
+          responses: {
+            200: {
+              description: "Favorite details",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/FavoriteReturn" },
+                },
+              },
+            },
+          },
+        },
+        delete: {
+          summary: "Remove from favorites",
+          description: "Removes a movie from user's favorites list",
+          tags: ["Users"],
+          security: [{ bearerAuth: [] }],
+          parameters: [{ $ref: "#/components/parameters/FavoriteMovieIdParam" }],
+          responses: {
+            204: { description: "Favorite removed successfully" },
+            404: { $ref: "#/components/responses/NotFound" },
+          },
+        },
+      },
       "/movies": {
         get: {
           summary: "List movies",
@@ -883,6 +1132,86 @@ const swaggerOptions: Options = {
           parameters: [{ $ref: "#/components/parameters/MovieIdParam" }],
           responses: {
             204: { description: "Movie deleted successfully" },
+          },
+        },
+      },
+      "/cast": {
+        post: {
+          summary: "Associate actor with movie",
+          description: "Adds an actor to a movie's cast (requires admin)",
+          tags: ["Movies"],
+          security: [{ bearerAuth: [] }],
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/CastCreate" },
+              },
+            },
+          },
+          responses: {
+            201: {
+              description: "Actor added successfully",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/CastCompleteReturn" },
+                },
+              },
+            },
+            400: { $ref: "#/components/responses/BadRequest" },
+            404: { $ref: "#/components/responses/NotFound" },
+          },
+        },
+      },
+      "/cast/{castId}": {
+        delete: {
+          summary: "Remove actor from movie",
+          description: "Removes an actor from a movie's cast (requires admin)",
+          tags: ["Movies"],
+          security: [{ bearerAuth: [] }],
+          parameters: [{ $ref: "#/components/parameters/CastIdParam" }],
+          responses: {
+            204: { description: "Actor removed from movie successfully" },
+          },
+        },
+      },
+      "/directorMovie": {
+        post: {
+          summary: "Associate director with movie",
+          description: "Adds an director to a movie's cast (requires admin)",
+          tags: ["Movies"],
+          security: [{ bearerAuth: [] }],
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: { $ref: "#/components/schemas/DirectorMovieCreate" },
+              },
+            },
+          },
+          responses: {
+            201: {
+              description: "Director added successfully",
+              content: {
+                "application/json": {
+                  schema: { $ref: "#/components/schemas/DirectorMovieCompleteReturn" },
+                },
+              },
+            },
+            400: { $ref: "#/components/responses/BadRequest" },
+            404: { $ref: "#/components/responses/NotFound" },
+          },
+        },
+      },
+      "/directorMovie/{directorMovieId}": {
+        delete: {
+          summary: "Remove director from movie",
+          description: "Removes director from a movie (requires admin)",
+          tags: ["Movies"],
+          security: [{ bearerAuth: [] }],
+          parameters: [{ $ref: "#/components/parameters/DirectorMovieIdParam" }],
+          responses: {
+            204: { description: "Director removed from movie successfully" },
           },
         },
       },
