@@ -9,7 +9,10 @@ const getAllActors = async (): Promise<ActorRead> => {
 };
 
 const createActor = async (payLoad: ActorCreate): Promise<ActorReturn> => {
-  const actor = await ActorModel.create(payLoad);
+  const actor = await ActorModel.create({
+    ...payLoad,
+    birthDate: payLoad.birthDate ?? null,
+  });
 
   return actorReturnSchema.parse(actor);
 };
