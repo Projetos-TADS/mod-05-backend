@@ -8,7 +8,7 @@ export class DirectorModel
 {
   public directorId!: string;
   public name!: string;
-  public birthDate!: string;
+  public birthDate!: string | null;
   public nationality!: string;
 }
 
@@ -25,7 +25,7 @@ DirectorModel.init(
       allowNull: false,
     },
     birthDate: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.DATEONLY,
       allowNull: true,
     },
     nationality: {
