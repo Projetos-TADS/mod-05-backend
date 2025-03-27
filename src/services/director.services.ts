@@ -9,7 +9,10 @@ const getAllDirectors = async (): Promise<DirectorRead> => {
 };
 
 const createDirector = async (payLoad: DirectorCreate): Promise<DirectorReturn> => {
-  const director = await DirectorModel.create(payLoad);
+  const director = await DirectorModel.create({
+    ...payLoad,
+    birthDate: payLoad.birthDate ?? null,
+  });
 
   return directorReturnSchema.parse(director);
 };
