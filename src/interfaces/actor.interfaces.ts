@@ -14,7 +14,7 @@ type ActorUpdate = DeepPartial<ActorCreate>;
 interface ActorAttributes {
   actorId: string;
   name: string;
-  birthDate: string;
+  birthDate: string | null;
   nationality: string;
 }
 
