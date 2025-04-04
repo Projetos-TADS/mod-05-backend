@@ -1479,6 +1479,7 @@ const swaggerOptions: Options = {
 const swaggerSpec: object = swaggerJSDoc(swaggerOptions);
 
 export const setupSwagger = (app: Application): void => {
+  const PORT: number = Number(process.env.PORT || 3000);
   app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-  console.log("Documentation available at: http://localhost:3000/docs");
+  console.log(`Documentation available at: http://localhost:${PORT}/docs`);
 };
