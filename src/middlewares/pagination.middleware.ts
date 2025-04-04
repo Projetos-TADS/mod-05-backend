@@ -5,7 +5,7 @@ const pagination = (request: Request, response: Response, next: NextFunction): v
   const queryPerPage: number | undefined = Number(request.query.perPage);
 
   const page: number = queryPage && queryPage > 1 ? queryPage : 1;
-  const perPage: number = queryPerPage && queryPerPage > 0 ? queryPerPage : 5;
+  const perPage: number = queryPerPage && queryPerPage > 0 ? queryPerPage : 8;
 
   const baseUrl: string = `${request.protocol}://${request.get("host")}${request.baseUrl}${
     request.path
