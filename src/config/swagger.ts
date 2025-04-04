@@ -669,7 +669,7 @@ const swaggerOptions: Options = {
             type: "integer",
             minimum: 1,
             maximum: 100,
-            default: 5,
+            default: 8,
           },
         },
         TitleParam: {
