@@ -1,16 +1,15 @@
 import app from "..";
 import sequelize from "./database";
 
+const PORT: number = Number(process.env.PORT || 3000);
+
 sequelize
-  .sync({ force: false })
+  .authenticate()
   .then(() => {
-    const PORT: number = Number(process.env.PORT || 3000);
-    console.log("The database has been successfully synchronized.");
+    console.log("Connection to the database has been established successfully.");
     app.listen(PORT, () => console.log("Server is running on port: ", PORT));
   })
   .catch((error) => {
-    console.error("Failed to synchronize the database:", error);
-    console.error("Detailed error:", error.message);
-    console.error("Stack trace:", error.stack);
+    console.error("Failed to connect to the database:", error);
     process.exit(1);
   });
