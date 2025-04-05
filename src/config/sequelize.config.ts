@@ -5,11 +5,11 @@ dotenv.config();
 
 const config: { [key: string]: Options } = {
   development: {
-    database: process.env.DB_NAME || "mod_05_database",
-    username: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD || "",
-    host: process.env.DB_HOST || "localhost",
-    port: Number(process.env.DB_PORT) || 3306,
+    database: process.env.DB_NAME,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
     dialect: "mysql",
     logging: false,
     dialectOptions: {
