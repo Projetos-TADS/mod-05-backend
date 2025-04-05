@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   backend:
     build: .
@@ -7,11 +5,13 @@ services:
       - 3000:3000
     environment:
       - PORT=3000
-      - DATABASE_URL=mysql://root:@db/mod_05_database
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=
+      - DB_NAME=mod_05_database
       - SECRET_KEY=senha_super_secreta
       - EXPIRES_IN=1d
-    volumes:
-      - .:/app
     container_name: mod-05-backend
     restart: always
     depends_on:
