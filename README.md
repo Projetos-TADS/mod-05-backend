@@ -4,11 +4,11 @@
 [![Express](https://img.shields.io/badge/Express-4.x-000000.svg)](https://expressjs.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6.svg)](https://www.typescriptlang.org/)
 
-A RESTful API for movie management with JWT authentication and admin controls. Provides endpoints for user authentication, movie catalog management, actor/director associations, and favorite system.
+A RESTful API for movie management with JWT authentication and admin controls. Provides endpoints for user authentication, movie catalog management, actor/director associations, and a favorites system.
 
 ## 📚 API Documentation
 
-Full interactive documentation available via Swagger UI:  
+Interactive documentation is available via Swagger UI:  
 [http://localhost:3000/docs](http://localhost:3000/docs)
 
 ## ✨ Features
@@ -52,84 +52,114 @@ Full interactive documentation available via Swagger UI:
 
 1. Clone the repository:
 
-```bash
-git clone https://github.com/your-username/movie-api.git
-cd movie-api
-```
+   ```bash
+   git clone https://github.com/your-username/movie-api.git
+   cd movie-api
+   ```
 
 2. Install dependencies:
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
-3. Create .env file:
+3. Create a `.env` file:
 
-```bash
-PORT=application_run_port
-DATABASE_URL=mysql://<username>:<password>@<host>:<port>/<database>
-
-SECRET_KEY=jwt_secret_key
-EXPIRES_IN=jwt_expires_in
-```
+   ```env
+   PORT=application_run_port
+   DB_NAME=database_name
+   DB_USER=database_user
+   DB_PASSWORD=database_password
+   DB_HOST=database_host
+   DB_PORT=database_port
+   SECRET_KEY=jwt_secret_key
+   EXPIRES_IN=jwt_expires_in
+   ```
 
 4. Run the application:
 
-```bash
-npm run dev
-```
+   ```bash
+   npm run dev
+   ```
 
-The API will be available at http://localhost:3000 and documentation at http://localhost:3000/docs.
+   The API will be available at [http://localhost:3000](http://localhost:3000) and the documentation at [http://localhost:3000/docs](http://localhost:3000/docs).
 
-📋 Endpoints Overview
-Authentication
-POST /login - User authentication
+### Running with Docker
 
-Users
-POST /users - Create new user (Admin only)
+1. Build and start the containers:
 
-GET /users - List all users (Admin only)
+   ```bash
+   docker-compose up -d
+   ```
 
-GET /users/{userId} - Get user details
+   The -d flag runs the containers in the background (detached mode).
 
-PATCH /users/{userId} - Update user
+2. Check the logs:
 
-DELETE /users/{userId} - Delete user
+   ```bash
+   docker logs mod-05-backend
+   ```
 
-Movies
-GET /movies - List movies (paginated)
+3. Stop the containers:
 
-POST /movies - Create movie (Admin only)
+   ```bash
+   docker-compose down
+   ```
 
-GET /movies/{movieId} - Get movie details
+4. Remove persistent volumes (e.g., database data):
 
-PATCH /movies/{movieId} - Update movie (Admin only)
+   ```bash
+   docker-compose down --volumes
+   ```
 
-DELETE /movies/{movieId} - Delete movie (Admin only)
+   The API will be available at [http://localhost:3000](http://localhost:3000) and the documentation at [http://localhost:3000/docs](http://localhost:3000/docs).
 
-Favorites
-POST /favorites/{userId} - Add to favorites
+## 📋 Endpoints Overview
 
-GET /favorites/all/{userId} - List user favorites
+### Authentication
 
-DELETE /favorites/{favoriteMovieId} - Remove from favorites
+- **POST** `/login` - User authentication
 
-Actors/Directors
-Full CRUD operations for managing professionals
+### Users
 
-🔒 Authentication
+- **POST** `/users` - Create new user (Admin only)
+- **GET** `/users` - List all users (Admin only)
+- **GET** `/users/{userId}` - Get user details
+- **PATCH** `/users/{userId}` - Update user
+- **DELETE** `/users/{userId}` - Delete user
+
+### Movies
+
+- **GET** `/movies` - List movies (paginated)
+- **POST** `/movies` - Create movie (Admin only)
+- **GET** `/movies/{movieId}` - Get movie details
+- **PATCH** `/movies/{movieId}` - Update movie (Admin only)
+- **DELETE** `/movies/{movieId}` - Delete movie (Admin only)
+
+### Favorites
+
+- **POST** `/favorites/{userId}` - Add to favorites
+- **GET** `/favorites/all/{userId}` - List user favorites
+- **DELETE** `/favorites/{favoriteMovieId}` - Remove from favorites
+
+### Actors/Directors
+
+- Full CRUD operations for managing professionals
+
+## 🔒 Authentication
+
 The API uses JWT for authentication. To access protected endpoints:
 
-1. Obtain token from POST /login
+1. Obtain a token from **POST** `/login`.
+2. Include the token in request headers:
 
-2. Include token in request headers:
+   ```bash
+   Authorization: Bearer <your_token>
+   ```
 
-```bash
-Authorization: Bearer <your_token>
-```
+## 💡 Example Requests
 
-💡 Example Requests
-Login
+### Login
 
 ```bash
 curl -X POST http://localhost:3000/login \
@@ -137,14 +167,14 @@ curl -X POST http://localhost:3000/login \
   -d '{"email": "user@example.com", "password": "your_password"}'
 ```
 
-Get Movies
+### Get Movies
 
 ```bash
 curl -X GET http://localhost:3000/movies \
   -H "Authorization: Bearer <your_token>"
 ```
 
-Add Favorite
+### Add Favorite
 
 ```bash
 curl -X POST http://localhost:3000/favorites/550e8400-e29b-41d4-a716-446655440000 \
@@ -153,20 +183,35 @@ curl -X POST http://localhost:3000/favorites/550e8400-e29b-41d4-a716-44665544000
   -d '{"movieId": "054e014f-6549-4284-9325-e0a8ba35c0d2"}'
 ```
 
-🤝 Contributing
+## 🤝 Contributing
+
 Contributions are welcome! Please follow these steps:
 
-Fork the repository
+1. Fork the repository.
+2. Create your feature branch:
 
-Create your feature branch (git checkout -b feature/amazing-feature)
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
 
-Commit your changes (git commit -m 'Add some amazing feature')
+3. Commit your changes:
 
-Push to the branch (git push origin feature/amazing-feature)
+   ```bash
+   git commit -m 'Add some amazing feature'
+   ```
 
-Open a Pull Request
+4. Push to the branch:
 
-📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+
+5. Open a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
 
 Built with ❤️ by Amanda Dolci Figueiredo and Vinicius Garcia
