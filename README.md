@@ -9,7 +9,7 @@ A RESTful API for movie management with JWT authentication and admin controls. P
 ## 📚 API Documentation
 
 Interactive documentation is available via Swagger UI:  
-[http://localhost:3000/docs](http://localhost:3000/docs)
+[http://localhost:3000/v1/docs](http://localhost:3000/v1/docs)
 
 ## ✨ Features
 
@@ -94,7 +94,7 @@ Interactive documentation is available via Swagger UI:
    npm run dev
    ```
 
-   The API will be available at [http://localhost:3000](http://localhost:3000) and the documentation at [http://localhost:3000/docs](http://localhost:3000/docs).
+   The API will be available at [http://localhost:3000]v1/(http://localhost:3000)v1/ and the documentation at [http://localhost:3000/v1/docs](http://localhost:3000/v1/docs).
 
 ### Running with Docker
 
@@ -124,7 +124,7 @@ Interactive documentation is available via Swagger UI:
    docker-compose down --volumes
    ```
 
-   The API will be available at [http://localhost:3000](http://localhost:3000) and the documentation at [http://localhost:3000/docs](http://localhost:3000/docs).
+   The API will be available at [http://localhost:3000]v1/(http://localhost:3000)v1/ and the documentation at [http://localhost:3000/v1/docs](http://localhost:3000/v1/docs).
 
 ## 📋 Endpoints Overview
 
@@ -174,7 +174,7 @@ The API uses JWT for authentication. To access protected endpoints:
 ### Login
 
 ```bash
-curl -X POST http://localhost:3000/login \
+curl -X POST http://localhost:3000/v1/login \
   -H "Content-Type: application/json" \
   -d '{"email": "user@example.com", "password": "your_password"}'
 ```
@@ -182,14 +182,14 @@ curl -X POST http://localhost:3000/login \
 ### Get Movies
 
 ```bash
-curl -X GET http://localhost:3000/movies \
+curl -X GET http://localhost:3000/v1/movies \
   -H "Authorization: Bearer <your_token>"
 ```
 
 ### Add Favorite
 
 ```bash
-curl -X POST http://localhost:3000/favorites/550e8400-e29b-41d4-a716-446655440000 \
+curl -X POST http://localhost:3000/v1/favorites/550e8400-e29b-41d4-a716-446655440000 \
   -H "Authorization: Bearer <your_token>" \
   -H "Content-Type: application/json" \
   -d '{"movieId": "054e014f-6549-4284-9325-e0a8ba35c0d2"}'
