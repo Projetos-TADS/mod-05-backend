@@ -16,7 +16,7 @@ const swaggerOptions: Options = {
     },
     servers: [
       {
-        url: "http://localhost:3000",
+        url: "http://localhost:3000/v1",
         description: "Development Server",
       },
     ],
@@ -1480,6 +1480,6 @@ const swaggerSpec: object = swaggerJSDoc(swaggerOptions);
 
 export const setupSwagger = (app: Application): void => {
   const PORT: number = Number(process.env.PORT || 3000);
-  app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-  console.log(`Documentation available at: http://localhost:${PORT}/docs`);
+  app.use("/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  console.log(`Documentation available at: http://localhost:${PORT}/v1/docs`);
 };
