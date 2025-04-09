@@ -76,7 +76,19 @@ Interactive documentation is available via Swagger UI:
    EXPIRES_IN=jwt_expires_in
    ```
 
-4. Run the application:
+4. Build:
+
+   ```bash
+   npm run build
+   ```
+
+5. Run migrations:
+
+   ```bash
+   npm run migrate
+   ```
+
+6. Run the application:
 
    ```bash
    npm run dev
