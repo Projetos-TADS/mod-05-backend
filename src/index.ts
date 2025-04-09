@@ -16,14 +16,14 @@ const corsOptions: CorsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.use("/users", routes.userRoutes);
-app.use("/login", routes.sessionRoutes);
-app.use("/movies", routes.movieRoutes);
-app.use("/favorites", routes.favoriteRoutes);
-app.use("/actors", routes.actorRoutes);
-app.use("/directors", routes.directorRoutes);
-app.use("/cast", routes.castRoutes);
-app.use("/directorMovie", routes.directorMovieRoutes);
+app.use("/v1/users", routes.userRoutes);
+app.use("/v1/login", routes.sessionRoutes);
+app.use("/v1/movies", routes.movieRoutes);
+app.use("/v1/favorites", routes.favoriteRoutes);
+app.use("/v1/actors", routes.actorRoutes);
+app.use("/v1/directors", routes.directorRoutes);
+app.use("/v1/cast", routes.castRoutes);
+app.use("/v1/directorMovie", routes.directorMovieRoutes);
 
 app.use(middlewares.handleError);
 
