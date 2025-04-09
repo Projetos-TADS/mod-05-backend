@@ -30,4 +30,4 @@ const config: { [key: string]: Options } = {
   },
 };
 
-export default config;
+export = config;
