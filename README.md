@@ -101,10 +101,8 @@ Interactive documentation is available via Swagger UI:
 1. Build and start the containers:
 
    ```bash
-   docker-compose up -d
+   docker-compose up
    ```
-
-   The -d flag runs the containers in the background (detached mode).
 
 2. Check the logs:
 
