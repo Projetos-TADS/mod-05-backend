@@ -6,7 +6,7 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node src/config/server.ts",
-    "test": "jest --maxWorkers=1 --verbose",
+    "test": "jest --runInBand --verbose",
     "migrate": "npx sequelize-cli db:migrate"
   },
   "repository": {
