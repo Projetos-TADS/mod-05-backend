@@ -318,7 +318,7 @@ const swaggerOptions: Options = {
               format: "password",
               example: "NewSecurePassword123",
               description: "User's new password",
-              minLength: 8,
+              minLength: 6,
             },
           },
           anyOf: [{ required: ["name"] }, { required: ["email"] }, { required: ["password"] }],
@@ -511,18 +511,18 @@ const swaggerOptions: Options = {
               type: "string",
               minLength: 1,
               maxLength: 100,
-              example: "Keanu Reeves",
+              example: "Lana Wachowski",
             },
             birthDate: {
               type: "string",
               format: "date",
-              example: "1964-09-02",
+              example: "1965-06-21",
             },
             nationality: {
               type: "string",
               minLength: 1,
               maxLength: 100,
-              example: "Canadian",
+              example: "American",
             },
           },
         },
@@ -533,18 +533,18 @@ const swaggerOptions: Options = {
               type: "string",
               minLength: 1,
               maxLength: 100,
-              example: "Keanu Reeves",
+              example: "Lana Wachowski",
             },
             birthDate: {
               type: "string",
               format: "date",
-              example: "1964-09-02",
+              example: "1965-06-21",
             },
             nationality: {
               type: "string",
               minLength: 1,
               maxLength: 100,
-              example: "Canadian",
+              example: "American",
             },
           },
           required: ["name", "birthDate", "nationality"],
@@ -556,18 +556,18 @@ const swaggerOptions: Options = {
               type: "string",
               minLength: 1,
               maxLength: 100,
-              example: "Keanu Reeves",
+              example: "Lana Wachowski",
             },
             birthDate: {
               type: "string",
               format: "date",
-              example: "1964-09-02",
+              example: "1965-06-21",
             },
             nationality: {
               type: "string",
               minLength: 1,
               maxLength: 100,
-              example: "Canadian",
+              example: "American",
             },
           },
           anyOf: [
@@ -654,11 +654,11 @@ const swaggerOptions: Options = {
         PageParam: {
           name: "page",
           in: "query",
-          description: "Page number for data display. Pagination starts at 0.",
+          description: "Page number for data display. Pagination starts at 1.",
           schema: {
             type: "integer",
-            minimum: 0,
-            default: 0,
+            minimum: 1,
+            default: 1,
           },
         },
         PerPageParam: {
@@ -678,7 +678,6 @@ const swaggerOptions: Options = {
           description: "Filter movies by title (case-insensitive partial search)",
           schema: {
             type: "string",
-            example: "matrix",
           },
         },
         MovieIdParam: {
@@ -699,7 +698,6 @@ const swaggerOptions: Options = {
           schema: {
             type: "string",
             format: "uuid",
-            example: "550e8400-e29b-41d4-a716-446655440000",
           },
         },
         ActorIdParam: {
@@ -710,7 +708,6 @@ const swaggerOptions: Options = {
           schema: {
             type: "string",
             format: "uuid",
-            example: "550e8400-e29b-41d4-a716-446655440000",
           },
         },
         DirectorIdParam: {
@@ -721,7 +718,6 @@ const swaggerOptions: Options = {
           schema: {
             type: "string",
             format: "uuid",
-            example: "550e8400-e29b-41d4-a716-446655440000",
           },
         },
         FavoriteMovieIdParam: {
@@ -732,7 +728,6 @@ const swaggerOptions: Options = {
           schema: {
             type: "string",
             format: "uuid",
-            example: "550e8400-e29b-41d4-a716-446655440000",
           },
         },
         CastIdParam: {
@@ -743,7 +738,6 @@ const swaggerOptions: Options = {
           schema: {
             type: "string",
             format: "uuid",
-            example: "550e8400-e29b-41d4-a716-446655440000",
           },
         },
         DirectorMovieIdParam: {
@@ -754,7 +748,6 @@ const swaggerOptions: Options = {
           schema: {
             type: "string",
             format: "uuid",
-            example: "550e8400-e29b-41d4-a716-446655440000",
           },
         },
       },
