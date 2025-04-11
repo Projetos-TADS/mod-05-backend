@@ -672,6 +672,25 @@ const swaggerOptions: Options = {
             default: 8,
           },
         },
+        OrderParam: {
+          name: "order",
+          in: "query",
+          description: "Sorting order for the data. Ascending or descending.",
+          schema: {
+            type: "string",
+            enum: ["asc", "desc"],
+          },
+        },
+        SortParam: {
+          name: "sort",
+          in: "query",
+          description:
+            "Sorting criteria for the data. Choose from title, releaseYear, duration, or rating.",
+          schema: {
+            type: "string",
+            enum: ["title", "releaseYear", "duration", "rating"],
+          },
+        },
         TitleParam: {
           name: "title",
           in: "query",
@@ -1021,6 +1040,8 @@ const swaggerOptions: Options = {
             { $ref: "#/components/parameters/PageParam" },
             { $ref: "#/components/parameters/PerPageParam" },
             { $ref: "#/components/parameters/TitleParam" },
+            { $ref: "#/components/parameters/SortParam" },
+            { $ref: "#/components/parameters/OrderParam" },
           ],
           responses: {
             200: {
