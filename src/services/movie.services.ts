@@ -27,13 +27,14 @@ const getMovieByIdWithRelations = async (movieId: string): Promise<MovieModel | 
 };
 
 const getAllMovies = async (
-  { page, perPage, prevPage, nextPage }: PaginationParams,
+  { page, perPage, prevPage, nextPage, order, sort }: PaginationParams,
   title?: string
 ): Promise<Pagination> => {
   const whereClause = title ? { title: { [Op.like]: `%${title.toLowerCase()}%` } } : {};
 
   const { rows: movies, count }: { rows: MovieModel[]; count: number } =
     await MovieModel.findAndCountAll({
+      order: [[sort, order]],
       offset: page,
       limit: perPage,
       where: whereClause,
