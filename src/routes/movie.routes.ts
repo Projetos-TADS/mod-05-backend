@@ -18,7 +18,7 @@ movieRoutes.post(
 );
 movieRoutes.get(
   "",
-  middlewares.pagination(["title", "releaseYear", "duration", "rating"]),
+  middlewares.pagination(["title", "releaseYear", "duration", "rating", "createdAt"]),
   movieControllers.getAllMovies
 );
 
