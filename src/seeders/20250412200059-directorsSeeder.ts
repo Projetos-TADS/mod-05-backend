@@ -10,7 +10,7 @@ module.exports = {
     const now = new Date();
 
     await queryInterface.bulkInsert(
-      "Directors",
+      "directors",
       [
         {
           directorId: uuidv4(),

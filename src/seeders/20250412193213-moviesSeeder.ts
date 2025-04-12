@@ -10,7 +10,7 @@ module.exports = {
     const now = new Date();
 
     await queryInterface.bulkInsert(
-      "Movies",
+      "movies",
       [
         {
           movieId: uuidv4(),

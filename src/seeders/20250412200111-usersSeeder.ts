@@ -85,7 +85,7 @@ module.exports = {
     ];
 
     await queryInterface.bulkInsert(
-      "Users",
+      "users",
       usersData.map((user) => ({
         userId: uuidv4(),
         ...user,
