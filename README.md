@@ -153,13 +153,9 @@ Interactive documentation is available via Swagger UI:
    docker-compose down
    ```
 
-4. Remove persistent volumes (e.g., database data):
+The database is recreated each time the Docker container is started, ensuring a fresh instance for every session. This allows for consistent testing and development environments by resetting to a predefined state.
 
-   ```bash
-   docker-compose down --volumes
-   ```
-
-   The API will be available at [http://localhost:3000]v1/(http://localhost:3000)v1/ and the documentation at [http://localhost:3000/v1/docs](http://localhost:3000/v1/docs).
+The API will be available at [http://localhost:3000]v1/(http://localhost:3000)v1/ and the documentation at [http://localhost:3000/v1/docs](http://localhost:3000/v1/docs).
 
 ## 📋 Endpoints Overview
 
