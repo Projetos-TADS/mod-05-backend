@@ -8,4 +8,4 @@ RUN npm install
 
 COPY . .
 
-CMD ["sh", "-c", "npm run build && npx sequelize-cli db:migrate && npm run dev"]
+CMD ["sh", "-c", "npm run build && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all && npm run dev"]
