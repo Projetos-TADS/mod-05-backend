@@ -1,14 +1,24 @@
 import { Request, Response } from "express";
 import { UserModel } from "../models";
 import { userServices } from "../services";
-import { UserUpdate } from "../interfaces";
-import { UserRead, UserReturn } from "../interfaces/user.interfaces";
+import { Pagination, UserUpdate } from "../interfaces";
+import { UserReturn } from "../interfaces/user.interfaces";
 import { userReturnSchema } from "../schemas";
 
 const getAllUsers = async (request: Request, response: Response): Promise<Response> => {
-  const users: UserRead = await userServices.getAllUsers();
+  const name: string | undefined =
+    typeof request.query.name === "string" ? request.query.name : undefined;
 
-  return response.status(200).json(users);
+  const email: string | undefined =
+    typeof request.query.email === "string" ? request.query.email : undefined;
+
+  const paginationUsers: Pagination = await userServices.getAllUsers(
+    response.locals.pagination,
+    name,
+    email
+  );
+
+  return response.status(200).json(paginationUsers);
 };
 
 const getUserById = async (request: Request, response: Response): Promise<Response> => {

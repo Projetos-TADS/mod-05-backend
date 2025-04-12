@@ -22,7 +22,7 @@ userRoutes.use("/:userId", middlewares.verifyToken);
 
 userRoutes.use("/:userId", middlewares.verifyUserIdExists);
 
-userRoutes.get("", userController.getAllUsers);
+userRoutes.get("", middlewares.pagination(["name", "email", "admin"]), userController.getAllUsers);
 
 userRoutes.get("/:userId", userController.getUserById);
 

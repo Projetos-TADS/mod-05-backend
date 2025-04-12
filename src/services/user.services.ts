@@ -1,12 +1,37 @@
-import { UserCreate, UserUpdate } from "../interfaces";
+import { Pagination, PaginationParams, UserCreate, UserUpdate } from "../interfaces";
 import { UserModel } from "../models";
 import { userReadSchema, userReturnSchema } from "../schemas";
-import { UserRead, UserReturn } from "../interfaces/user.interfaces";
+import { UserReturn } from "../interfaces/user.interfaces";
+import { Op } from "sequelize";
 
-const getAllUsers = async (): Promise<UserRead> => {
-  const users: Array<UserModel> = await UserModel.findAll();
+const getAllUsers = async (
+  { page, perPage, prevPage, nextPage, order, sort }: PaginationParams,
+  name?: string,
+  email?: string
+): Promise<Pagination> => {
+  const whereClause = {
+    ...(name ? { name: { [Op.like]: `%${name.toLowerCase()}%` } } : {}),
+    ...(email ? { email: { [Op.like]: `%${email.toLowerCase()}%` } } : {}),
+  };
 
-  return userReadSchema.parse(users);
+  const { rows: users, count }: { rows: UserModel[]; count: number } =
+    await UserModel.findAndCountAll({
+      order: [[sort, order]],
+      offset: page,
+      limit: perPage,
+      where: whereClause,
+    });
+
+  if (count - page <= perPage) {
+    nextPage = null;
+  }
+
+  return {
+    prevPage,
+    nextPage,
+    count,
+    data: userReadSchema.parse(users),
+  };
 };
 
 const createUser = async (payLoad: UserCreate): Promise<UserReturn> => {
