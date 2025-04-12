@@ -34,6 +34,12 @@ module.exports = {
         type: Sequelize.STRING(255),
         allowNull: false,
       },
+      createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW,
+        comment: "Timestamp of when the user was created",
+      },
     });
   },
 

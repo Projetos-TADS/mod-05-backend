@@ -25,9 +25,10 @@ interface MovieAttributes {
   duration: number;
   rating: number;
   urlImage: string;
+  createdAt: Date;
 }
 
-interface MovieCreationAttributes extends Optional<MovieAttributes, "movieId"> {}
+interface MovieCreationAttributes extends Optional<MovieAttributes, "movieId" | "createdAt"> {}
 
 export {
   MovieCreate,

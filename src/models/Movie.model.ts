@@ -13,6 +13,7 @@ export class MovieModel
   public duration!: number;
   public rating!: number;
   public urlImage!: string;
+  public createdAt!: Date;
 }
 
 MovieModel.init(
@@ -46,6 +47,11 @@ MovieModel.init(
     urlImage: {
       type: DataTypes.STRING(255),
       allowNull: false,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
     },
   },
   {
