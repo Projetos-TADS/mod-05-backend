@@ -16,7 +16,11 @@ movieRoutes.post(
   middlewares.validateBody(movieCreateSchema),
   movieControllers.createMovie
 );
-movieRoutes.get("", middlewares.pagination, movieControllers.getAllMovies);
+movieRoutes.get(
+  "",
+  middlewares.pagination(["title", "releaseYear", "duration", "rating"]),
+  movieControllers.getAllMovies
+);
 
 movieRoutes.use("/:movieId", middlewares.verifyMovieIdExists);
 
