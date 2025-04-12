@@ -1,13 +1,19 @@
 import { Request, Response } from "express";
-import { DirectorRead, DirectorReturn, DirectorUpdate } from "../interfaces";
+import { DirectorReturn, DirectorUpdate, Pagination } from "../interfaces";
 import { directorServices } from "../services";
 import { DirectorModel } from "../models/Director.model";
 import { directorReturnSchema } from "../schemas";
 
 const getAllDirectors = async (request: Request, response: Response): Promise<Response> => {
-  const directors: DirectorRead = await directorServices.getAllDirectors();
+  const name: string | undefined =
+    typeof request.query.name === "string" ? request.query.name : undefined;
 
-  return response.status(200).json(directors);
+  const paginationDirectors: Pagination = await directorServices.getAllDirectors(
+    response.locals.pagination,
+    name
+  );
+
+  return response.status(200).json(paginationDirectors);
 };
 
 const getDirectorById = async (request: Request, response: Response): Promise<Response> => {

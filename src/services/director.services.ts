@@ -1,11 +1,38 @@
-import { DirectorCreate, DirectorRead, DirectorReturn, DirectorUpdate } from "../interfaces";
+import { Op } from "sequelize";
+import {
+  DirectorCreate,
+  DirectorReturn,
+  DirectorUpdate,
+  Pagination,
+  PaginationParams,
+} from "../interfaces";
 import { DirectorModel } from "../models/Director.model";
 import { directorReadSchema, directorReturnSchema } from "../schemas";
 
-const getAllDirectors = async (): Promise<DirectorRead> => {
-  const directors: Array<DirectorModel> = await DirectorModel.findAll();
+const getAllDirectors = async (
+  { page, perPage, prevPage, nextPage, order, sort }: PaginationParams,
+  name?: string
+): Promise<Pagination> => {
+  const whereClause = name ? { name: { [Op.like]: `%${name.toLowerCase()}%` } } : {};
 
-  return directorReadSchema.parse(directors);
+  const { rows: directors, count }: { rows: DirectorModel[]; count: number } =
+    await DirectorModel.findAndCountAll({
+      order: [[sort, order]],
+      offset: page,
+      limit: perPage,
+      where: whereClause,
+    });
+
+  if (count - page <= perPage) {
+    nextPage = null;
+  }
+
+  return {
+    prevPage,
+    nextPage,
+    count,
+    data: directorReadSchema.parse(directors),
+  };
 };
 
 const createDirector = async (payLoad: DirectorCreate): Promise<DirectorReturn> => {

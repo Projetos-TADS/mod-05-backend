@@ -17,7 +17,11 @@ directorRoutes.post(
   directorControllers.createDirector
 );
 
-directorRoutes.get("", directorControllers.getAllDirectors);
+directorRoutes.get(
+  "",
+  middlewares.pagination(["name", "birthDate", "nationality"]),
+  directorControllers.getAllDirectors
+);
 
 directorRoutes.use("/:directorId", middlewares.verifyDirectorIdExists);
 
