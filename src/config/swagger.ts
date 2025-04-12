@@ -681,20 +681,54 @@ const swaggerOptions: Options = {
             enum: ["asc", "desc"],
           },
         },
-        SortParam: {
+        SortMovieParam: {
           name: "sort",
           in: "query",
           description:
-            "Sorting criteria for the data. Choose from title, releaseYear, duration, or rating.",
+            "Sorting criteria for the data. Choose from title, releaseYear, duration, rating or createdAt.",
           schema: {
             type: "string",
-            enum: ["title", "releaseYear", "duration", "rating"],
+            enum: ["title", "releaseYear", "duration", "rating", "createdAt"],
+          },
+        },
+        SortActorAndDirectorParam: {
+          name: "sort",
+          in: "query",
+          description: "Sorting criteria for the data. Choose from name, birthDate or nationality.",
+          schema: {
+            type: "string",
+            enum: ["name", "birthDate", "nationality"],
+          },
+        },
+        SortUserParam: {
+          name: "sort",
+          in: "query",
+          description: "Sorting criteria for the data. Choose from name, email or admin.",
+          schema: {
+            type: "string",
+            enum: ["name", "email", "admin"],
           },
         },
         TitleParam: {
           name: "title",
           in: "query",
           description: "Filter movies by title (case-insensitive partial search)",
+          schema: {
+            type: "string",
+          },
+        },
+        EmailParam: {
+          name: "email",
+          in: "query",
+          description: "Filter users by email (case-insensitive partial search)",
+          schema: {
+            type: "string",
+          },
+        },
+        NameParam: {
+          name: "name",
+          in: "query",
+          description: "Filter users/actors/directors by name (case-insensitive partial search)",
           schema: {
             type: "string",
           },
@@ -818,6 +852,14 @@ const swaggerOptions: Options = {
           description: "Returns a list of all registered users (requires admin)",
           tags: ["Users"],
           security: [{ bearerAuth: [] }],
+          parameters: [
+            { $ref: "#/components/parameters/NameParam" },
+            { $ref: "#/components/parameters/EmailParam" },
+            { $ref: "#/components/parameters/PageParam" },
+            { $ref: "#/components/parameters/PerPageParam" },
+            { $ref: "#/components/parameters/SortUserParam" },
+            { $ref: "#/components/parameters/OrderParam" },
+          ],
           responses: {
             200: {
               description: "List of users",
@@ -1037,10 +1079,10 @@ const swaggerOptions: Options = {
           tags: ["Movies"],
           security: [{ bearerAuth: [] }],
           parameters: [
+            { $ref: "#/components/parameters/TitleParam" },
             { $ref: "#/components/parameters/PageParam" },
             { $ref: "#/components/parameters/PerPageParam" },
-            { $ref: "#/components/parameters/TitleParam" },
-            { $ref: "#/components/parameters/SortParam" },
+            { $ref: "#/components/parameters/SortMovieParam" },
             { $ref: "#/components/parameters/OrderParam" },
           ],
           responses: {
@@ -1235,6 +1277,13 @@ const swaggerOptions: Options = {
           description: "Returns a complete list of all registered actors",
           tags: ["Actors"],
           security: [{ bearerAuth: [] }],
+          parameters: [
+            { $ref: "#/components/parameters/NameParam" },
+            { $ref: "#/components/parameters/PageParam" },
+            { $ref: "#/components/parameters/PerPageParam" },
+            { $ref: "#/components/parameters/SortActorAndDirectorParam" },
+            { $ref: "#/components/parameters/OrderParam" },
+          ],
           responses: {
             200: {
               description: "List of actors",
@@ -1363,6 +1412,13 @@ const swaggerOptions: Options = {
           description: "Returns a complete list of all registered directors",
           tags: ["Directors"],
           security: [{ bearerAuth: [] }],
+          parameters: [
+            { $ref: "#/components/parameters/NameParam" },
+            { $ref: "#/components/parameters/PageParam" },
+            { $ref: "#/components/parameters/PerPageParam" },
+            { $ref: "#/components/parameters/SortActorAndDirectorParam" },
+            { $ref: "#/components/parameters/OrderParam" },
+          ],
           responses: {
             200: {
               description: "List of directors",
