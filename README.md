@@ -4,7 +4,7 @@
 [![Express](https://img.shields.io/badge/Express-4.x-000000.svg)](https://expressjs.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6.svg)](https://www.typescriptlang.org/)
 
-A RESTful API for movie management with JWT authentication and admin controls. Provides endpoints for user authentication, movie catalog management, actor/director associations, and a favorites system.
+A RESTful API for movie management with JWT authentication and admin controls. This API provides endpoints for user authentication, movie catalog management, actor/director associations, and a favorites system.
 
 ## 📚 API Documentation
 
@@ -13,32 +13,63 @@ Interactive documentation is available via Swagger UI:
 
 ## ✨ Features
 
-- **JWT Authentication**
-- **User Management**
-  - Admin-controlled user creation
-  - Role-based access control
-  - User profile updates
-- **Movie Catalog**
-  - Full CRUD operations for movies
-  - Actor/director associations
-  - Paginated search with title filtering
-  - Rating system (0-5 stars)
-- **Favorites System**
-  - Add/remove movies to favorites
-  - List user's favorite movies
-- **Professionals Management**
-  - Complete CRUD for actors and directors
-  - Movie association history
+### Authentication
+
+- **JWT Authentication**: Protects endpoints with access tokens.
+- **Login**: User authentication with email and password.
+
+### User Management
+
+- **User Creation**: Admins can create new users.
+- **Role-Based Access Control**: Different permissions for admins and regular users.
+- **Profile Updates**: Users can update their information.
+
+### Movie Catalog
+
+- **Full CRUD Operations**: Create, read, update, and delete movies.
+- **Associations**: Relationships between movies, actors, and directors.
+- **Paginated Search**: Search movies with title filtering.
+- **Rating System**: Rate movies from 0 to 5 stars.
+
+### Favorites System
+
+- **Add/Remove Favorites**: Users can manage their favorite movies.
+- **List Favorites**: Displays a user's favorite movies.
+
+### Professionals Management
+
+- **Full CRUD Operations**: Manage actors and directors.
+- **Association History**: Track relationships between movies and professionals.
 
 ## 🛠 Built With
 
-- **Backend**
-  - Node.js
-  - Express
-  - TypeScript
-  - MySQL
-  - Swagger (API Documentation)
-  - JWT (Authentication)
+### Backend
+
+- **Node.js** - JavaScript runtime
+- **Express** - Web framework
+- **TypeScript** - Typed JavaScript
+- **MySQL** - Relational database
+- **Sequelize** - ORM for database management
+- **JWT** - Authentication
+- **Swagger** - API documentation
+- **bcryptjs** - Password hashing
+- **dotenv** - Environment variable management
+- **cors** - Cross-origin resource sharing
+- **express-async-errors** - Error handling for async routes
+- **jsonwebtoken** - Token generation and verification
+- **uuid** - Unique identifier generation
+- **cpf-cnpj-validator** - CPF/CNPJ validation
+
+### Development Tools
+
+- **Jest** - Testing framework
+- **ts-jest** - TypeScript support for Jest
+- **ts-node** - TypeScript execution environment
+- **sequelize-cli** - CLI for Sequelize
+- **swagger-jsdoc** - Swagger documentation generator
+- **swagger-ui-express** - Swagger UI integration
+- **@types** - TypeScript type definitions for various libraries
+- **typescript** - TypeScript compiler
 
 ## 🚀 Getting Started
 
@@ -88,7 +119,13 @@ Interactive documentation is available via Swagger UI:
    npm run migrate
    ```
 
-6. Run the application:
+6. Populate database:
+
+   ```bash
+   npm run seed
+   ```
+
+7. Run the application:
 
    ```bash
    npm run dev
