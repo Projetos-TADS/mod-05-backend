@@ -1,13 +1,19 @@
 import { Request, Response } from "express";
 import { actorReturnSchema } from "../schemas";
-import { ActorRead, ActorReturn, ActorUpdate } from "../interfaces";
+import { ActorReturn, ActorUpdate, Pagination } from "../interfaces";
 import { ActorModel } from "../models/Actor.model";
 import actorServices from "../services/actor.services";
 
 const getAllActors = async (request: Request, response: Response): Promise<Response> => {
-  const actors: ActorRead = await actorServices.getAllActors();
+  const name: string | undefined =
+    typeof request.query.name === "string" ? request.query.name : undefined;
 
-  return response.status(200).json(actors);
+  const paginationActors: Pagination = await actorServices.getAllActors(
+    response.locals.pagination,
+    name
+  );
+
+  return response.status(200).json(paginationActors);
 };
 
 const getActorById = async (request: Request, response: Response): Promise<Response> => {
