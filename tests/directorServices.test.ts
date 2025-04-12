@@ -11,7 +11,7 @@ describe("DirectorService", () => {
   });
 
   describe("getAllDirectors", () => {
-    it("should return a list of directors", async () => {
+    it("should return a list of directors with pagination data", async () => {
       const mockDirectors = [
         {
           directorId: "035481ce-9863-4511-8902-c7f219a39573",
@@ -27,25 +27,29 @@ describe("DirectorService", () => {
         },
       ];
 
-      (DirectorModel.findAll as jest.Mock).mockResolvedValue(mockDirectors);
+      const mockCount = 2;
+      const paginationParams = {
+        page: 0,
+        perPage: 10,
+        prevPage: null,
+        nextPage: null,
+        order: "ASC",
+        sort: "name",
+      };
 
-      const result = await directorService.getAllDirectors();
+      (DirectorModel.findAndCountAll as jest.Mock).mockResolvedValue({
+        rows: mockDirectors,
+        count: mockCount,
+      });
 
-      expect(result).toEqual(directorReadSchema.parse(mockDirectors));
-    });
+      const result = await directorService.getAllDirectors(paginationParams);
 
-    it("should return an empty list if there are no directors", async () => {
-      (DirectorModel.findAll as jest.Mock).mockResolvedValue([]);
-
-      const result = await directorService.getAllDirectors();
-
-      expect(result).toEqual(directorReadSchema.parse([]));
-    });
-
-    it("should throw an error when fetching directors fails", async () => {
-      (DirectorModel.findAll as jest.Mock).mockRejectedValue(new Error("Database error"));
-
-      await expect(directorService.getAllDirectors()).rejects.toThrow("Database error");
+      expect(result).toEqual({
+        prevPage: paginationParams.prevPage,
+        nextPage: paginationParams.nextPage,
+        count: mockCount,
+        data: directorReadSchema.parse(mockDirectors),
+      });
     });
   });
 

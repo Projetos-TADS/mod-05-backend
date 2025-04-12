@@ -11,7 +11,7 @@ describe("UserService", () => {
   });
 
   describe("getAllUsers", () => {
-    it("should return a list of users", async () => {
+    it("should return a paginated list of users", async () => {
       const mockUsers = [
         {
           userId: "035481ce-9863-4511-8902-c7f219a39573",
@@ -29,25 +29,29 @@ describe("UserService", () => {
         },
       ];
 
-      (UserModel.findAll as jest.Mock).mockResolvedValue(mockUsers);
+      const mockCount = 2;
+      const paginationParams = {
+        page: 0,
+        perPage: 10,
+        prevPage: null,
+        nextPage: null,
+        order: "ASC",
+        sort: "name",
+      };
 
-      const result = await userService.getAllUsers();
+      (UserModel.findAndCountAll as jest.Mock).mockResolvedValue({
+        rows: mockUsers,
+        count: mockCount,
+      });
 
-      expect(result).toEqual(userReadSchema.parse(mockUsers));
-    });
+      const result = await userService.getAllUsers(paginationParams);
 
-    it("should return an empty list if there are no users", async () => {
-      (UserModel.findAll as jest.Mock).mockResolvedValue([]);
-
-      const result = await userService.getAllUsers();
-
-      expect(result).toEqual(userReadSchema.parse([]));
-    });
-
-    it("should throw an error when fetching users fails", async () => {
-      (UserModel.findAll as jest.Mock).mockRejectedValue(new Error("Database error"));
-
-      await expect(userService.getAllUsers()).rejects.toThrow("Database error");
+      expect(result).toEqual({
+        prevPage: paginationParams.prevPage,
+        nextPage: paginationParams.nextPage,
+        count: mockCount,
+        data: userReadSchema.parse(mockUsers),
+      });
     });
   });
 

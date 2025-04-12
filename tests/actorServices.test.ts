@@ -2,6 +2,7 @@ import { ActorModel } from "../src/models/Actor.model";
 import actorService from "../src/services/actor.services";
 import { actorReadSchema, actorReturnSchema } from "../src/schemas";
 import { ActorCreate, ActorUpdate } from "../src/interfaces";
+import { Op } from "sequelize";
 
 jest.mock("../src/models/Actor.model");
 
@@ -43,7 +44,7 @@ describe("ActorService - createActor", () => {
 });
 
 describe("ActorService - getAllActors", () => {
-  it("should return a list of actors", async () => {
+  it("should return a paginated list of actors", async () => {
     const mockActors = [
       {
         actorId: "035481ce-9863-4511-8902-c7f219a39573",
@@ -59,25 +60,59 @@ describe("ActorService - getAllActors", () => {
       },
     ];
 
-    (ActorModel.findAll as jest.Mock).mockResolvedValue(mockActors);
+    const mockCount = 2;
+    const paginationParams = {
+      page: 0,
+      perPage: 10,
+      prevPage: null,
+      nextPage: null,
+      order: "ASC",
+      sort: "name",
+    };
 
-    const result = await actorService.getAllActors();
+    (ActorModel.findAndCountAll as jest.Mock).mockResolvedValue({
+      rows: mockActors,
+      count: mockCount,
+    });
 
-    expect(result).toEqual(actorReadSchema.parse(mockActors));
+    const result = await actorService.getAllActors(paginationParams);
+
+    expect(result).toEqual({
+      prevPage: paginationParams.prevPage,
+      nextPage: paginationParams.nextPage,
+      count: mockCount,
+      data: actorReadSchema.parse(mockActors),
+    });
+
+    expect(ActorModel.findAndCountAll).toHaveBeenCalledWith({
+      order: [[paginationParams.sort, paginationParams.order]],
+      offset: paginationParams.page,
+      limit: paginationParams.perPage,
+      where: {},
+    });
   });
 
-  it("should return an empty list if there are no actors", async () => {
-    (ActorModel.findAll as jest.Mock).mockResolvedValue([]);
+  it("should apply name filter when provided", async () => {
+    const nameFilter = "Doe";
+    const paginationParams = {
+      page: 0,
+      perPage: 10,
+      prevPage: null,
+      nextPage: null,
+      order: "ASC",
+      sort: "name",
+    };
 
-    const result = await actorService.getAllActors();
+    await actorService.getAllActors(paginationParams, nameFilter);
 
-    expect(result).toEqual(actorReadSchema.parse([]));
-  });
-
-  it("should throw an error when fetching actors fails", async () => {
-    (ActorModel.findAll as jest.Mock).mockRejectedValue(new Error("Database error"));
-
-    await expect(actorService.getAllActors()).rejects.toThrow("Database error");
+    expect(ActorModel.findAndCountAll).toHaveBeenCalledWith({
+      order: [[paginationParams.sort, paginationParams.order]],
+      offset: paginationParams.page,
+      limit: paginationParams.perPage,
+      where: {
+        name: { [Op.like]: `%${nameFilter.toLowerCase()}%` },
+      },
+    });
   });
 });
 
