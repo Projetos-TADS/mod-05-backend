@@ -1,11 +1,4 @@
-import {
-  ActorCreate,
-  ActorRead,
-  ActorReturn,
-  ActorUpdate,
-  Pagination,
-  PaginationParams,
-} from "../interfaces";
+import { ActorCreate, ActorReturn, ActorUpdate, Pagination, PaginationParams } from "../interfaces";
 import { actorReadSchema, actorReturnSchema } from "../schemas";
 import { ActorModel } from "../models/Actor.model";
 import { Op } from "sequelize";
