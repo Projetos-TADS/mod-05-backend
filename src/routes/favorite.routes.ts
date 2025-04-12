@@ -2,11 +2,8 @@ import { Router } from "express";
 import middlewares from "../middlewares";
 import { favoriteControllers } from "../controllers";
 import { favoriteCreateSchema } from "../schemas/favorite.schemas";
-import { addFavoritosEmMassa } from "../controllers/CRIAEMMASSA.controllers";
 
 const favoriteRoutes: Router = Router();
-
-favoriteRoutes.post("/add", addFavoritosEmMassa);
 
 favoriteRoutes.use(middlewares.verifyToken);
 

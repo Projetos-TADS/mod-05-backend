@@ -2,11 +2,8 @@ import { Router } from "express";
 import middlewares from "../middlewares";
 import { actorCreateSchema, actorUpdateSchema } from "../schemas";
 import { actorControllers } from "../controllers";
-import { criarAtoresEmMassa } from "../controllers/CRIAEMMASSA.controllers";
 
 const actorRoutes: Router = Router();
-
-actorRoutes.post("/add", criarAtoresEmMassa);
 
 actorRoutes.use(middlewares.verifyToken);
 
