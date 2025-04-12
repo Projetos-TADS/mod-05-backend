@@ -16,7 +16,11 @@ actorRoutes.post(
   middlewares.validateBody(actorCreateSchema),
   actorControllers.createActor
 );
-actorRoutes.get("", actorControllers.getAllActors);
+actorRoutes.get(
+  "",
+  middlewares.pagination(["name", "birthDate", "nationality"]),
+  actorControllers.getAllActors
+);
 
 actorRoutes.use("/:actorId", middlewares.verifyActorIdExists);
 
