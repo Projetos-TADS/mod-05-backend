@@ -1,11 +1,39 @@
-import { ActorCreate, ActorRead, ActorReturn, ActorUpdate } from "../interfaces";
+import {
+  ActorCreate,
+  ActorRead,
+  ActorReturn,
+  ActorUpdate,
+  Pagination,
+  PaginationParams,
+} from "../interfaces";
 import { actorReadSchema, actorReturnSchema } from "../schemas";
 import { ActorModel } from "../models/Actor.model";
+import { Op } from "sequelize";
 
-const getAllActors = async (): Promise<ActorRead> => {
-  const actors: Array<ActorModel> = await ActorModel.findAll();
+const getAllActors = async (
+  { page, perPage, prevPage, nextPage, order, sort }: PaginationParams,
+  name?: string
+): Promise<Pagination> => {
+  const whereClause = name ? { name: { [Op.like]: `%${name.toLowerCase()}%` } } : {};
 
-  return actorReadSchema.parse(actors);
+  const { rows: actors, count }: { rows: ActorModel[]; count: number } =
+    await ActorModel.findAndCountAll({
+      order: [[sort, order]],
+      offset: page,
+      limit: perPage,
+      where: whereClause,
+    });
+
+  if (count - page <= perPage) {
+    nextPage = null;
+  }
+
+  return {
+    prevPage,
+    nextPage,
+    count,
+    data: actorReadSchema.parse(actors),
+  };
 };
 
 const createActor = async (payLoad: ActorCreate): Promise<ActorReturn> => {
