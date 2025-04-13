@@ -1,6 +1,6 @@
 "use strict";
 import { v4 as uuidv4 } from "uuid";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 
 interface UserData {
   userId: string;
@@ -22,12 +22,12 @@ module.exports = {
     const now = new Date();
     const saltRounds = 10;
 
-    const usersData = [
+    const usersData: UserData[] = [
       {
         userId: uuidv4(),
         name: "Lucas",
         email: "lucas@mail.com",
-        password: await bcrypt.hash("123456", saltRounds),
+        password: bcryptjs.hashSync("123456", saltRounds),
         cpf: "89499635076",
         admin: false,
         createdAt: now,
@@ -37,7 +37,7 @@ module.exports = {
         userId: uuidv4(),
         name: "Mariana",
         email: "mariana@mail.com",
-        password: await bcrypt.hash("123456", saltRounds),
+        password: bcryptjs.hashSync("123456", saltRounds),
         cpf: "23711464041",
         admin: true,
         createdAt: now,
@@ -47,7 +47,7 @@ module.exports = {
         userId: uuidv4(),
         name: "Thiago",
         email: "thiago@mail.com",
-        password: await bcrypt.hash("123456", saltRounds),
+        password: bcryptjs.hashSync("123456", saltRounds),
         cpf: "62842214013",
         admin: false,
         createdAt: now,
@@ -57,7 +57,7 @@ module.exports = {
         userId: uuidv4(),
         name: "Camila",
         email: "camila@mail.com",
-        password: await bcrypt.hash("123456", saltRounds),
+        password: bcryptjs.hashSync("123456", saltRounds),
         cpf: "51039941001",
         admin: false,
         createdAt: now,
@@ -67,7 +67,7 @@ module.exports = {
         userId: uuidv4(),
         name: "Rafael",
         email: "rafael@mail.com",
-        password: await bcrypt.hash("123456", saltRounds),
+        password: bcryptjs.hashSync("123456", saltRounds),
         cpf: "20739842072",
         admin: true,
         createdAt: now,
@@ -77,7 +77,7 @@ module.exports = {
         userId: uuidv4(),
         name: "Bia",
         email: "bia@mail.com",
-        password: await bcrypt.hash("123456", saltRounds),
+        password: bcryptjs.hashSync("123456", saltRounds),
         cpf: "39262185090",
         admin: false,
         createdAt: now,
@@ -87,7 +87,7 @@ module.exports = {
         userId: uuidv4(),
         name: "Laura",
         email: "laura@mail.com",
-        password: await bcrypt.hash("123456", saltRounds),
+        password: bcryptjs.hashSync("123456", saltRounds),
         cpf: "83996888007",
         admin: false,
         createdAt: now,
@@ -97,7 +97,7 @@ module.exports = {
         userId: uuidv4(),
         name: "Felipe",
         email: "felipe@mail.com",
-        password: await bcrypt.hash("123456", saltRounds),
+        password: bcryptjs.hashSync("123456", saltRounds),
         cpf: "81685385010",
         admin: true,
         createdAt: now,
@@ -107,7 +107,7 @@ module.exports = {
         userId: uuidv4(),
         name: "Sofia",
         email: "sofia@mail.com",
-        password: await bcrypt.hash("123456", saltRounds),
+        password: bcryptjs.hashSync("123456", saltRounds),
         cpf: "37290600070",
         admin: false,
         createdAt: now,
@@ -117,7 +117,7 @@ module.exports = {
         userId: uuidv4(),
         name: "Victor",
         email: "victor@mail.com",
-        password: await bcrypt.hash("123456", saltRounds),
+        password: bcryptjs.hashSync("123456", saltRounds),
         cpf: "54454556024",
         admin: false,
         createdAt: now,

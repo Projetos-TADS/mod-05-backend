@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import { UserAttributes, UserCreationAttributes } from "../interfaces";
 
 export class UserModel
@@ -17,8 +17,8 @@ export class UserModel
   public deletedAt?: Date;
   public admin!: boolean;
 
-  public async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 10);
+  public hashPassword() {
+    this.password = bcryptjs.hashSync(this.password, 10);
   }
 
   public lowerCaseEmail() {
