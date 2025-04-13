@@ -1,11 +1,11 @@
 import { UserModel } from "../src/models";
-import { compare } from "bcryptjs";
+import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 import sessionService from "../src/services/session.services";
 import { AppError } from "../src/errors";
 
 jest.mock("../src/models");
-jest.mock("bcryptjs");
+jest.mock("bcrypt");
 jest.mock("jsonwebtoken");
 
 const mockUser = {
