@@ -188,14 +188,6 @@ const swaggerOptions: Options = {
             },
           },
         },
-        CastCreate: {
-          type: "object",
-          properties: {
-            movieId: { $ref: "#/components/schemas/Cast/properties/movieId" },
-            actorId: { $ref: "#/components/schemas/Cast/properties/actorId" },
-          },
-          required: ["movieId", "actorId"],
-        },
         CastCompleteReturn: {
           allOf: [
             { $ref: "#/components/schemas/Cast" },
@@ -231,14 +223,6 @@ const swaggerOptions: Options = {
               example: "2023-01-01T12:00:00Z",
             },
           },
-        },
-        DirectorMovieCreate: {
-          type: "object",
-          properties: {
-            movieId: { $ref: "#/components/schemas/Cast/properties/movieId" },
-            directorId: { $ref: "#/components/schemas/Cast/properties/actorId" },
-          },
-          required: ["movieId", "actorId"],
         },
         DirectorMovieCompleteReturn: {
           allOf: [
@@ -388,13 +372,6 @@ const swaggerOptions: Options = {
               example: "2023-01-01T12:00:00Z",
             },
           },
-        },
-        FavoriteCreate: {
-          type: "object",
-          properties: {
-            movieId: { $ref: "#/components/schemas/Favorite/properties/movieId" },
-          },
-          required: ["movieId"],
         },
         FavoriteReturn: { $ref: "#/components/schemas/Favorite" },
         SessionReturn: {
