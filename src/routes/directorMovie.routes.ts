@@ -1,6 +1,5 @@
 import { Router } from "express";
 import middlewares from "../middlewares";
-import { directorMovieCreateSchema } from "../schemas";
 import { directorMovieControllers } from "../controllers";
 
 const directorMovieRoutes: Router = Router();
@@ -8,9 +7,8 @@ const directorMovieRoutes: Router = Router();
 directorMovieRoutes.use(middlewares.verifyToken);
 
 directorMovieRoutes.post(
-  "",
+  "/:movieId/:directorId",
   middlewares.isAdmin,
-  middlewares.validateBody(directorMovieCreateSchema),
   middlewares.verifyDirectorIdExists,
   middlewares.verifyMovieIdExists,
   directorMovieControllers.addDirectorToMovie

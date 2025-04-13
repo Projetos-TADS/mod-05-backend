@@ -1,8 +1,7 @@
 import { z } from "zod";
 import { Optional } from "sequelize";
-import { castCompleteReturnSchema, castCreateSchema, castReturnSchema } from "../schemas";
+import { castCompleteReturnSchema, castReturnSchema } from "../schemas";
 
-type CastCreate = z.infer<typeof castCreateSchema>;
 type CastReturn = z.infer<typeof castReturnSchema>;
 type CastCompleteReturn = z.infer<typeof castCompleteReturnSchema>;
 
@@ -15,4 +14,4 @@ interface CastAttributes {
 
 interface CastCreationAttributes extends Optional<CastAttributes, "castId" | "addedDate"> {}
 
-export { CastCreate, CastReturn, CastAttributes, CastCreationAttributes, CastCompleteReturn };
+export { CastReturn, CastAttributes, CastCreationAttributes, CastCompleteReturn };

@@ -9,7 +9,7 @@ const verifyMovieIdExists = async (
   response: Response,
   next: NextFunction
 ): Promise<void> => {
-  let movieId: string | undefined = request.params.movieId || request.body.movieId;
+  let movieId: string | undefined = request.params.movieId;
 
   const movie: MovieModel | null = await MovieModel.findByPk(movieId, {
     include: [

@@ -999,28 +999,16 @@ const swaggerOptions: Options = {
           },
         },
       },
-      "/favorites/{userId}": {
+      "/favorites/{movieId}/{userId}": {
         post: {
           summary: "Add movie to favorites",
           description: "Adds a movie to user's favorites list",
           tags: ["Users"],
           security: [{ bearerAuth: [] }],
-          parameters: [{ $ref: "#/components/parameters/UserIdParam" }],
-          requestBody: {
-            required: true,
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/FavoriteCreate" },
-                examples: {
-                  default: {
-                    value: {
-                      movieId: "054e014f-6549-4284-9325-e0a8ba35c0d2",
-                    },
-                  },
-                },
-              },
-            },
-          },
+          parameters: [
+            { $ref: "#/components/parameters/MovieIdParam" },
+            { $ref: "#/components/parameters/UserIdParam" },
+          ],
           responses: {
             201: {
               description: "Movie added to favorites",
@@ -1191,20 +1179,16 @@ const swaggerOptions: Options = {
           },
         },
       },
-      "/cast": {
+      "/cast/{movieId}/{actorId}": {
         post: {
           summary: "Associate actor with movie",
           description: "Adds an actor to a movie's cast (requires admin)",
           tags: ["Movies"],
           security: [{ bearerAuth: [] }],
-          requestBody: {
-            required: true,
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/CastCreate" },
-              },
-            },
-          },
+          parameters: [
+            { $ref: "#/components/parameters/MovieIdParam" },
+            { $ref: "#/components/parameters/ActorIdParam" },
+          ],
           responses: {
             201: {
               description: "Actor added successfully",
@@ -1231,20 +1215,16 @@ const swaggerOptions: Options = {
           },
         },
       },
-      "/directorMovie": {
+      "/directorMovie/{movieId}/{directorId}": {
         post: {
           summary: "Associate director with movie",
           description: "Adds an director to a movie's cast (requires admin)",
           tags: ["Movies"],
           security: [{ bearerAuth: [] }],
-          requestBody: {
-            required: true,
-            content: {
-              "application/json": {
-                schema: { $ref: "#/components/schemas/DirectorMovieCreate" },
-              },
-            },
-          },
+          parameters: [
+            { $ref: "#/components/parameters/MovieIdParam" },
+            { $ref: "#/components/parameters/DirectorIdParam" },
+          ],
           responses: {
             201: {
               description: "Director added successfully",

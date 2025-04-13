@@ -8,15 +8,10 @@ const castSchema = z.object({
   addedDate: z.date(),
 });
 
-const castCreateSchema = castSchema.omit({
-  castId: true,
-  addedDate: true,
-});
-
 const castReturnSchema = castSchema;
 
 const castCompleteReturnSchema = castSchema.extend({
   movie: movieCompleteReturnSchema,
 });
 
-export { castSchema, castCreateSchema, castReturnSchema, castCompleteReturnSchema };
+export { castSchema, castReturnSchema, castCompleteReturnSchema };

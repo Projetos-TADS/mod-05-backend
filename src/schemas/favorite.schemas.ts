@@ -7,12 +7,6 @@ const favoriteSchema = z.object({
   addedDate: z.date(),
 });
 
-const favoriteCreateSchema = favoriteSchema.omit({
-  favoriteMovieId: true,
-  userId: true,
-  addedDate: true,
-});
-
 const favoriteReturnSchema = favoriteSchema;
 
 const favoriteReadSchema = favoriteReturnSchema.array();
@@ -23,10 +17,4 @@ const favoriteCompleteReadSchema = favoriteSchema
   })
   .array();
 
-export {
-  favoriteSchema,
-  favoriteCreateSchema,
-  favoriteReturnSchema,
-  favoriteReadSchema,
-  favoriteCompleteReadSchema,
-};
+export { favoriteSchema, favoriteReturnSchema, favoriteReadSchema, favoriteCompleteReadSchema };

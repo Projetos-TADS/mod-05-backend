@@ -16,7 +16,6 @@ import {
   MovieCreationAttributes,
 } from "./movie.interfaces";
 import {
-  FavoriteCreate,
   FavoriteRead,
   FavoriteReturn,
   FavoriteMovieAttributes,
@@ -41,14 +40,12 @@ import {
 } from "./director.interfaces";
 
 import {
-  CastCreate,
   CastReturn,
   CastAttributes,
   CastCompleteReturn,
   CastCreationAttributes,
 } from "./cast.interfaces";
 import {
-  DirectorMovieCreate,
   DirectorMovieReturn,
   DirectorMovieAttributes,
   DirectorMovieCreationAttributes,
@@ -71,7 +68,6 @@ export {
   MovieReturn,
   MovieAttributes,
   MovieCreationAttributes,
-  FavoriteCreate,
   FavoriteRead,
   FavoriteReturn,
   FavoriteMovieAttributes,
@@ -89,12 +85,10 @@ export {
   DirectorAttributes,
   DirectorCreationAttributes,
   DirectorUpdate,
-  CastCreate,
   CastReturn,
   CastAttributes,
   CastCreationAttributes,
   CastCompleteReturn,
-  DirectorMovieCreate,
   DirectorMovieReturn,
   DirectorMovieAttributes,
   DirectorMovieCreationAttributes,

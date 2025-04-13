@@ -19,7 +19,6 @@ import {
 import { sessionSchema } from "./session.schemas";
 import {
   favoriteSchema,
-  favoriteCreateSchema,
   favoriteReturnSchema,
   favoriteReadSchema,
   favoriteCompleteReadSchema,
@@ -45,15 +44,9 @@ import {
   directorReturnSchema,
   directorReadSchema,
 } from "./director.schemas";
-import {
-  castSchema,
-  castCreateSchema,
-  castReturnSchema,
-  castCompleteReturnSchema,
-} from "./cast.schemas";
+import { castSchema, castReturnSchema, castCompleteReturnSchema } from "./cast.schemas";
 import {
   directorMovieSchema,
-  directorMovieCreateSchema,
   directorMovieReturnSchema,
   directorMovieCompleteReturnSchema,
 } from "./directorMovie.schemas";
@@ -75,7 +68,6 @@ export {
   movieCompleteReadSchema,
   movieCompleteReturnSchema,
   favoriteSchema,
-  favoriteCreateSchema,
   favoriteReturnSchema,
   favoriteReadSchema,
   favoriteCompleteReadSchema,
@@ -94,10 +86,8 @@ export {
   directorReturnSchema,
   directorReadSchema,
   castSchema,
-  castCreateSchema,
   castReturnSchema,
   directorMovieSchema,
-  directorMovieCreateSchema,
   directorMovieReturnSchema,
   directorMovieCompleteReturnSchema,
   castCompleteReturnSchema,

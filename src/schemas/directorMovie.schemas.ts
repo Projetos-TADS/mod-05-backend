@@ -8,20 +8,10 @@ const directorMovieSchema = z.object({
   addedDate: z.date(),
 });
 
-const directorMovieCreateSchema = directorMovieSchema.omit({
-  directorMovieId: true,
-  addedDate: true,
-});
-
 const directorMovieReturnSchema = directorMovieSchema;
 
 const directorMovieCompleteReturnSchema = directorMovieSchema.extend({
   movie: movieCompleteReturnSchema,
 });
 
-export {
-  directorMovieSchema,
-  directorMovieCreateSchema,
-  directorMovieReturnSchema,
-  directorMovieCompleteReturnSchema,
-};
+export { directorMovieSchema, directorMovieReturnSchema, directorMovieCompleteReturnSchema };

@@ -1,16 +1,14 @@
 import { Router } from "express";
 import middlewares from "../middlewares";
 import { castControllers } from "../controllers";
-import { castCreateSchema } from "../schemas";
 
 const castRoutes: Router = Router();
 
 castRoutes.use(middlewares.verifyToken);
 
 castRoutes.post(
-  "",
+  "/:movieId/:actorId",
   middlewares.isAdmin,
-  middlewares.validateBody(castCreateSchema),
   middlewares.verifyActorIdExists,
   middlewares.verifyMovieIdExists,
   castControllers.addActorToMovie
