@@ -1,4 +1,4 @@
-import { compare } from "bcrypt";
+import { compare } from "bcryptjs";
 import { AppError } from "../errors";
 import { SessionCreate, SessionReturn } from "../interfaces";
 import { sign, SignOptions } from "jsonwebtoken";

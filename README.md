@@ -52,7 +52,7 @@ Interactive documentation is available via Swagger UI:
 - **Sequelize** - ORM for database management
 - **JWT** - Authentication
 - **Swagger** - API documentation
-- **bcrypt** - Password hashing
+- **bcryptjs** - Password hashing
 - **dotenv** - Environment variable management
 - **cors** - Cross-origin resource sharing
 - **express-async-errors** - Error handling for async routes
