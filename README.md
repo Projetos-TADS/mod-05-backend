@@ -131,7 +131,13 @@ Interactive documentation is available via Swagger UI:
    npm run dev
    ```
 
-   The API will be available at [http://localhost:3000]v1/(http://localhost:3000)v1/ and the documentation at [http://localhost:3000/v1/docs](http://localhost:3000/v1/docs).
+8. Clean and reset the database:
+
+   ```bash
+   npm run resetdb
+   ```
+
+The API will be available at [http://localhost:3000]v1/(http://localhost:3000)v1/ and the documentation at [http://localhost:3000/v1/docs](http://localhost:3000/v1/docs).
 
 ### Running with Docker
 
