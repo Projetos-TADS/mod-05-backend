@@ -542,6 +542,6 @@ module.exports = {
     queryInterface: import("sequelize").QueryInterface,
     Sequelize: typeof import("sequelize")
   ) {
-    await queryInterface.bulkDelete("Movies", {}, {});
+    await queryInterface.bulkDelete("movies", {}, {});
   },
 };
