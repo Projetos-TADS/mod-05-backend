@@ -39,6 +39,7 @@ const getAllMovies = async (
       limit: perPage,
       where: whereClause,
       include: getMovieRelations(),
+      distinct: true,
     });
 
   if (count - page <= perPage) {

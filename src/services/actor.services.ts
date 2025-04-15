@@ -15,6 +15,7 @@ const getAllActors = async (
       offset: page,
       limit: perPage,
       where: whereClause,
+      distinct: true,
     });
 
   if (count - page <= perPage) {

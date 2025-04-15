@@ -21,6 +21,7 @@ const getAllDirectors = async (
       offset: page,
       limit: perPage,
       where: whereClause,
+      distinct: true,
     });
 
   if (count - page <= perPage) {
